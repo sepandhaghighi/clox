@@ -10,6 +10,7 @@ from art import tprint
 from .params import TIMEZONE_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 
+
 def clear_screen():
     """
     Clear screen function.
