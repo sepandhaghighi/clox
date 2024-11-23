@@ -20,6 +20,14 @@ def clear_screen():
 
 
 def run_clock(timezone=None, h_shift=0, v_shift=0):
+    """
+    Run clock.
+    
+    :param timezone:
+    :param h_shift:
+    :param v_shift:
+    :return:
+    """
     if timezone is None:
         tz = None
     else:
