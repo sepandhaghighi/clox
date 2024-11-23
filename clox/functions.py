@@ -19,14 +19,17 @@ def clear_screen():
         os.system('clear')
 
 
-def run_clock(timezone=None, h_shift=0, v_shift=0):
+def run_clock(timezone=None, v_shift=0, h_shift=0):
     """
     Run clock.
-    
-    :param timezone:
-    :param h_shift:
-    :param v_shift:
-    :return:
+
+    :param timezone: timezone
+    :type timezone: str
+    :param v_shift: vertical shift
+    :type v_shift: int
+    :param h_shift: horizontal shift
+    :type h_shift: int
+    :return: None
     """
     if timezone is None:
         tz = None
