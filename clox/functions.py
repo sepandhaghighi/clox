@@ -19,8 +19,12 @@ def clear_screen():
 
 
 def run_clock(timezone=None):
-    tz = pytz.timezone(timezone)
+    if timezone is None:
+        tz = None
+    else:
+        tz = pytz.timezone(timezone)
     while True:
+        clear_screen()
         current_time = datetime.datetime.now(tz=tz).strftime('%H:%M')
         print(current_time)
-        time.sleep(1)
+        time.sleep(1.5)

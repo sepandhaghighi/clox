@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """clox main."""
 import argparse
-
+from .params import TIMEZONE_LIST
+from .params import ADDITIONAL_INFO, EXIT_MESSAGE
+from .functions import run_clock
 
 def main():
     """
@@ -17,7 +19,7 @@ def main():
     parser.add_argument('--version', help='version', nargs="?", const=1)
     args = parser.parse_args()
     try:
-        run_clock(args)
+        run_clock(timezone=args.timezone)
     except (KeyboardInterrupt, EOFError):
         print(EXIT_MESSAGE)
 
