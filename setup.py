@@ -67,7 +67,7 @@ setup(
     license='MIT',
     entry_points={
             'console_scripts': [
-                'clox = clox.__main__:main',
+                'clox = clox.functions:main',
             ]
     }
 )
