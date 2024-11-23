@@ -5,6 +5,7 @@ import sys
 import time
 import datetime
 import pytz
+from art import tprint
 
 def clear_screen():
     """
@@ -18,13 +19,15 @@ def clear_screen():
         os.system('clear')
 
 
-def run_clock(timezone=None):
+def run_clock(timezone=None, h_shift=0, v_shift=0):
     if timezone is None:
         tz = None
     else:
         tz = pytz.timezone(timezone)
     while True:
         clear_screen()
+        print('\n' * v_shift, end='')
+        print(" " * h_shift, end='')
         current_time = datetime.datetime.now(tz=tz).strftime('%H:%M')
-        print(current_time)
+        tprint(current_time, sep="\n" + " " * h_shift)
         time.sleep(1.5)
