@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 ### Changed
 [Unreleased]: https://github.com/sepandhaghighi/clox/compare/v0.1...dev
-[0.1]: https://github.com/sepandhaghighi/clox/compare/daa2be6...v0.1
+[0.1]: https://github.com/sepandhaghighi/clox/compare/e9b49e2...v0.1
 
 
 
