@@ -10,7 +10,7 @@ import pytz
 from art import tprint
 from .params import TIMEZONES_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
-from .params import FACES_MAP
+from .params import FACES_MAP, FACES_LIST, FACES_LIST_EXAMPLE_MESSAGE
 
 
 def clear_screen():
