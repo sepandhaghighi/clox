@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1] - 2024-xx-xx
 ### Added
 - `--v-shift` and `--h-shift` arguments
-- `timezone` argument
-- `run_clock` and `main` function
+- `--timezone` argument
+- `--face` argument
+- `run_clock` and `main` functions
 [Unreleased]: https://github.com/sepandhaghighi/clox/compare/v0.1...dev
 [0.1]: https://github.com/sepandhaghighi/clox/compare/e9b49e2...v0.1
 
