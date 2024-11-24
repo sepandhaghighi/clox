@@ -38,6 +38,19 @@ def get_face(index):
     return FACES_MAP[index]
 
 
+def show_faces_list():
+    """
+    Show faces list.
+
+    :return: None
+    """
+    print("Faces list:\n")
+    for i in sorted(FACES_MAP):
+        print('Face {}\n'.format(i))
+        tprint(FACES_LIST_EXAMPLE_MESSAGE, font=get_face(i))
+        print('=' * 80)
+
+
 def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
     """
     Run clock.
@@ -81,9 +94,12 @@ def main():
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
     parser.add_argument('--face', help='face', type=int, choices=FACES_LIST, default=1)
+    parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
+    elif args.faces_list:
+        show_faces_list()
     else:
         try:
             run_clock(timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift, face=args.face)
