@@ -84,7 +84,8 @@ def main():
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
-    try:
-        run_clock(timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift, face=args.face)
-    except (KeyboardInterrupt, EOFError):
-        print(EXIT_MESSAGE)
+    else:
+        try:
+            run_clock(timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift, face=args.face)
+        except (KeyboardInterrupt, EOFError):
+            print(EXIT_MESSAGE)
