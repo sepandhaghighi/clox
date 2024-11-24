@@ -39,6 +39,8 @@ def run_clock(timezone=None, v_shift=0, h_shift=0):
         tz = None
     else:
         tz = pytz.timezone(timezone)
+    v_shift = max(0, v_shift)
+    h_shift = max(0, h_shift)
     while True:
         clear_screen()
         print('\n' * v_shift, end='')
