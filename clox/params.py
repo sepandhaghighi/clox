@@ -7,7 +7,7 @@ CLOX_VERSION = "0.1"
 ADDITIONAL_INFO = "Additional information: Press `Ctrl+C` to exit."
 EXIT_MESSAGE = "See you. Bye!"
 
-TIMEZONE_LIST = pytz.all_timezones
+TIMEZONES_LIST = pytz.all_timezones
 
 
 FACES_MAP = {

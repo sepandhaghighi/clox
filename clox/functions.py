@@ -8,7 +8,7 @@ import datetime
 import argparse
 import pytz
 from art import tprint
-from .params import TIMEZONE_LIST, CLOX_VERSION
+from .params import TIMEZONES_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP
 
@@ -76,7 +76,7 @@ def main():
     """
     parser = argparse.ArgumentParser()
     parser.epilog = ADDITIONAL_INFO
-    parser.add_argument('--timezone', help='timezone', type=str, choices=TIMEZONE_LIST)
+    parser.add_argument('--timezone', help='timezone', type=str, choices=TIMEZONES_LIST)
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
