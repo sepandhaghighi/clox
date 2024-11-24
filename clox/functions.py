@@ -89,7 +89,7 @@ def main():
     """
     parser = argparse.ArgumentParser()
     parser.epilog = ADDITIONAL_INFO
-    parser.add_argument('--timezone', help='timezone', type=str, choices=TIMEZONES_LIST)
+    parser.add_argument('--timezone', help='time zone', type=str, choices=TIMEZONES_LIST)
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
