@@ -1,15 +1,6 @@
 # -*- coding: utf-8 -*-
 """clox main."""
-import argparse
-
-
-def main():
-    """
-    CLI main function.
-
-    :return: None
-    """
-    pass
+from .functions import main
 
 
 if __name__ == "__main__":

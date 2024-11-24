@@ -38,14 +38,14 @@ setup(
     author_email='me@sepand.tech',
     url='https://github.com/sepandhaghighi/clox',
     download_url='https://github.com/sepandhaghighi/clox/tarball/v0.1',
-    keywords="clock terminal cli geek clox",
+    keywords="clock time timezone terminal cli geek clox",
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/clox'
     },
     install_requires=get_requires(),
     python_requires='>=3.6',
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 3 - Alpha',
         'Natural Language :: English',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
@@ -67,7 +67,7 @@ setup(
     license='MIT',
     entry_points={
             'console_scripts': [
-                'clox = clox.__main__:main',
+                'clox = clox.functions:main',
             ]
     }
 )
