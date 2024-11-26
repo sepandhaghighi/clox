@@ -1,4 +1,4 @@
-pytz==2019.2
+pytz==2024.2
 art==6.3
 setuptools>=40.8.0
 vulture>=1.0
