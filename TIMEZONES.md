@@ -1,9 +1,6 @@
 # Timezones List
 
 
-----------
-
-
 1. Africa/Abidjan
 2. Africa/Accra
 3. Africa/Addis_Ababa
