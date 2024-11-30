@@ -51,6 +51,17 @@ def show_faces_list():
         print('=' * 80)
 
 
+def show_timezones_list():
+    """
+    Show timezones list.
+
+    :return: None
+    """
+    print("Timezones list:\n")
+    for index, timezone in enumerate(TIMEZONES_LIST, 1):
+        print("{0}. {1}".format(index, timezone))
+
+
 def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
     """
     Run clock.
@@ -89,17 +100,20 @@ def main():
     """
     parser = argparse.ArgumentParser()
     parser.epilog = ADDITIONAL_INFO
-    parser.add_argument('--timezone', help='time zone', type=str, choices=TIMEZONES_LIST)
+    parser.add_argument('--timezone', help='timezone', type=str, choices=TIMEZONES_LIST)
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
     parser.add_argument('--face', help='face', type=int, choices=FACES_LIST, default=1)
     parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
+    parser.add_argument('--timezones-list', help='timezones list', nargs="?", const=1)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
     elif args.faces_list:
         show_faces_list()
+    elif args.timezones_list:
+        show_timezones_list()
     else:
         try:
             run_clock(timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift, face=args.face)
