@@ -89,6 +89,8 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
         print(" " * h_shift, end='')
         current_time = datetime.datetime.now(tz=tz).strftime('%H:%M')
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
+        print(" " * h_shift, end='')
+        print(timezone)
         time.sleep(1.5)
 
 
