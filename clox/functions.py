@@ -76,8 +76,10 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
     :type face: int
     :return: None
     """
+    timezone_str = timezone
     if timezone is None:
         tz = None
+        timezone_str = "Local"
     else:
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
@@ -90,7 +92,7 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
         current_time = datetime.datetime.now(tz=tz).strftime('%H:%M')
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
         print(" " * h_shift, end='')
-        print(timezone)
+        print("Timezone: {0}".format(timezone_str))
         time.sleep(1.5)
 
 
