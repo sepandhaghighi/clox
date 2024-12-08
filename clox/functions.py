@@ -93,7 +93,7 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
         print(" " * h_shift, end='')
         print("Timezone: {0}".format(timezone_str))
-        time.sleep(1.5)
+        time.sleep(1)
 
 
 def main():
