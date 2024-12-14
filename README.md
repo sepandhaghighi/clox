@@ -96,7 +96,13 @@ clox --timezone="Etc/GMT+7"
 * [Timezones List](https://github.com/sepandhaghighi/clox/blob/main/TIMEZONES.md)
 * `clox --timezones-list`
 
+### Vertical/Horizontal Shift
 
+ℹ️ The vertical and horizontal shift both have default values of `0`
+
+```console
+clox --v-shift=20 --h-shift=30
+```
 
 ## Issues & Bug Reports			
 
