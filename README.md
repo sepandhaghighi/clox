@@ -63,7 +63,7 @@
 
 ## Usage
 
-⚠️ You can use `clox` or `python -m clox` to run this program
+ℹ️ You can use `clox` or `python -m clox` to run this program
 
 ### Version
 
@@ -71,12 +71,31 @@
 clox --version
 ```
 
-<div align="center">
+### Basic
 
-<img src="https://github.com/sepandhaghighi/clox/raw/main/otherfiles/help.gif">
-<p>Screen Record</p>
+ℹ️ Press `Ctrl + C` to exit
 
-</div>
+```console
+clox
+```
+
+### Face
+
+```console
+clox --face=3
+```
+* Use `--face=-1` for random mode
+* [Faces List](https://github.com/sepandhaghighi/clox/blob/main/FACES.md)
+* `clox --faces-list`
+
+### Timezone
+
+```console
+clox --timezone="Etc/GMT+7"
+```
+* [Timezones List](https://github.com/sepandhaghighi/clox/blob/main/TIMEZONES.md)
+* `clox --timezones-list`
+
 
 
 ## Issues & Bug Reports			
