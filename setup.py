@@ -38,7 +38,7 @@ setup(
     author_email='me@sepand.tech',
     url='https://github.com/sepandhaghighi/clox',
     download_url='https://github.com/sepandhaghighi/clox/tarball/v0.1',
-    keywords="clock time timezone terminal cli geek clox",
+    keywords="clock time timer timezone terminal cli geek clox",
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/clox'
     },
