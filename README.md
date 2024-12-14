@@ -10,7 +10,7 @@
 ## Overview	
 
 <p align="justify">					
-...
+Clox is a terminal-based clock application designed for terminal enthusiasts who appreciate simplicity, elegance, and productivity within their command-line environment. Whether you're coding, monitoring tasks, or simply enjoying the terminal aesthetic, Clox brings a stylish and customizable time display to your workspace.
 </p>
 
 <table>
