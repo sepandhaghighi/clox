@@ -111,11 +111,6 @@ Just fill an issue and describe it. We'll check it ASAP!
 - Please complete the issue template
  			
 
-## References
-
-
-
-
 ## Show Your Support
 								
 <h3>Star This Repo</h3>					
