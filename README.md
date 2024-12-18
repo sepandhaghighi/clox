@@ -4,12 +4,13 @@
 <br/>
 <a href="https://badge.fury.io/py/clox"><img src="https://badge.fury.io/py/clox.svg" alt="PyPI version"></a>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
+<a href="https://github.com/sepandhaghighi/clox"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/sepandhaghighi/clox"></a>
 </div>			
 				
 ## Overview	
 
 <p align="justify">					
-...
+Clox is a terminal-based clock application designed for terminal enthusiasts who appreciate simplicity, elegance, and productivity within their command-line environment. Whether you're coding, monitoring tasks, or simply enjoying the terminal aesthetic, Clox brings a stylish and customizable time display to your workspace.
 </p>
 
 <table>
@@ -63,7 +64,7 @@
 
 ## Usage
 
-⚠️ You can use `clox` or `python -m clox` to run this program
+ℹ️ You can use `clox` or `python -m clox` to run this program
 
 ### Version
 
@@ -71,13 +72,38 @@
 clox --version
 ```
 
-<div align="center">
+### Basic
 
-<img src="https://github.com/sepandhaghighi/clox/raw/main/otherfiles/help.gif">
-<p>Screen Record</p>
+ℹ️ Press `Ctrl + C` to exit
 
-</div>
+```console
+clox
+```
 
+### Face
+
+```console
+clox --face=3
+```
+* Use `--face=-1` for random mode
+* [Faces List](https://github.com/sepandhaghighi/clox/blob/main/FACES.md)
+* `clox --faces-list`
+
+### Timezone
+
+```console
+clox --timezone="Etc/GMT+7"
+```
+* [Timezones List](https://github.com/sepandhaghighi/clox/blob/main/TIMEZONES.md)
+* `clox --timezones-list`
+
+### Vertical/Horizontal Shift
+
+ℹ️ The vertical and horizontal shift both have default values of `0`
+
+```console
+clox --v-shift=20 --h-shift=30
+```
 
 ## Issues & Bug Reports			
 
@@ -85,11 +111,6 @@ Just fill an issue and describe it. We'll check it ASAP!
 
 - Please complete the issue template
  			
-
-## References
-
-
-
 
 ## Show Your Support
 								

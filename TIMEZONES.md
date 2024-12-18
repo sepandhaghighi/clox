@@ -1,5 +1,7 @@
 # Timezones List
 
+**Last Update: 2024-12-14**
+
 
 1. Africa/Abidjan
 2. Africa/Accra
