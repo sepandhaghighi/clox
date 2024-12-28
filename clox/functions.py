@@ -8,6 +8,7 @@ import datetime
 import argparse
 import pytz
 from art import tprint
+from .params import TIME_FORMATS
 from .params import TIMEZONES_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST, FACES_LIST_EXAMPLE_MESSAGE
@@ -76,6 +77,7 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
     :type face: int
     :return: None
     """
+    format_index = 0
     timezone_str = timezone
     if timezone is None:
         tz = None
@@ -89,11 +91,12 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        current_time = datetime.datetime.now(tz=tz).strftime('%H:%M')
+        current_time = datetime.datetime.now(tz=tz).strftime(TIME_FORMATS[format_index])
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
         print(" " * h_shift, end='')
         print("Timezone: {0}".format(timezone_str))
         time.sleep(1)
+        format_index = int(not format_index)
 
 
 def main():
