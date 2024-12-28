@@ -96,7 +96,7 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
         print(" " * h_shift, end='')
         print("Timezone: {0}".format(timezone_str))
         time.sleep(1)
-        format_index = int(not(format_index))
+        format_index = int(not format_index)
 
 
 def main():
