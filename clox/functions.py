@@ -63,7 +63,7 @@ def show_timezones_list():
         print("{0}. {1}".format(index, timezone))
 
 
-def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
+def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False):
     """
     Run clock.
 
@@ -75,6 +75,8 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
     :type h_shift: int
     :param face: face index
     :type face: int
+    :param no_blink: no-blink flag
+    :type no_blink: bool
     :return: None
     """
     format_index = 0
@@ -96,7 +98,8 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1):
         print(" " * h_shift, end='')
         print("Timezone: {0}".format(timezone_str))
         time.sleep(1)
-        format_index = int(not format_index)
+        if not no_blink:
+            format_index = int(not format_index)
 
 
 def main():
@@ -114,6 +117,7 @@ def main():
     parser.add_argument('--face', help='face', type=int, choices=FACES_LIST, default=1)
     parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
     parser.add_argument('--timezones-list', help='timezones list', nargs="?", const=1)
+    parser.add_argument('--no-blink', help='disable blinking mode', nargs="?", const=1)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
@@ -123,6 +127,11 @@ def main():
         show_timezones_list()
     else:
         try:
-            run_clock(timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift, face=args.face)
+            run_clock(
+                timezone=args.timezone,
+                h_shift=args.h_shift,
+                v_shift=args.v_shift,
+                face=args.face,
+                no_blink=args.no_blink)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
