@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Blink mode
+- `--no-blink` argument
 ## [0.1] - 2024-12-24
 ### Added
 - `--v-shift` and `--h-shift` arguments
