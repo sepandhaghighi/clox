@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Blink mode
 - `--no-blink` argument
+### Changed
+- `README.md` updated
 ## [0.1] - 2024-12-24
 ### Added
 - `--v-shift` and `--h-shift` arguments
