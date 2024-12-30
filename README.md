@@ -104,6 +104,14 @@ clox --timezone="Etc/GMT+7"
 clox --v-shift=20 --h-shift=30
 ```
 
+### No Blink
+
+Disable blinking mode
+
+```console
+clox --no-blink
+```
+
 ## Issues & Bug Reports			
 
 Just fill an issue and describe it. We'll check it ASAP!
