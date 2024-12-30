@@ -127,6 +127,11 @@ def main():
         show_timezones_list()
     else:
         try:
-            run_clock(timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift, face=args.face, no_blink=args.no_blink)
+            run_clock(
+                timezone=args.timezone,
+                h_shift=args.h_shift,
+                v_shift=args.v_shift,
+                face=args.face,
+                no_blink=args.no_blink)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
