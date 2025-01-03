@@ -8,7 +8,7 @@ import datetime
 import argparse
 import pytz
 from art import tprint
-from .params import TIME_FORMATS
+from .params import HORIZONTAL_TIME_FORMATS, VERTICAL_TIME_FORMATS
 from .params import TIMEZONES_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST, FACES_LIST_EXAMPLE_MESSAGE
@@ -63,7 +63,7 @@ def show_timezones_list():
         print("{0}. {1}".format(index, timezone))
 
 
-def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False):
+def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, vertical=False):
     """
     Run clock.
 
@@ -77,10 +77,15 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False):
     :type face: int
     :param no_blink: no-blink flag
     :type no_blink: bool
+    :param vertical: vertical mode flag
+    :type vertical: bool
     :return: None
     """
     format_index = 0
     timezone_str = timezone
+    time_formats = HORIZONTAL_TIME_FORMATS
+    if vertical:
+        time_formats = VERTICAL_TIME_FORMATS
     if timezone is None:
         tz = None
         timezone_str = "Local"
@@ -93,7 +98,7 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False):
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        current_time = datetime.datetime.now(tz=tz).strftime(TIME_FORMATS[format_index])
+        current_time = datetime.datetime.now(tz=tz).strftime(time_formats[format_index])
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
         print(" " * h_shift, end='')
         print("Timezone: {0}".format(timezone_str))
@@ -118,6 +123,7 @@ def main():
     parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
     parser.add_argument('--timezones-list', help='timezones list', nargs="?", const=1)
     parser.add_argument('--no-blink', help='disable blinking mode', nargs="?", const=1)
+    parser.add_argument('--vertical', help='vertical mode', nargs="?", const=1)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
@@ -132,6 +138,7 @@ def main():
                 h_shift=args.h_shift,
                 v_shift=args.v_shift,
                 face=args.face,
-                no_blink=args.no_blink)
+                no_blink=args.no_blink,
+                vertical=args.vertical)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)

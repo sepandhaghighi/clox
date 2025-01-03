@@ -9,7 +9,8 @@ EXIT_MESSAGE = "See you. Bye!"
 
 FACES_LIST_EXAMPLE_MESSAGE = "12 : 34"
 
-TIME_FORMATS = ['%H:%M', '%H:%M.']
+HORIZONTAL_TIME_FORMATS = ['%H:%M', '%H:%M.']
+VERTICAL_TIME_FORMATS = ['%H\n%M', '%H\n%M.']
 
 TIMEZONES_LIST = pytz.all_timezones
 

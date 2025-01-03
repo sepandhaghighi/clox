@@ -112,6 +112,12 @@ Disable blinking mode
 clox --no-blink
 ```
 
+### Vertical Mode
+
+```console
+clox --vertical
+```
+
 ## Issues & Bug Reports			
 
 Just fill an issue and describe it. We'll check it ASAP!
