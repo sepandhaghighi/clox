@@ -8,6 +8,7 @@ ADDITIONAL_INFO = "Additional information: Press `Ctrl+C` to exit."
 EXIT_MESSAGE = "See you. Bye!"
 
 FACES_LIST_EXAMPLE_HORIZONTAL = "12:34"
+FACES_LIST_EXAMPLE_VERTICAL = "12\n34"
 
 HORIZONTAL_TIME_FORMATS = ['%H:%M', '%H:%M.']
 VERTICAL_TIME_FORMATS = ['%H\n%M', '%H\n%M.']
