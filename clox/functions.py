@@ -11,7 +11,8 @@ from art import tprint
 from .params import HORIZONTAL_TIME_FORMATS, VERTICAL_TIME_FORMATS
 from .params import TIMEZONES_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
-from .params import FACES_MAP, FACES_LIST, FACES_LIST_EXAMPLE_HORIZONTAL
+from .params import FACES_MAP, FACES_LIST
+from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
 
 
 def clear_screen():
@@ -39,16 +40,21 @@ def get_face(index):
     return FACES_MAP[index]
 
 
-def show_faces_list():
+def show_faces_list(vertical=False):
     """
     Show faces list.
 
+    :param vertical: vertical mode flag
+    :type vertical: bool
     :return: None
     """
+    faces_list_example = HORIZONTAL_FACES_LIST_EXAMPLE
+    if vertical:
+        faces_list_example = VERTICAL_FACES_LIST_EXAMPLE
     print("Faces list:\n")
     for i in sorted(FACES_MAP):
         print('Face {}\n'.format(i))
-        tprint(FACES_LIST_EXAMPLE_HORIZONTAL, font=get_face(i))
+        tprint(faces_list_example, font=get_face(i))
         print('=' * 80)
 
 
