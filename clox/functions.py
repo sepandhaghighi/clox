@@ -134,7 +134,7 @@ def main():
     if args.version:
         print(CLOX_VERSION)
     elif args.faces_list:
-        show_faces_list()
+        show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
         show_timezones_list()
     else:
