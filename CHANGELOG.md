@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `--vertical` argument
+### Changed
+- `show_faces_list` function updated
 ## [0.2] - 2025-01-01
 ### Added
 - Blink mode
