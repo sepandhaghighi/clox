@@ -48,13 +48,15 @@ def show_faces_list(vertical=False):
     :type vertical: bool
     :return: None
     """
-    faces_list_example = HORIZONTAL_FACES_LIST_EXAMPLE
+    mode = "Horizontal"
+    example = HORIZONTAL_FACES_LIST_EXAMPLE
     if vertical:
-        faces_list_example = VERTICAL_FACES_LIST_EXAMPLE
-    print("Faces list:\n")
+        example = VERTICAL_FACES_LIST_EXAMPLE
+        mode = "Vertical"
+    print("Faces list ({0}):\n".format(mode))
     for i in sorted(FACES_MAP):
         print('Face {}\n'.format(i))
-        tprint(faces_list_example, font=get_face(i))
+        tprint(example, font=get_face(i))
         print('=' * 80)
 
 
