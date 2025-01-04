@@ -44,6 +44,9 @@ jobs:
         clox --faces-list
     - name: Run3
       run: |
+        clox --faces-list --vertical
+    - name: Run4
+      run: |
         clox --timezones-list
     - name: Install dev-requirements
       run: |
