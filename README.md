@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/sepandhaghighi/clox/raw/logo/otherfiles/logo.png" width="450">
+<img src="https://github.com/sepandhaghighi/clox/raw/main/otherfiles/logo.png" width="450">
 <h1>Clox: A Geeky Clock for Terminal Enthusiasts</h1>
 <br/>
 <a href="https://badge.fury.io/py/clox"><img src="https://badge.fury.io/py/clox.svg" alt="PyPI version"></a>
