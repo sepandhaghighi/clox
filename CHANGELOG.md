@@ -6,9 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- Logo
 - `--vertical` argument
 ### Changed
 - `show_faces_list` function updated
+- `AUTHORS.md` updated
 ## [0.2] - 2025-01-01
 ### Added
 - Blink mode
