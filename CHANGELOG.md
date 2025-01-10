@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.3] - 2025-01-10
 ### Added
 - Logo
 - `--vertical` argument
@@ -26,7 +27,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `TIMEZONES.md`
 - `FACES.md`
 
-[Unreleased]: https://github.com/sepandhaghighi/clox/compare/v0.2...dev
+[Unreleased]: https://github.com/sepandhaghighi/clox/compare/v0.3...dev
+[0.3]: https://github.com/sepandhaghighi/clox/compare/v0.2...v0.3
 [0.2]: https://github.com/sepandhaghighi/clox/compare/v0.1...v0.2
 [0.1]: https://github.com/sepandhaghighi/clox/compare/e9b49e2...v0.1
 
