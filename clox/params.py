@@ -12,7 +12,7 @@ VERTICAL_FACES_LIST_EXAMPLE = "12\n34"
 
 HORIZONTAL_TIME_FORMATS = ['%H:%M', '%H:%M.']
 VERTICAL_TIME_FORMATS = ['%H\n%M', '%H\n%M.']
-DATE_FORMAT = "%A-%d %B, %Y"
+DATE_FORMAT = "%A, %B %d, %Y"
 
 TIMEZONES_LIST = pytz.all_timezones
 

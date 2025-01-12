@@ -111,9 +111,9 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, verti
         current_date = datetime_now.strftime(DATE_FORMAT)
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
         print(" " * h_shift, end='')
-        print("Timezone: {0}".format(timezone_str))
+        print(current_date)
         print(" " * h_shift, end='')
-        print("Date: {0}".format(current_date))
+        print("Timezone: {0}".format(timezone_str))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
