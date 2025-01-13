@@ -8,7 +8,7 @@ import datetime
 import argparse
 import pytz
 from art import tprint
-from .params import HORIZONTAL_TIME_FORMATS, VERTICAL_TIME_FORMATS
+from .params import HORIZONTAL_TIME_FORMATS, VERTICAL_TIME_FORMATS, DATE_FORMAT
 from .params import TIMEZONES_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST
@@ -106,8 +106,12 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, verti
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        current_time = datetime.datetime.now(tz=tz).strftime(time_formats[format_index])
+        datetime_now = datetime.datetime.now(tz=tz)
+        current_time = datetime_now.strftime(time_formats[format_index])
+        current_date = datetime_now.strftime(DATE_FORMAT)
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
+        print(" " * h_shift, end='')
+        print(current_date)
         print(" " * h_shift, end='')
         print("Timezone: {0}".format(timezone_str))
         time.sleep(1)
