@@ -27,6 +27,7 @@ def clox_info():
     print(CLOX_OVERVIEW)
     print(CLOX_REPO)
 
+
 def clear_screen():
     """
     Clear screen function.
