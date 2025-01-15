@@ -152,6 +152,8 @@ def main():
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
+    elif args.info:
+        clox_info()
     elif args.faces_list:
         show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
