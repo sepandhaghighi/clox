@@ -13,7 +13,19 @@ from .params import TIMEZONES_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
+from .params import CLOX_OVERVIEW, CLOX_REPO
 
+
+def clox_info():
+    """
+    Print clox details.
+
+    :return: None
+    """
+    tprint("Clox")
+    tprint("V:" + CLOX_VERSION)
+    print(CLOX_OVERVIEW)
+    print(CLOX_REPO)
 
 def clear_screen():
     """
