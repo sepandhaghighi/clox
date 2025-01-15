@@ -41,11 +41,14 @@ jobs:
         clox --version
     - name: Run2
       run: |
-        clox --faces-list
+        clox --info
     - name: Run3
       run: |
-        clox --faces-list --vertical
+        clox --faces-list
     - name: Run4
+      run: |
+        clox --faces-list --vertical
+    - name: Run5
       run: |
         clox --timezones-list
     - name: Install dev-requirements
