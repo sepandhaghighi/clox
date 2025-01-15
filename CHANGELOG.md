@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Date
+- `--info` argument
 ## [0.3] - 2025-01-10
 ### Added
 - Logo
