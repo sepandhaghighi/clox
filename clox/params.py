@@ -4,6 +4,14 @@ import pytz
 
 CLOX_VERSION = "0.3"
 
+CLOX_OVERVIEW = '''
+Clox is a terminal-based clock application designed for terminal enthusiasts who appreciate simplicity,
+elegance, and productivity within their command-line environment. Whether you're coding, monitoring tasks,
+or simply enjoying the terminal aesthetic, Clox brings a stylish and customizable time display to your workspace.
+'''
+
+CLOX_REPO = "Repo : https://github.com/sepandhaghighi/clox"
+
 ADDITIONAL_INFO = "Additional information: Press `Ctrl+C` to exit."
 EXIT_MESSAGE = "See you. Bye!"
 
