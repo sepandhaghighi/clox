@@ -131,6 +131,7 @@ def main():
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
+    parser.add_argument('--info', help='info', nargs="?", const=1)
     parser.add_argument('--face', help='face', type=int, choices=FACES_LIST, default=1)
     parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
     parser.add_argument('--timezones-list', help='timezones list', nargs="?", const=1)
