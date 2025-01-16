@@ -72,6 +72,12 @@ Clox is a terminal-based clock application designed for terminal enthusiasts who
 clox --version
 ```
 
+### Info
+
+```console
+clox --info
+```
+
 ### Basic
 
 ℹ️ Press `Ctrl + C` to exit

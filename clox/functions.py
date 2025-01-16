@@ -13,6 +13,19 @@ from .params import TIMEZONES_LIST, CLOX_VERSION
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
+from .params import CLOX_OVERVIEW, CLOX_REPO
+
+
+def clox_info():
+    """
+    Print clox details.
+
+    :return: None
+    """
+    tprint("Clox")
+    tprint("V:" + CLOX_VERSION)
+    print(CLOX_OVERVIEW)
+    print(CLOX_REPO)
 
 
 def clear_screen():
@@ -131,6 +144,7 @@ def main():
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
+    parser.add_argument('--info', help='info', nargs="?", const=1)
     parser.add_argument('--face', help='face', type=int, choices=FACES_LIST, default=1)
     parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
     parser.add_argument('--timezones-list', help='timezones list', nargs="?", const=1)
@@ -139,6 +153,8 @@ def main():
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
+    elif args.info:
+        clox_info()
     elif args.faces_list:
         show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
