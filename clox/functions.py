@@ -84,7 +84,7 @@ def show_timezones_list():
         print("{0}. {1}".format(index, timezone))
 
 
-def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, vertical=False):
+def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, vertical=False, hide_date=False):
     """
     Run clock.
 
@@ -100,6 +100,8 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, verti
     :type no_blink: bool
     :param vertical: vertical mode flag
     :type vertical: bool
+    :param hide_date: hide date flag
+    :type hide_date: bool
     :return: None
     """
     format_index = 0
@@ -123,8 +125,9 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, verti
         current_time = datetime_now.strftime(time_formats[format_index])
         current_date = datetime_now.strftime(DATE_FORMAT)
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
-        print(" " * h_shift, end='')
-        print(current_date)
+        if not hide_date:
+            print(" " * h_shift, end='')
+            print(current_date)
         print(" " * h_shift, end='')
         print("Timezone: {0}".format(timezone_str))
         time.sleep(1)
