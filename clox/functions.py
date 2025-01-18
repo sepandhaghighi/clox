@@ -171,6 +171,7 @@ def main():
                 v_shift=args.v_shift,
                 face=args.face,
                 no_blink=args.no_blink,
-                vertical=args.vertical)
+                vertical=args.vertical,
+                hide_date=args.hide_date)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
