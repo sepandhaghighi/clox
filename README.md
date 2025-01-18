@@ -119,6 +119,14 @@ Disable blinking mode
 clox --no-blink
 ```
 
+### Hide Date
+
+In this mode, the date will not be shown
+
+```console
+clox --hide-date
+```
+
 ### Vertical Mode
 
 ```console
