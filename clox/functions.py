@@ -84,7 +84,15 @@ def show_timezones_list():
         print("{0}. {1}".format(index, timezone))
 
 
-def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, vertical=False, hide_date=False, hide_timezone=False):
+def run_clock(
+        timezone=None,
+        v_shift=0,
+        h_shift=0,
+        face=1,
+        no_blink=False,
+        vertical=False,
+        hide_date=False,
+        hide_timezone=False):
     """
     Run clock.
 
