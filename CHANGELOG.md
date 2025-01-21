@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `--hide-date` argument
+- `--hide-timezone` argument
 ## [0.4] - 2025-01-18
 ### Added
 - Date

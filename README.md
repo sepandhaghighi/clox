@@ -127,6 +127,14 @@ In this mode, the date will not be shown
 clox --hide-date
 ```
 
+### Hide Timezone
+
+In this mode, the timezone will not be shown
+
+```console
+clox --hide-timezone
+```
+
 ### Vertical Mode
 
 ```console

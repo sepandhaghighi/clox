@@ -84,7 +84,15 @@ def show_timezones_list():
         print("{0}. {1}".format(index, timezone))
 
 
-def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, vertical=False, hide_date=False):
+def run_clock(
+        timezone=None,
+        v_shift=0,
+        h_shift=0,
+        face=1,
+        no_blink=False,
+        vertical=False,
+        hide_date=False,
+        hide_timezone=False):
     """
     Run clock.
 
@@ -102,6 +110,8 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, verti
     :type vertical: bool
     :param hide_date: hide date flag
     :type hide_date: bool
+    :param hide_timezone: hide timezone flag
+    :type hide_timezone: bool
     :return: None
     """
     format_index = 0
@@ -128,8 +138,9 @@ def run_clock(timezone=None, v_shift=0, h_shift=0, face=1, no_blink=False, verti
         if not hide_date:
             print(" " * h_shift, end='')
             print(current_date)
-        print(" " * h_shift, end='')
-        print("Timezone: {0}".format(timezone_str))
+        if not hide_timezone:
+            print(" " * h_shift, end='')
+            print("Timezone: {0}".format(timezone_str))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
@@ -154,6 +165,7 @@ def main():
     parser.add_argument('--no-blink', help='disable blinking mode', nargs="?", const=1)
     parser.add_argument('--vertical', help='vertical mode', nargs="?", const=1)
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
+    parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
@@ -172,6 +184,7 @@ def main():
                 face=args.face,
                 no_blink=args.no_blink,
                 vertical=args.vertical,
-                hide_date=args.hide_date)
+                hide_date=args.hide_date,
+                hide_timezone=args.hide_timezone)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
