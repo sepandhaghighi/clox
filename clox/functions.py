@@ -92,7 +92,8 @@ def run_clock(
         no_blink=False,
         vertical=False,
         hide_date=False,
-        hide_timezone=False):
+        hide_timezone=False,
+        am_pm=False):
     """
     Run clock.
 
@@ -112,6 +113,8 @@ def run_clock(
     :type hide_date: bool
     :param hide_timezone: hide timezone flag
     :type hide_timezone: bool
+    :param am_pm: AM/PM mode flag
+    :type am_pm: bool
     :return: None
     """
     format_index = 0
@@ -186,6 +189,7 @@ def main():
                 no_blink=args.no_blink,
                 vertical=args.vertical,
                 hide_date=args.hide_date,
-                hide_timezone=args.hide_timezone)
+                hide_timezone=args.hide_timezone,
+                am_pm=args.am_pm)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
