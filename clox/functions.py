@@ -166,6 +166,7 @@ def main():
     parser.add_argument('--vertical', help='vertical mode', nargs="?", const=1)
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
+    parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
