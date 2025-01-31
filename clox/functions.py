@@ -8,8 +8,9 @@ import datetime
 import argparse
 import pytz
 from art import tprint
-from .params import HORIZONTAL_TIME_FORMATS, VERTICAL_TIME_FORMATS, DATE_FORMAT
-from .params import TIMEZONES_LIST, CLOX_VERSION
+from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
+from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
+from .params import TIMEZONES_LIST, CLOX_VERSION, DATE_FORMAT
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
@@ -119,9 +120,9 @@ def run_clock(
     """
     format_index = 0
     timezone_str = timezone
-    time_formats = HORIZONTAL_TIME_FORMATS
+    time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
     if vertical:
-        time_formats = VERTICAL_TIME_FORMATS
+        time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
     if timezone is None:
         tz = None
         timezone_str = "Local"
