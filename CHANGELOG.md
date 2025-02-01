@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `--hide-date` argument
 - `--hide-timezone` argument
+- `--am-pm` argument
+### Changed
+- `README.md` updated
 ## [0.4] - 2025-01-18
 ### Added
 - Date
