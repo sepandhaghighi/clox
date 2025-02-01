@@ -135,6 +135,14 @@ In this mode, the timezone will not be shown
 clox --hide-timezone
 ```
 
+### AM/PM Mode
+
+In this mode, the clock will be displayed in 12-hour format
+
+```console
+clox --am-pm
+```
+
 ### Vertical Mode
 
 ```console
