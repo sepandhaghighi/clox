@@ -149,6 +149,14 @@ clox --am-pm
 clox --vertical
 ```
 
+## Screen Record
+
+<div align="center">
+
+<img src="https://github.com/sepandhaghighi/clox/raw/screen-record/otherfiles/help.gif">
+
+</div>
+
 ## Issues & Bug Reports			
 
 Just fill an issue and describe it. We'll check it ASAP!
