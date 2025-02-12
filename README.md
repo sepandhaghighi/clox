@@ -153,7 +153,7 @@ clox --vertical
 
 <div align="center">
 
-<img src="https://github.com/sepandhaghighi/clox/raw/screen-record/otherfiles/help.gif">
+<img src="https://github.com/sepandhaghighi/clox/raw/main/otherfiles/help.gif">
 
 </div>
 
