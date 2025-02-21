@@ -114,9 +114,9 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     print("Today: {date}".format(date=current_date))
     print(" " * h_shift, end='')
     print("Timezone: {timezone}".format(timezone=timezone_str))
-    calendar_str = calendar.monthcalendar(datetime_now.year, datetime_now.month)
+    calendar_str = calendar.month(datetime_now.year, datetime_now.month)
     if mode == "year":
-        calendar_str = calendar.monthcalendar(datetime_now.year)
+        calendar_str = calendar.calendar(datetime_now.year)
     print(" " * h_shift, end='')
     print(calendar_str)
 
