@@ -110,15 +110,17 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     h_shift = max(0, h_shift)
     datetime_now = datetime.datetime.now(tz=tz)
     current_date = datetime_now.strftime(DATE_FORMAT)
+    print('\n' * v_shift, end='')
     print(" " * h_shift, end='')
     print("Today: {date}".format(date=current_date))
     print(" " * h_shift, end='')
-    print("Timezone: {timezone}".format(timezone=timezone_str))
+    print("Timezone: {timezone}\n".format(timezone=timezone_str))
     calendar_str = calendar.month(datetime_now.year, datetime_now.month)
     if mode == "year":
         calendar_str = calendar.calendar(datetime_now.year)
-    print(" " * h_shift, end='')
-    print(calendar_str)
+    for line in calendar_str.split("\n"):
+        print(" " * h_shift, end='')
+        print(line)
 
 
 
