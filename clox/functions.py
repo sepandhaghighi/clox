@@ -123,9 +123,6 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
         print(line)
 
 
-
-
-
 def run_clock(
         timezone=None,
         v_shift=0,
@@ -223,7 +220,7 @@ def main():
     elif args.timezones_list:
         show_timezones_list()
     elif args.calendar:
-        print_calendar(mode=args.calendar,timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift)
+        print_calendar(mode=args.calendar, timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift)
     else:
         try:
             run_clock(
