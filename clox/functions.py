@@ -181,6 +181,8 @@ def main():
         show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
         show_timezones_list()
+    elif args.calendar:
+        pass
     else:
         try:
             run_clock(
