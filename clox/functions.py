@@ -114,9 +114,9 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     print("Today: {date}".format(date=current_date))
     print(" " * h_shift, end='')
     print("Timezone: {timezone}".format(timezone=timezone_str))
-    calendar_str = calendar.monthcalendar(current_date.year, current_date.month)
+    calendar_str = calendar.monthcalendar(datetime_now.year, datetime_now.month)
     if mode == "year":
-        calendar_str = calendar.monthcalendar(current_date.year)
+        calendar_str = calendar.monthcalendar(datetime_now.year)
     print(" " * h_shift, end='')
     print(calendar_str)
 
@@ -210,7 +210,7 @@ def main():
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
-    parser.add_argument('--calendar', help='calendar mode', type=str, choices=CALENDAR_LIST, default="month")
+    parser.add_argument('--calendar', help='calendar mode', type=str, choices=CALENDAR_LIST)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
