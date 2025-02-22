@@ -120,7 +120,7 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
         calendar_str = calendar.calendar(datetime_now.year)
     calendar_str_list = calendar_str.split("\n")
     for index, line in enumerate(calendar_str_list):
-        calendar_str_list[index] = " " * h_shift + calendar_str_list[index]
+        calendar_str_list[index] = " " * h_shift + line
     print("\n".join(calendar_str_list))
 
 
