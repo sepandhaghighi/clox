@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `--calendar` argument
+### Changed
+- `README.md` updated
 ## [0.5] - 2025-02-14
 ### Added
 - `--hide-date` argument
