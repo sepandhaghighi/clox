@@ -118,9 +118,10 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     calendar_str = calendar.month(datetime_now.year, datetime_now.month)
     if mode == "year":
         calendar_str = calendar.calendar(datetime_now.year)
-    for line in calendar_str.split("\n"):
-        print(" " * h_shift, end='')
-        print(line)
+    calendar_str_list = calendar_str.split("\n")
+    for index, line in enumerate(calendar_str_list):
+        calendar_str_list[index] = " " * h_shift + calendar_str_list[index]
+    print("\n".join(calendar_str_list))
 
 
 def run_clock(
