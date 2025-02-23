@@ -51,6 +51,12 @@ jobs:
     - name: Run5
       run: |
         clox --timezones-list
+    - name: Run6
+      run: |
+        clox --calendar=month
+    - name: Run7
+      run: |
+        clox --calendar=year
     - name: Install dev-requirements
       run: |
         python otherfiles/requirements-splitter.py

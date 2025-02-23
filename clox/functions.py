@@ -3,6 +3,7 @@
 import os
 import sys
 import time
+import calendar
 import random
 import datetime
 import argparse
@@ -12,7 +13,7 @@ from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
 from .params import TIMEZONES_LIST, CLOX_VERSION, DATE_FORMAT
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
-from .params import FACES_MAP, FACES_LIST
+from .params import FACES_MAP, FACES_LIST, CALENDAR_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
 from .params import CLOX_OVERVIEW, CLOX_REPO
 
@@ -83,6 +84,41 @@ def show_timezones_list():
     print("Timezones list:\n")
     for index, timezone in enumerate(TIMEZONES_LIST, 1):
         print("{0}. {1}".format(index, timezone))
+
+
+def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
+    """
+    Print calendar.
+
+    :param mode: calendar mode
+    :type mode: str
+    :param timezone: timezone
+    :type timezone: str
+    :param v_shift: vertical shift
+    :type v_shift: int
+    :param h_shift: horizontal shift
+    :type h_shift: int
+    :return: None
+    """
+    timezone_str = timezone
+    if timezone is None:
+        tz = None
+        timezone_str = "Local"
+    else:
+        tz = pytz.timezone(timezone)
+    v_shift = max(0, v_shift)
+    h_shift = max(0, h_shift)
+    datetime_now = datetime.datetime.now(tz=tz)
+    current_date = datetime_now.strftime(DATE_FORMAT)
+    print('\n' * v_shift, end='')
+    print(" " * h_shift, end='')
+    print("Today: {date}".format(date=current_date))
+    print(" " * h_shift, end='')
+    print("Timezone: {timezone}\n".format(timezone=timezone_str))
+    calendar_str = calendar.month(datetime_now.year, datetime_now.month)
+    if mode == "year":
+        calendar_str = calendar.calendar(datetime_now.year)
+    print("\n".join([' ' * h_shift + x for x in calendar_str.split("\n")]))
 
 
 def run_clock(
@@ -171,6 +207,7 @@ def main():
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
+    parser.add_argument('--calendar', help='calendar mode', type=str, choices=CALENDAR_LIST)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
@@ -180,6 +217,8 @@ def main():
         show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
         show_timezones_list()
+    elif args.calendar:
+        print_calendar(mode=args.calendar, timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift)
     else:
         try:
             run_clock(

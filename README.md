@@ -149,6 +149,16 @@ clox --am-pm
 clox --vertical
 ```
 
+### Calendar Mode
+
+In this mode, the calendar will be displayed
+
+ℹ️ Valid choices: [`month`, `year`]
+
+```console
+clox --calendar=month
+```
+
 ## Screen Record
 
 <div align="center">
