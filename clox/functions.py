@@ -180,7 +180,7 @@ def run_clock(
             print(current_date)
         if not hide_timezone:
             print(" " * h_shift, end='')
-            print("Timezone: {0}".format(timezone_str))
+            print("Timezone: {timezone}".format(timezone=timezone_str))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
