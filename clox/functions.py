@@ -100,11 +100,10 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     :type h_shift: int
     :return: None
     """
-    timezone_str = timezone
-    if timezone is None:
-        tz = None
-        timezone_str = "Local"
-    else:
+    tz = None
+    timezone_str = "Local"
+    if timezone is not None:
+        timezone_str = timezone
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
