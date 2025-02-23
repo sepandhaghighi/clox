@@ -83,7 +83,7 @@ def show_timezones_list():
     """
     print("Timezones list:\n")
     for index, timezone in enumerate(TIMEZONES_LIST, 1):
-        print("{0}. {1}".format(index, timezone))
+        print("{index}. {timezone}".format(index=index, timezone=timezone))
 
 
 def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
