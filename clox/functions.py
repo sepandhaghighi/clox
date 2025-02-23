@@ -68,9 +68,9 @@ def show_faces_list(vertical=False):
     if vertical:
         example = VERTICAL_FACES_LIST_EXAMPLE
         mode = "Vertical"
-    print("Faces list ({0}):\n".format(mode))
+    print("Faces list ({mode}):\n".format(mode=mode))
     for i in sorted(FACES_MAP):
-        print('Face {}\n'.format(i))
+        print('Face {index}\n'.format(index=i))
         tprint(example, font=get_face(i))
         print('=' * 80)
 
@@ -83,7 +83,7 @@ def show_timezones_list():
     """
     print("Timezones list:\n")
     for index, timezone in enumerate(TIMEZONES_LIST, 1):
-        print("{0}. {1}".format(index, timezone))
+        print("{index}. {timezone}".format(index=index, timezone=timezone))
 
 
 def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
@@ -100,11 +100,10 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     :type h_shift: int
     :return: None
     """
-    timezone_str = timezone
-    if timezone is None:
-        tz = None
-        timezone_str = "Local"
-    else:
+    tz = None
+    timezone_str = "Local"
+    if timezone is not None:
+        timezone_str = timezone
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
@@ -118,7 +117,7 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     calendar_str = calendar.month(datetime_now.year, datetime_now.month)
     if mode == "year":
         calendar_str = calendar.calendar(datetime_now.year)
-    print("\n".join([' ' * h_shift + x for x in calendar_str.split("\n")]))
+    print("\n".join([" " * h_shift + x for x in calendar_str.split("\n")]))
 
 
 def run_clock(
@@ -155,14 +154,13 @@ def run_clock(
     :return: None
     """
     format_index = 0
-    timezone_str = timezone
     time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
     if vertical:
         time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
-    if timezone is None:
-        tz = None
-        timezone_str = "Local"
-    else:
+    tz = None
+    timezone_str = "Local"
+    if timezone is not None:
+        timezone_str = timezone
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
@@ -180,7 +178,7 @@ def run_clock(
             print(current_date)
         if not hide_timezone:
             print(" " * h_shift, end='')
-            print("Timezone: {0}".format(timezone_str))
+            print("Timezone: {timezone}".format(timezone=timezone_str))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
