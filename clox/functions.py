@@ -154,14 +154,13 @@ def run_clock(
     :return: None
     """
     format_index = 0
-    timezone_str = timezone
     time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
     if vertical:
         time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
-    if timezone is None:
-        tz = None
-        timezone_str = "Local"
-    else:
+    tz = None
+    timezone_str = "Local"
+    if timezone is not None:
+        timezone_str = timezone
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
