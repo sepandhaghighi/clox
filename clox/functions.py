@@ -117,7 +117,7 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     calendar_str = calendar.month(datetime_now.year, datetime_now.month)
     if mode == "year":
         calendar_str = calendar.calendar(datetime_now.year)
-    print("\n".join([' ' * h_shift + x for x in calendar_str.split("\n")]))
+    print("\n".join([" " * h_shift + x for x in calendar_str.split("\n")]))
 
 
 def run_clock(
