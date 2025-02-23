@@ -68,9 +68,9 @@ def show_faces_list(vertical=False):
     if vertical:
         example = VERTICAL_FACES_LIST_EXAMPLE
         mode = "Vertical"
-    print("Faces list ({0}):\n".format(mode))
+    print("Faces list ({mode}):\n".format(mode=mode))
     for i in sorted(FACES_MAP):
-        print('Face {}\n'.format(i))
+        print('Face {index}\n'.format(index=i))
         tprint(example, font=get_face(i))
         print('=' * 80)
 
