@@ -29,7 +29,7 @@ def read_description():
 setup(
     name='clox',
     packages=['clox'],
-    version='0.5',
+    version='0.6',
     description='A Geeky Clock for Terminal Enthusiasts',
     long_description=read_description(),
     long_description_content_type='text/markdown',
@@ -37,7 +37,7 @@ setup(
     author='Sepand Haghighi',
     author_email='me@sepand.tech',
     url='https://github.com/sepandhaghighi/clox',
-    download_url='https://github.com/sepandhaghighi/clox/tarball/v0.5',
+    download_url='https://github.com/sepandhaghighi/clox/tarball/v0.6',
     keywords="clock time timer timezone terminal cli geek clox",
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/clox'
@@ -45,7 +45,7 @@ setup(
     install_requires=get_requires(),
     python_requires='>=3.6',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Natural Language :: English',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
