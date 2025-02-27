@@ -159,6 +159,16 @@ In this mode, the calendar will be displayed
 clox --calendar=month
 ```
 
+### Date System
+
+ℹ️ Valid choices: [`gregorian`, `jalali`]
+
+ℹ️ The default date-system is `gregorian`
+
+```console
+clox --date-system=jalali
+```
+
 ## Screen Record
 
 <div align="center">
