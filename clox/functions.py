@@ -176,7 +176,7 @@ def run_clock(
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        datetime_now = datetime.datetime.now(tz=tz)
+        datetime_now = datetime_lib.datetime.now(tz=tz)
         current_time = datetime_now.strftime(time_formats[format_index])
         current_date = datetime_now.strftime(DATE_FORMAT)
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
