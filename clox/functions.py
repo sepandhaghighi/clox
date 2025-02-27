@@ -6,6 +6,7 @@ import time
 import calendar
 import random
 import datetime
+import jdatetime
 import argparse
 import pytz
 from art import tprint
@@ -129,7 +130,8 @@ def run_clock(
         vertical=False,
         hide_date=False,
         hide_timezone=False,
-        am_pm=False):
+        am_pm=False,
+        date_system="gregorian"):
     """
     Run clock.
 
@@ -151,8 +153,13 @@ def run_clock(
     :type hide_timezone: bool
     :param am_pm: AM/PM mode flag
     :type am_pm: bool
+    :param date_system: date system
+    :type date_system: str
     :return: None
     """
+    datetime_lib = datetime
+    if date_system == "jalali":
+        datetime_lib = jdatetime
     format_index = 0
     time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
     if vertical:
@@ -229,6 +236,7 @@ def main():
                 vertical=args.vertical,
                 hide_date=args.hide_date,
                 hide_timezone=args.hide_timezone,
-                am_pm=args.am_pm)
+                am_pm=args.am_pm,
+                date_system=args.date_system)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
