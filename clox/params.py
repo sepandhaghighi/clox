@@ -59,4 +59,4 @@ FACES_LIST = [-1] + sorted(FACES_MAP)
 
 CALENDAR_LIST = ["month", "year"]
 
-DATE_SYSTEM_LIST = ["gregorian", "jalali"]
+DATE_SYSTEMS_LIST = ["gregorian", "jalali"]
