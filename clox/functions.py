@@ -6,6 +6,7 @@ import time
 import calendar
 import random
 import datetime
+import jdatetime
 import argparse
 import pytz
 from art import tprint
@@ -13,7 +14,7 @@ from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
 from .params import TIMEZONES_LIST, CLOX_VERSION, DATE_FORMAT
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
-from .params import FACES_MAP, FACES_LIST, CALENDAR_LIST
+from .params import FACES_MAP, FACES_LIST, CALENDAR_LIST, DATE_SYSTEMS_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
 from .params import CLOX_OVERVIEW, CLOX_REPO
 
@@ -129,7 +130,8 @@ def run_clock(
         vertical=False,
         hide_date=False,
         hide_timezone=False,
-        am_pm=False):
+        am_pm=False,
+        date_system="gregorian"):
     """
     Run clock.
 
@@ -151,8 +153,13 @@ def run_clock(
     :type hide_timezone: bool
     :param am_pm: AM/PM mode flag
     :type am_pm: bool
+    :param date_system: date system
+    :type date_system: str
     :return: None
     """
+    datetime_lib = datetime
+    if date_system == "jalali":
+        datetime_lib = jdatetime
     format_index = 0
     time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
     if vertical:
@@ -169,7 +176,7 @@ def run_clock(
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        datetime_now = datetime.datetime.now(tz=tz)
+        datetime_now = datetime_lib.datetime.now(tz=tz)
         current_time = datetime_now.strftime(time_formats[format_index])
         current_date = datetime_now.strftime(DATE_FORMAT)
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
@@ -206,6 +213,7 @@ def main():
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
     parser.add_argument('--calendar', help='calendar mode', type=str, choices=CALENDAR_LIST)
+    parser.add_argument('--date-system', help='date system', type=str, choices=DATE_SYSTEMS_LIST, default="gregorian")
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
@@ -228,6 +236,7 @@ def main():
                 vertical=args.vertical,
                 hide_date=args.hide_date,
                 hide_timezone=args.hide_timezone,
-                am_pm=args.am_pm)
+                am_pm=args.am_pm,
+                date_system=args.date_system)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
