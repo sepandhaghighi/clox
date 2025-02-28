@@ -163,7 +163,7 @@ clox --calendar=month
 
 ℹ️ Valid choices: [`gregorian`, `jalali`]
 
-ℹ️ The default date-system is `gregorian`
+ℹ️ The default date system is `gregorian`
 
 ```console
 clox --date-system=jalali
