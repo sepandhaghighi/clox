@@ -1,4 +1,4 @@
-jdatetime==3.8.2
+jdatetime==5.2.0
 pytz==2025.1
 art==6.4
 setuptools>=40.8.0
