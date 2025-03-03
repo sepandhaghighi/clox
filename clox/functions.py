@@ -232,7 +232,12 @@ def main():
     elif args.timezones_list:
         show_timezones_list()
     elif args.calendar:
-        print_calendar(mode=args.calendar, timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift, date_system=args.date_system)
+        print_calendar(
+            mode=args.calendar,
+            timezone=args.timezone,
+            h_shift=args.h_shift,
+            v_shift=args.v_shift,
+            date_system=args.date_system)
     else:
         try:
             run_clock(
