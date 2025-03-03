@@ -14,7 +14,7 @@ class IllegalMonthError(ValueError):
     """Illegal month error."""
 
     def __init__(self, month):
-        """Initiator."""
+        """Initiate."""
         self.month = month
 
     def __str__(self):
@@ -26,7 +26,7 @@ class IllegalWeekdayError(ValueError):
     """Illegal weekday error."""
 
     def __init__(self, weekday):
-        """Initiator."""
+        """Initiate."""
         self.weekday = weekday
 
     def __str__(self):
@@ -115,7 +115,7 @@ class Calendar(object):
     """Base calendar class. This class doesn't do any formatting. It simply provides data to subclasses."""
 
     def __init__(self, firstweekday=0):
-        """Initiator."""
+        """Initiate."""
         self.firstweekday = firstweekday  # 0 = Doshanbe, 6 = Yekshanbe
 
     def getfirstweekday(self):
