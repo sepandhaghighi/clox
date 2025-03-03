@@ -3,13 +3,14 @@
 import os
 import sys
 import time
-import calendar
+from calendar import TextCalendar as GregorianCalendar
 import random
 import datetime
 import jdatetime
 import argparse
 import pytz
 from art import tprint
+from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
 from .params import TIMEZONES_LIST, CLOX_VERSION, DATE_FORMAT
@@ -87,7 +88,7 @@ def show_timezones_list():
         print("{index}. {timezone}".format(index=index, timezone=timezone))
 
 
-def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
+def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_system="gregorian"):
     """
     Print calendar.
 
@@ -99,8 +100,15 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
     :type v_shift: int
     :param h_shift: horizontal shift
     :type h_shift: int
+    :param date_system: date system
+    :type date_system: str
     :return: None
     """
+    datetime_lib = datetime
+    calendar_obj = GregorianCalendar()
+    if date_system == "jalali":
+        datetime_lib = jdatetime
+        calendar_obj = JalaliCalendar()
     tz = None
     timezone_str = "Local"
     if timezone is not None:
@@ -108,16 +116,16 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0):
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
-    datetime_now = datetime.datetime.now(tz=tz)
+    datetime_now = datetime_lib.datetime.now(tz=tz)
     current_date = datetime_now.strftime(DATE_FORMAT)
     print('\n' * v_shift, end='')
     print(" " * h_shift, end='')
     print("Today: {date}".format(date=current_date))
     print(" " * h_shift, end='')
     print("Timezone: {timezone}\n".format(timezone=timezone_str))
-    calendar_str = calendar.month(datetime_now.year, datetime_now.month)
+    calendar_str = calendar_obj.formatmonth(datetime_now.year, datetime_now.month)
     if mode == "year":
-        calendar_str = calendar.calendar(datetime_now.year)
+        calendar_str = calendar_obj.formatyear(datetime_now.year)
     print("\n".join([" " * h_shift + x for x in calendar_str.split("\n")]))
 
 
@@ -224,7 +232,7 @@ def main():
     elif args.timezones_list:
         show_timezones_list()
     elif args.calendar:
-        print_calendar(mode=args.calendar, timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift)
+        print_calendar(mode=args.calendar, timezone=args.timezone, h_shift=args.h_shift, v_shift=args.v_shift, date_system=args.date_system)
     else:
         try:
             run_clock(
