@@ -207,7 +207,7 @@ def main():
     """
     parser = argparse.ArgumentParser()
     parser.epilog = ADDITIONAL_INFO
-    parser.add_argument('--timezone', help='timezone', type=str, choices=TIMEZONES_LIST)
+    parser.add_argument('--timezone', help='timezone', type=str.upper, choices=TIMEZONES_LIST)
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
@@ -220,8 +220,8 @@ def main():
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
-    parser.add_argument('--calendar', help='calendar mode', type=str, choices=CALENDAR_LIST)
-    parser.add_argument('--date-system', help='date system', type=str, choices=DATE_SYSTEMS_LIST, default="gregorian")
+    parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDAR_LIST)
+    parser.add_argument('--date-system', help='date system', type=str.lower, choices=DATE_SYSTEMS_LIST, default="gregorian")
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
