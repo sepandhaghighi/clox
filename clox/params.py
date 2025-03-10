@@ -24,7 +24,7 @@ HORIZONTAL_TIME_12H_FORMATS = ['%I:%M %p', '%I:%M %p.']
 VERTICAL_TIME_12H_FORMATS = ['%I\n%M\n%p', '%I\n%M\n%p.']
 DATE_FORMAT = "%A, %B %d, %Y"
 
-TIMEZONES_LIST = pytz.all_timezones
+TIMEZONES_LIST = list(map(lambda x: x.upper(), pytz.all_timezones))
 
 
 FACES_MAP = {
