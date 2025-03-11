@@ -109,9 +109,11 @@ def show_countries_list():
     for index, country_code in enumerate(sorted(COUNTRIES_LIST), 1):
         country_name = pytz.country_names[country_code]
         try:
-            print("{index}. {country_code} - {country_name}".format(index=index, country_code=country_code, country_name=country_name))
+            print("{index}. {country_code} - {country_name}".format(index=index,
+                                                                    country_code=country_code, country_name=country_name))
         except Exception:
-            print("{index}. {country_code} - {country_name}".format(index=index, country_code=country_code, country_name=country_code))
+            print("{index}. {country_code} - {country_name}".format(index=index,
+                                                                    country_code=country_code, country_name=country_code))
 
 
 def print_calendar(mode="month", timezone=None, country=None, v_shift=0, h_shift=0, date_system="gregorian"):
@@ -258,7 +260,12 @@ def main():
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
     parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDAR_LIST)
-    parser.add_argument('--date-system', help='date system', type=str.lower, choices=DATE_SYSTEMS_LIST, default="gregorian")
+    parser.add_argument(
+        '--date-system',
+        help='date system',
+        type=str.lower,
+        choices=DATE_SYSTEMS_LIST,
+        default="gregorian")
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
