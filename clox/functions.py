@@ -82,7 +82,7 @@ def show_timezones_list(country=None):
     """
     Show timezones list.
 
-    :param country: country code
+    :param country: country iso3166 code
     :type country: str
     :return: None
     """
@@ -139,6 +139,7 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_syste
 
 def run_clock(
         timezone=None,
+        country=None,
         v_shift=0,
         h_shift=0,
         face=1,
@@ -153,6 +154,8 @@ def run_clock(
 
     :param timezone: timezone
     :type timezone: str
+    :param country: country iso3166 code
+    :type country: str
     :param v_shift: vertical shift
     :type v_shift: int
     :param h_shift: horizontal shift
@@ -182,6 +185,8 @@ def run_clock(
         time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
     tz = None
     timezone_str = "Local"
+    if country is not None:
+        timezone = pytz.country_timezones(country).upper()
     if timezone is not None:
         timezone_str = timezone
         tz = pytz.timezone(timezone)
