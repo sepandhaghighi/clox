@@ -103,7 +103,7 @@ def show_countries_list():
     :return: None
     """
     print("Countries list:\n")
-    for index, country_code in enumerate(COUNTRIES_LIST, 1):
+    for index, country_code in enumerate(sorted(COUNTRIES_LIST), 1):
         country_name = pytz.country_names[country_code]
         try:
             print("{index}. {country_code} - {country_name}".format(index=index, country_code=country_code, country_name=country_name))
