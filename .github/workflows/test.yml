@@ -59,10 +59,22 @@ jobs:
         clox --calendar=year
     - name: Run8
       run: |
-        clox --calendar=month --date-system=jalali
+        clox --calendar=mOnth --date-system=jalali
     - name: Run9
       run: |
-        clox --calendar=year --date-system=jalali
+        clox --calendar=yeAr --date-system=jalali
+    - name: Run10
+      run: |
+        clox --calendar=year --date-system=jalAli
+    - name: Run11
+      run: |
+        clox --calendar=year --date-system=jalAli --country=De
+    - name: Run12
+      run: |
+        clox --countries-list
+    - name: Run13
+      run: |
+        clox --timezones-list --country=Us
     - name: Install dev-requirements
       run: |
         python otherfiles/requirements-splitter.py
