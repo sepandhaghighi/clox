@@ -78,14 +78,21 @@ def show_faces_list(vertical=False):
         print('=' * 80)
 
 
-def show_timezones_list():
+def show_timezones_list(country=None):
     """
     Show timezones list.
 
+    :param country: country code
+    :type country: str
     :return: None
     """
-    print("Timezones list:\n")
-    for index, timezone in enumerate(TIMEZONES_LIST, 1):
+    timezones_list = TIMEZONES_LIST
+    country_name = "All"
+    if country:
+        timezones_list = list(map(lambda x: x.upper(), pytz.country_timezones(country)))
+        country_name = country.upper()
+    print("Timezones list ({country_name}):\n".format(country_name=country_name))
+    for index, timezone in enumerate(timezones_list, 1):
         print("{index}. {timezone}".format(index=index, timezone=timezone))
 
 
@@ -232,7 +239,7 @@ def main():
     elif args.faces_list:
         show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
-        show_timezones_list()
+        show_timezones_list(args.country)
     elif args.calendar:
         print_calendar(
             mode=args.calendar,
