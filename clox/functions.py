@@ -90,7 +90,7 @@ def show_timezones_list(country=None):
     country_name = "All"
     if country is not None:
         timezones_list = list(map(lambda x: x.upper(), pytz.country_timezones(country)))
-        country_name = country.upper()
+        country_name = pytz.country_names[country]
     print("Timezones list ({country_name}):\n".format(country_name=country_name))
     for index, timezone in enumerate(timezones_list, 1):
         print("{index}. {timezone}".format(index=index, timezone=timezone))
