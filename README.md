@@ -103,6 +103,21 @@ clox --timezone="Etc/GMT+7"
 * [Timezones List](https://github.com/sepandhaghighi/clox/blob/main/TIMEZONES.md)
 * `clox --timezones-list`
 
+
+### Country
+
+The `--country` argument allows you to specify a country using its **ISO 3166** code format
+
+ℹ️ When the `--country` argument is provided, the `--timezone` argument will be ignored
+ℹ️ If the specified country has multiple timezones, the first timezone will be selected automatically
+
+```console
+clox --country="DE"
+```
+* [Countires List](https://github.com/sepandhaghighi/clox/blob/main/COUNTIRES.md)
+* `clox --countires-list`
+
+
 ### Vertical/Horizontal Shift
 
 ℹ️ The vertical and horizontal shift both have default values of `0`
