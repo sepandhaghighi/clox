@@ -96,6 +96,17 @@ def show_timezones_list(country=None):
         print("{index}. {timezone}".format(index=index, timezone=timezone))
 
 
+def show_countries_list():
+    """
+    Show countries list.
+
+    :return: None
+    """
+    print("Countries list:\n")
+    for index, country_code in enumerate(COUNTRIES_LIST, 1):
+        print("{index}. {country_code} - {country_name}".format(index=index, country_code=country_code, country_name=pytz.country_names[country_code]))
+
+
 def print_calendar(mode="month", timezone=None, country=None, v_shift=0, h_shift=0, date_system="gregorian"):
     """
     Print calendar.
@@ -233,6 +244,7 @@ def main():
     parser.add_argument('--face', help='face', type=int, choices=FACES_LIST, default=1)
     parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
     parser.add_argument('--timezones-list', help='timezones list', nargs="?", const=1)
+    parser.add_argument('--countries-list', help='countries list', nargs="?", const=1)
     parser.add_argument('--no-blink', help='disable blinking mode', nargs="?", const=1)
     parser.add_argument('--vertical', help='vertical mode', nargs="?", const=1)
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
@@ -249,6 +261,8 @@ def main():
         show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
         show_timezones_list(args.country)
+    elif args.countries_list:
+        show_countries_list()
     elif args.calendar:
         print_calendar(
             mode=args.calendar,
