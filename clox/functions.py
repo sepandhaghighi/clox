@@ -96,7 +96,7 @@ def show_timezones_list(country=None):
         print("{index}. {timezone}".format(index=index, timezone=timezone))
 
 
-def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_system="gregorian"):
+def print_calendar(mode="month", timezone=None, country=None, v_shift=0, h_shift=0, date_system="gregorian"):
     """
     Print calendar.
 
@@ -104,6 +104,8 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_syste
     :type mode: str
     :param timezone: timezone
     :type timezone: str
+    :param country: country iso3166 code
+    :type country: str
     :param v_shift: vertical shift
     :type v_shift: int
     :param h_shift: horizontal shift
@@ -119,6 +121,8 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_syste
         calendar_obj = JalaliCalendar()
     tz = None
     timezone_str = "Local"
+    if country is not None:
+        timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
         tz = pytz.timezone(timezone)
@@ -186,7 +190,7 @@ def run_clock(
     tz = None
     timezone_str = "Local"
     if country is not None:
-        timezone = pytz.country_timezones(country).upper()
+        timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
         tz = pytz.timezone(timezone)
@@ -249,6 +253,7 @@ def main():
         print_calendar(
             mode=args.calendar,
             timezone=args.timezone,
+            country=args.country,
             h_shift=args.h_shift,
             v_shift=args.v_shift,
             date_system=args.date_system)
@@ -256,6 +261,7 @@ def main():
         try:
             run_clock(
                 timezone=args.timezone,
+                country=args.country,
                 h_shift=args.h_shift,
                 v_shift=args.v_shift,
                 face=args.face,
