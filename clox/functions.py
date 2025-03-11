@@ -104,7 +104,11 @@ def show_countries_list():
     """
     print("Countries list:\n")
     for index, country_code in enumerate(COUNTRIES_LIST, 1):
-        print("{index}. {country_code} - {country_name}".format(index=index, country_code=country_code, country_name=pytz.country_names[country_code]))
+        country_name = pytz.country_names[country_code]
+        try:
+            print("{index}. {country_code} - {country_name}".format(index=index, country_code=country_code, country_name=country_name))
+        except Exception:
+            print("{index}. {country_code} - {country_name}".format(index=index, country_code=country_code, country_name=country_code))
 
 
 def print_calendar(mode="month", timezone=None, country=None, v_shift=0, h_shift=0, date_system="gregorian"):
