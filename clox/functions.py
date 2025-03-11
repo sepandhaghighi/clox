@@ -13,7 +13,8 @@ from art import tprint
 from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
-from .params import TIMEZONES_LIST, CLOX_VERSION, DATE_FORMAT
+from .params import CLOX_VERSION, DATE_FORMAT
+from .params import TIMEZONES_LIST, COUNTRIES_LIST
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST, CALENDAR_LIST, DATE_SYSTEMS_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
@@ -208,6 +209,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.epilog = ADDITIONAL_INFO
     parser.add_argument('--timezone', help='timezone', type=str.upper, choices=TIMEZONES_LIST)
+    parser.add_argument('--country', help='country(iso3166 code)', type=str.upper, choices=COUNTRIES_LIST)
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
