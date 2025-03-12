@@ -245,7 +245,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.epilog = ADDITIONAL_INFO
     parser.add_argument('--timezone', help='timezone', type=str.upper, choices=TIMEZONES_LIST)
-    parser.add_argument('--country', help='country(iso3166 code)', type=str.upper, choices=COUNTRIES_LIST)
+    parser.add_argument('--country', help='country (iso3166 code)', type=str.upper, choices=COUNTRIES_LIST)
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
