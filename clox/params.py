@@ -25,6 +25,7 @@ VERTICAL_TIME_12H_FORMATS = ['%I\n%M\n%p', '%I\n%M\n%p.']
 DATE_FORMAT = "%A, %B %d, %Y"
 
 TIMEZONES_LIST = list(map(lambda x: x.upper(), pytz.all_timezones))
+COUNTRIES_LIST = list(map(lambda x: x.upper(), pytz.country_timezones.keys()))
 
 
 FACES_MAP = {

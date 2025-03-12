@@ -13,7 +13,8 @@ from art import tprint
 from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
-from .params import TIMEZONES_LIST, CLOX_VERSION, DATE_FORMAT
+from .params import CLOX_VERSION, DATE_FORMAT
+from .params import TIMEZONES_LIST, COUNTRIES_LIST
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST, CALENDAR_LIST, DATE_SYSTEMS_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
@@ -77,18 +78,45 @@ def show_faces_list(vertical=False):
         print('=' * 80)
 
 
-def show_timezones_list():
+def show_timezones_list(country=None):
     """
     Show timezones list.
 
+    :param country: country iso3166 code
+    :type country: str
     :return: None
     """
-    print("Timezones list:\n")
-    for index, timezone in enumerate(TIMEZONES_LIST, 1):
+    timezones_list = TIMEZONES_LIST
+    country_name = "All"
+    if country is not None:
+        timezones_list = list(map(lambda x: x.upper(), pytz.country_timezones(country)))
+        country_name = pytz.country_names[country]
+    try:
+        print("Timezones list ({country_name}):\n".format(country_name=country_name))
+    except Exception:
+        print("Timezones list ({country_name}):\n".format(country_name=country.upper()))
+    for index, timezone in enumerate(sorted(timezones_list), 1):
         print("{index}. {timezone}".format(index=index, timezone=timezone))
 
 
-def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_system="gregorian"):
+def show_countries_list():
+    """
+    Show countries list.
+
+    :return: None
+    """
+    print("Countries list:\n")
+    for index, country_code in enumerate(sorted(COUNTRIES_LIST), 1):
+        country_name = pytz.country_names[country_code]
+        try:
+            print("{index}. {country_code} - {country_name}".format(index=index,
+                                                                    country_code=country_code, country_name=country_name))
+        except Exception:
+            print("{index}. {country_code} - {country_name}".format(index=index,
+                                                                    country_code=country_code, country_name=country_code))
+
+
+def print_calendar(mode="month", timezone=None, country=None, v_shift=0, h_shift=0, date_system="gregorian"):
     """
     Print calendar.
 
@@ -96,6 +124,8 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_syste
     :type mode: str
     :param timezone: timezone
     :type timezone: str
+    :param country: country iso3166 code
+    :type country: str
     :param v_shift: vertical shift
     :type v_shift: int
     :param h_shift: horizontal shift
@@ -111,6 +141,8 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_syste
         calendar_obj = JalaliCalendar()
     tz = None
     timezone_str = "Local"
+    if country is not None:
+        timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
         tz = pytz.timezone(timezone)
@@ -131,6 +163,7 @@ def print_calendar(mode="month", timezone=None, v_shift=0, h_shift=0, date_syste
 
 def run_clock(
         timezone=None,
+        country=None,
         v_shift=0,
         h_shift=0,
         face=1,
@@ -145,6 +178,8 @@ def run_clock(
 
     :param timezone: timezone
     :type timezone: str
+    :param country: country iso3166 code
+    :type country: str
     :param v_shift: vertical shift
     :type v_shift: int
     :param h_shift: horizontal shift
@@ -174,6 +209,8 @@ def run_clock(
         time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
     tz = None
     timezone_str = "Local"
+    if country is not None:
+        timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
         tz = pytz.timezone(timezone)
@@ -208,6 +245,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.epilog = ADDITIONAL_INFO
     parser.add_argument('--timezone', help='timezone', type=str.upper, choices=TIMEZONES_LIST)
+    parser.add_argument('--country', help='country (iso3166 code)', type=str.upper, choices=COUNTRIES_LIST)
     parser.add_argument('--v-shift', help='vertical shift', type=int, default=0)
     parser.add_argument('--h-shift', help='horizontal shift', type=int, default=0)
     parser.add_argument('--version', help='version', nargs="?", const=1)
@@ -215,13 +253,19 @@ def main():
     parser.add_argument('--face', help='face', type=int, choices=FACES_LIST, default=1)
     parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
     parser.add_argument('--timezones-list', help='timezones list', nargs="?", const=1)
+    parser.add_argument('--countries-list', help='countries list', nargs="?", const=1)
     parser.add_argument('--no-blink', help='disable blinking mode', nargs="?", const=1)
     parser.add_argument('--vertical', help='vertical mode', nargs="?", const=1)
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
     parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDAR_LIST)
-    parser.add_argument('--date-system', help='date system', type=str.lower, choices=DATE_SYSTEMS_LIST, default="gregorian")
+    parser.add_argument(
+        '--date-system',
+        help='date system',
+        type=str.lower,
+        choices=DATE_SYSTEMS_LIST,
+        default="gregorian")
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
@@ -230,11 +274,14 @@ def main():
     elif args.faces_list:
         show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
-        show_timezones_list()
+        show_timezones_list(args.country)
+    elif args.countries_list:
+        show_countries_list()
     elif args.calendar:
         print_calendar(
             mode=args.calendar,
             timezone=args.timezone,
+            country=args.country,
             h_shift=args.h_shift,
             v_shift=args.v_shift,
             date_system=args.date_system)
@@ -242,6 +289,7 @@ def main():
         try:
             run_clock(
                 timezone=args.timezone,
+                country=args.country,
                 h_shift=args.h_shift,
                 v_shift=args.v_shift,
                 face=args.face,

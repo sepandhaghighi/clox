@@ -92,16 +92,30 @@ clox
 clox --face=3
 ```
 * Use `--face=-1` for random mode
-* [Faces List](https://github.com/sepandhaghighi/clox/blob/main/FACES.md)
-* `clox --faces-list`
+* [Faces List](https://github.com/sepandhaghighi/clox/blob/main/FACES.md): `clox --faces-list`
+
 
 ### Timezone
 
 ```console
 clox --timezone="Etc/GMT+7"
 ```
-* [Timezones List](https://github.com/sepandhaghighi/clox/blob/main/TIMEZONES.md)
-* `clox --timezones-list`
+* [Timezones List](https://github.com/sepandhaghighi/clox/blob/main/TIMEZONES.md): `clox --timezones-list`
+
+
+### Country
+
+The `--country` argument allows you to specify a country using its **ISO 3166** code format
+
+ℹ️ When the `--country` argument is provided, the `--timezone` argument will be ignored
+
+ℹ️ If the specified country has multiple timezones, the first timezone will be selected automatically
+
+```console
+clox --country="DE"
+```
+* [Countries List](https://github.com/sepandhaghighi/clox/blob/main/COUNTRIES.md): `clox --countries-list`
+
 
 ### Vertical/Horizontal Shift
 
