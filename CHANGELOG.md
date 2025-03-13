@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `COUNTRIES.md`
 ### Changed
 - Input case sensitivity bug fixed
+- Test system modified
 - `README.md` updated
 ## [0.7] - 2025-03-06
 ### Added
