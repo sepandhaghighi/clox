@@ -16,7 +16,7 @@ from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
 from .params import CLOX_VERSION, DATE_FORMAT
 from .params import TIMEZONES_LIST, COUNTRIES_LIST
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
-from .params import FACES_MAP, FACES_LIST, CALENDAR_LIST, DATE_SYSTEMS_LIST
+from .params import FACES_MAP, FACES_LIST, CALENDARS_LIST, DATE_SYSTEMS_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
 from .params import CLOX_OVERVIEW, CLOX_REPO
 
@@ -259,7 +259,7 @@ def main():
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
-    parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDAR_LIST)
+    parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDARS_LIST)
     parser.add_argument(
         '--date-system',
         help='date system',
