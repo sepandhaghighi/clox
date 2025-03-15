@@ -2,7 +2,7 @@
 """clox params."""
 import pytz
 
-CLOX_VERSION = "0.7"
+CLOX_VERSION = "0.8"
 
 CLOX_OVERVIEW = '''
 Clox is a terminal-based clock application designed for terminal enthusiasts who appreciate simplicity,
