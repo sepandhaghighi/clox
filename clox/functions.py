@@ -21,50 +21,38 @@ from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
 from .params import CLOX_OVERVIEW, CLOX_REPO
 
 
-def clox_info():
-    """
-    Print clox details.
-
-    :return: None
-    """
+def clox_info() -> None:
+    """Print clox details."""
     tprint("Clox")
     tprint("V:" + CLOX_VERSION)
     print(CLOX_OVERVIEW)
     print(CLOX_REPO)
 
 
-def clear_screen():
-    """
-    Clear screen function.
-
-    :return: None
-    """
+def clear_screen() -> None:
+    """Clear screen function."""
     if sys.platform == "win32":
         os.system('cls')
     else:
         os.system('clear')
 
 
-def get_face(index):
+def get_face(index: int) -> str:
     """
     Return face name.
 
     :param index: face index
-    :type index: int
-    :return: face name as str
     """
     if index == -1:
         index = random.choice(sorted(FACES_MAP))
     return FACES_MAP[index]
 
 
-def show_faces_list(vertical=False):
+def show_faces_list(vertical: bool = False) -> None:
     """
     Show faces list.
 
     :param vertical: vertical mode flag
-    :type vertical: bool
-    :return: None
     """
     mode = "Horizontal"
     example = HORIZONTAL_FACES_LIST_EXAMPLE
@@ -78,13 +66,11 @@ def show_faces_list(vertical=False):
         print('=' * 80)
 
 
-def show_timezones_list(country=None):
+def show_timezones_list(country: str = None) -> None:
     """
     Show timezones list.
 
     :param country: country iso3166 code
-    :type country: str
-    :return: None
     """
     timezones_list = TIMEZONES_LIST
     country_name = "All"
@@ -99,12 +85,8 @@ def show_timezones_list(country=None):
         print("{index}. {timezone}".format(index=index, timezone=timezone))
 
 
-def show_countries_list():
-    """
-    Show countries list.
-
-    :return: None
-    """
+def show_countries_list() -> None:
+    """Show countries list."""
     print("Countries list:\n")
     for index, country_code in enumerate(sorted(COUNTRIES_LIST), 1):
         country_name = pytz.country_names[country_code]
@@ -116,23 +98,22 @@ def show_countries_list():
                                                                     country_code=country_code, country_name=country_code))
 
 
-def print_calendar(mode="month", timezone=None, country=None, v_shift=0, h_shift=0, date_system="gregorian"):
+def print_calendar(
+        mode: str = "month",
+        timezone: str = None,
+        country: str = None,
+        v_shift: int = 0,
+        h_shift: int = 0,
+        date_system: str = "gregorian") -> None:
     """
     Print calendar.
 
     :param mode: calendar mode
-    :type mode: str
     :param timezone: timezone
-    :type timezone: str
     :param country: country iso3166 code
-    :type country: str
     :param v_shift: vertical shift
-    :type v_shift: int
     :param h_shift: horizontal shift
-    :type h_shift: int
     :param date_system: date system
-    :type date_system: str
-    :return: None
     """
     datetime_lib = datetime
     calendar_obj = GregorianCalendar()
@@ -162,43 +143,31 @@ def print_calendar(mode="month", timezone=None, country=None, v_shift=0, h_shift
 
 
 def run_clock(
-        timezone=None,
-        country=None,
-        v_shift=0,
-        h_shift=0,
-        face=1,
-        no_blink=False,
-        vertical=False,
-        hide_date=False,
-        hide_timezone=False,
-        am_pm=False,
-        date_system="gregorian"):
+        timezone: str = None,
+        country: str = None,
+        v_shift: int = 0,
+        h_shift: int = 0,
+        face: int = 1,
+        no_blink: bool = False,
+        vertical: bool = False,
+        hide_date: bool = False,
+        hide_timezone: bool = False,
+        am_pm: bool = False,
+        date_system: str = "gregorian") -> None:
     """
     Run clock.
 
     :param timezone: timezone
-    :type timezone: str
     :param country: country iso3166 code
-    :type country: str
     :param v_shift: vertical shift
-    :type v_shift: int
     :param h_shift: horizontal shift
-    :type h_shift: int
     :param face: face index
-    :type face: int
     :param no_blink: no-blink flag
-    :type no_blink: bool
     :param vertical: vertical mode flag
-    :type vertical: bool
     :param hide_date: hide date flag
-    :type hide_date: bool
     :param hide_timezone: hide timezone flag
-    :type hide_timezone: bool
     :param am_pm: AM/PM mode flag
-    :type am_pm: bool
     :param date_system: date system
-    :type date_system: str
-    :return: None
     """
     datetime_lib = datetime
     if date_system == "jalali":
@@ -236,12 +205,8 @@ def run_clock(
             format_index = int(not format_index)
 
 
-def main():
-    """
-    CLI main function.
-
-    :return: None
-    """
+def main() -> None:
+    """CLI main function."""
     parser = argparse.ArgumentParser()
     parser.epilog = ADDITIONAL_INFO
     parser.add_argument('--timezone', help='timezone', type=str.upper, choices=TIMEZONES_LIST)
