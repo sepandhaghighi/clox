@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """clox functions."""
+from typing import Optional
 import os
 import sys
 import time
@@ -66,7 +67,7 @@ def show_faces_list(vertical: bool = False) -> None:
         print('=' * 80)
 
 
-def show_timezones_list(country: str = None) -> None:
+def show_timezones_list(country: Optional[str] = None) -> None:
     """
     Show timezones list.
 
@@ -100,8 +101,8 @@ def show_countries_list() -> None:
 
 def print_calendar(
         mode: str = "month",
-        timezone: str = None,
-        country: str = None,
+        timezone: Optional[str] = None,
+        country: Optional[str] = None,
         v_shift: int = 0,
         h_shift: int = 0,
         date_system: str = "gregorian") -> None:
@@ -143,8 +144,8 @@ def print_calendar(
 
 
 def run_clock(
-        timezone: str = None,
-        country: str = None,
+        timezone: Optional[str] = None,
+        country: Optional[str] = None,
         v_shift: int = 0,
         h_shift: int = 0,
         face: int = 1,
