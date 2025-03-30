@@ -335,7 +335,7 @@ _colwidth = 7 * 3 - 1  # Amount printed by prweek()
 _spacing = 6  # Number of spaces between columns
 
 
-def format(cols: List[str], colwidth: int = _colwidth, spacing: str = _spacing) -> None:
+def format(cols: List[str], colwidth: int = _colwidth, spacing: int = _spacing) -> None:
     """Print multi-column formatting for year calendars."""
     print(formatstring(cols, colwidth, spacing))
 
