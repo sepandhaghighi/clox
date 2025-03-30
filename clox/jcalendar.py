@@ -340,7 +340,7 @@ def format(cols: List[str], colwidth: int = _colwidth, spacing: int = _spacing) 
     print(formatstring(cols, colwidth, spacing))
 
 
-def formatstring(cols: List[str], colwidth: int = _colwidth, spacing: str = _spacing) -> str:
+def formatstring(cols: List[str], colwidth: int = _colwidth, spacing: int = _spacing) -> str:
     """Return a string formatted from n strings, centered within n columns."""
     spacing *= ' '
     return spacing.join(c.center(colwidth) for c in cols)
