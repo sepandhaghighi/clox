@@ -129,7 +129,7 @@ class Calendar:
 
     firstweekday = property(getfirstweekday, setfirstweekday)
 
-    def iterweekdays(self) -> int:
+    def iterweekdays(self) -> Generator[int, None, None]:
         """Return an iterator for one week of weekday numbers starting with the configured first one."""
         for i in range(self.firstweekday, self.firstweekday + 7):
             yield i % 7
