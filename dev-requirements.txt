@@ -1,5 +1,5 @@
 jdatetime==5.2.0
-pytz==2025.1
+pytz==2025.2
 art==6.4
 setuptools>=40.8.0
 vulture>=1.0
