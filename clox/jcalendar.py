@@ -188,7 +188,7 @@ class Calendar:
         days = list(self.itermonthdays(year, month))
         return [days[i:i + 7] for i in range(0, len(days), 7)]
 
-    def yeardatescalendar(self, year: int, width: int = 3) -> List[List[List[jdatetime.date]]]:
+    def yeardatescalendar(self, year: int, width: int = 3) -> List[List[List[List[jdatetime.date]]]]:
         """Return the data for the specified year ready for formatting."""
         months = [
             self.monthdatescalendar(year, i)
@@ -196,7 +196,7 @@ class Calendar:
         ]
         return [months[i:i + width] for i in range(0, len(months), width)]
 
-    def yeardays2calendar(self, year: int, width: int = 3) -> List[List[List[Tuple[int, int]]]]:
+    def yeardays2calendar(self, year: int, width: int = 3) -> List[List[List[List[Tuple[int, int]]]]]:
         """Return the data for the specified year ready for formatting."""
         months = [
             self.monthdays2calendar(year, i)
