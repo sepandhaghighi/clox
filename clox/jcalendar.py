@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """clox jalali calendar."""
 # Reference: https://github.com/IKermani/jcalendar
+from typing import List, Tuple, Generator
 import datetime
 from itertools import repeat
 import jdatetime
@@ -13,7 +14,7 @@ error = ValueError
 class IllegalMonthError(ValueError):
     """Illegal month error."""
 
-    def __init__(self, month):
+    def __init__(self, month: int) -> None:
         """Initiate."""
         self.month = month
 
@@ -25,7 +26,7 @@ class IllegalMonthError(ValueError):
 class IllegalWeekdayError(ValueError):
     """Illegal weekday error."""
 
-    def __init__(self, weekday):
+    def __init__(self, weekday: int) -> None:
         """Initiate."""
         self.weekday = weekday
 
@@ -58,12 +59,12 @@ month_abbr = [0] + jdatetime.date.j_months_short_en
 (DOSHANBE, SESHANBE, CHAHARSHANBE, PANJSHANBE, JOME, SHANBE, YEKSHANBE) = range(7)
 
 
-def isleap(year):
+def isleap(year: int) -> bool:
     """Return True for leap years, False for non-leap years."""
     return jdatetime.date(year, 1, 1).isleap()
 
 
-def leapdays(y1, y2):
+def leapdays(y1: int, y2: int) -> int:
     """Return number of leap years in range [y1, y2)."""
     leapdays = 0
 
@@ -74,14 +75,14 @@ def leapdays(y1, y2):
     return leapdays
 
 
-def weekday(year, month, day):
+def weekday(year: int, month: int, day: int) -> int:
     """Return week-day (0-6 ~ Mon-Sun)."""
     if not datetime.MINYEAR <= year <= datetime.MAXYEAR:
         year = 2000 + year % 400
     return jdatetime.date(year, month, day).weekday()
 
 
-def monthrange(year, month):
+def monthrange(year: int, month: int) -> Tuple[int, int]:
     """Return weekday (0-6 ~ Mon-Sun) and number of days (28-31) for year, month."""
     if not 1 <= month <= 12:
         raise IllegalMonthError(month)
@@ -90,12 +91,12 @@ def monthrange(year, month):
     return day1, ndays
 
 
-def _monthlen(year, month):
+def _monthlen(year: int, month: int) -> int:
     """Return length of month."""
     return mdays[month] + (month == Esfand and isleap(year))
 
 
-def _prevmonth(year, month):
+def _prevmonth(year: int, month: int) -> Tuple[int, int]:
     """Return previous month."""
     if month == 1:
         return year - 1, 12
@@ -103,7 +104,7 @@ def _prevmonth(year, month):
         return year, month - 1
 
 
-def _nextmonth(year, month):
+def _nextmonth(year: int, month: int) -> Tuple[int, int]:
     """Return next month."""
     if month == 12:
         return year + 1, 1
@@ -111,34 +112,34 @@ def _nextmonth(year, month):
         return year, month + 1
 
 
-class Calendar(object):
+class Calendar:
     """Base calendar class. This class doesn't do any formatting. It simply provides data to subclasses."""
 
-    def __init__(self, firstweekday=0):
+    def __init__(self, firstweekday: int = 0) -> None:
         """Initiate."""
         self.firstweekday = firstweekday  # 0 = Doshanbe, 6 = Yekshanbe
 
-    def getfirstweekday(self):
+    def getfirstweekday(self) -> int:
         """Get first weekday."""
         return self._firstweekday % 7
 
-    def setfirstweekday(self, firstweekday):
+    def setfirstweekday(self, firstweekday: int) -> None:
         """Set first weekday."""
         self._firstweekday = firstweekday
 
     firstweekday = property(getfirstweekday, setfirstweekday)
 
-    def iterweekdays(self):
+    def iterweekdays(self) -> Generator[int, None, None]:
         """Return an iterator for one week of weekday numbers starting with the configured first one."""
         for i in range(self.firstweekday, self.firstweekday + 7):
             yield i % 7
 
-    def itermonthdates(self, year, month):
+    def itermonthdates(self, year: int, month: int) -> Generator[jdatetime.date, None, None]:
         """Return an iterator for one month."""
         for y, m, d in self.itermonthdays3(year, month):
             yield jdatetime.date(y, m, d)
 
-    def itermonthdays(self, year, month):
+    def itermonthdays(self, year: int, month: int) -> Generator[int, None, None]:
         """Like itermonthdates(), but will yield day numbers. For days outside the specified month the day number is 0."""
         day1, ndays = monthrange(year, month)
         days_before = (day1 - self.firstweekday) % 7
@@ -147,12 +148,12 @@ class Calendar(object):
         days_after = (self.firstweekday - day1 - ndays) % 7
         yield from repeat(0, days_after)
 
-    def itermonthdays2(self, year, month):
+    def itermonthdays2(self, year: int, month: int) -> Generator[Tuple[int, int], None, None]:
         """Like itermonthdates(), but will yield (day number, weekday number) tuples. For days outside the specified month the day number is 0."""
         for i, d in enumerate(self.itermonthdays(year, month), self.firstweekday):
             yield d, i % 7
 
-    def itermonthdays3(self, year, month):
+    def itermonthdays3(self, year: int, month: int) -> Generator[Tuple[int, int, int], None, None]:
         """Like itermonthdates(), but will yield (year, month, day) tuples.  Can be used for dates outside of datetime.date range."""
         day1, ndays = monthrange(year, month)
         days_before = (day1 - self.firstweekday) % 7
@@ -167,27 +168,27 @@ class Calendar(object):
         for d in range(1, days_after + 1):
             yield y, m, d
 
-    def itermonthdays4(self, year, month):
+    def itermonthdays4(self, year: int, month: int) -> Generator[Tuple[int, int, int, int], None, None]:
         """Like itermonthdates(), but will yield (year, month, day, day_of_week) tuples. Can be used for dates outside of datetime.date range."""
         for i, (y, m, d) in enumerate(self.itermonthdays3(year, month)):
             yield y, m, d, (self.firstweekday + i) % 7
 
-    def monthdatescalendar(self, year, month):
+    def monthdatescalendar(self, year: int, month: int) -> List[List[jdatetime.date]]:
         """Return a matrix (list of lists) representing a month's calendar.Each row represents a week; week entries are datetime.date values."""
         dates = list(self.itermonthdates(year, month))
         return [dates[i:i + 7] for i in range(0, len(dates), 7)]
 
-    def monthdays2calendar(self, year, month):
+    def monthdays2calendar(self, year: int, month: int) -> List[List[Tuple[int, int]]]:
         """Return a matrix representing a month's calendar."""
         days = list(self.itermonthdays2(year, month))
         return [days[i:i + 7] for i in range(0, len(days), 7)]
 
-    def monthdayscalendar(self, year, month):
+    def monthdayscalendar(self, year: int, month: int) -> List[List[int]]:
         """Return a matrix representing a month's calendar."""
         days = list(self.itermonthdays(year, month))
         return [days[i:i + 7] for i in range(0, len(days), 7)]
 
-    def yeardatescalendar(self, year, width=3):
+    def yeardatescalendar(self, year: int, width: int = 3) -> List[List[List[List[jdatetime.date]]]]:
         """Return the data for the specified year ready for formatting."""
         months = [
             self.monthdatescalendar(year, i)
@@ -195,7 +196,7 @@ class Calendar(object):
         ]
         return [months[i:i + width] for i in range(0, len(months), width)]
 
-    def yeardays2calendar(self, year, width=3):
+    def yeardays2calendar(self, year: int, width: int = 3) -> List[List[List[List[Tuple[int, int]]]]]:
         """Return the data for the specified year ready for formatting."""
         months = [
             self.monthdays2calendar(year, i)
@@ -203,7 +204,7 @@ class Calendar(object):
         ]
         return [months[i:i + width] for i in range(0, len(months), width)]
 
-    def yeardayscalendar(self, year, width=3):
+    def yeardayscalendar(self, year: int, width: int = 3) -> List[List[List[int]]]:
         """Return the data for the specified year ready for formatting."""
         months = [
             self.monthdayscalendar(year, i)
@@ -215,11 +216,11 @@ class Calendar(object):
 class TextCalendar(Calendar):
     """Subclass of Calendar that outputs a calendar as a simple plain text similar to the UNIX program cal."""
 
-    def prweek(self, theweek, width):
+    def prweek(self, theweek: List[Tuple[int, int]], width: int) -> None:
         """Print a single week (no newline)."""
         print(self.formatweek(theweek, width), end='')
 
-    def formatday(self, day, weekday, width):
+    def formatday(self, day: int, width: int) -> str:
         """Return a formatted day."""
         if day == 0:
             s = ''
@@ -227,11 +228,11 @@ class TextCalendar(Calendar):
             s = '%2i' % day  # right-align single-digit days
         return s.center(width)
 
-    def formatweek(self, theweek, width):
+    def formatweek(self, theweek: List[Tuple[int, int]], width: int) -> str:
         """Return a single week in a string (no newline)."""
-        return ' '.join(self.formatday(d, wd, width) for (d, wd) in theweek)
+        return ' '.join(self.formatday(d, width) for d, _ in theweek)
 
-    def formatweekday(self, day, width):
+    def formatweekday(self, day: int, width: int) -> str:
         """Return a formatted week day name."""
         if width >= 9:
             names = day_name
@@ -239,22 +240,22 @@ class TextCalendar(Calendar):
             names = day_abbr
         return names[day][:width].center(width)
 
-    def formatweekheader(self, width):
+    def formatweekheader(self, width: int) -> str:
         """Return a header for a week."""
         return ' '.join(self.formatweekday(i, width) for i in self.iterweekdays())
 
-    def formatmonthname(self, theyear, themonth, width, withyear=True):
+    def formatmonthname(self, theyear: int, themonth: int, width: int, withyear: bool = True) -> str:
         """Return a formatted month name."""
         s = month_name[themonth]
         if withyear:
             s = "%s %r" % (s, theyear)
         return s.center(width)
 
-    def prmonth(self, theyear, themonth, w=0, l=0):
+    def prmonth(self, theyear: int, themonth: int, w: int = 0, l: int = 0) -> None:
         """Print a month's calendar."""
         print(self.formatmonth(theyear, themonth, w, l), end='')
 
-    def formatmonth(self, theyear, themonth, w=0, l=0):
+    def formatmonth(self, theyear: int, themonth: int, w: int = 0, l: int = 0) -> str:
         """Return a month's calendar string (multi-line)."""
         w = max(2, w)
         l = max(1, l)
@@ -268,7 +269,7 @@ class TextCalendar(Calendar):
             s += '\n' * l
         return s
 
-    def formatyear(self, theyear, w=2, l=1, c=6, m=3):
+    def formatyear(self, theyear: int, w: int = 2, l: int = 1, c: int = 6, m: int = 3) -> str:
         """Return a year's calendar as a multi-line string."""
         w = max(2, w)
         l = max(1, l)
@@ -303,7 +304,7 @@ class TextCalendar(Calendar):
                 a('\n' * l)
         return ''.join(v)
 
-    def pryear(self, theyear, w=0, l=0, c=6, m=3):
+    def pryear(self, theyear: int, w: int = 0, l: int = 0, c: int = 6, m: int = 3) -> None:
         """Print a year's calendar."""
         print(self.formatyear(theyear, w, l, c, m), end='')
 
@@ -313,7 +314,7 @@ c = TextCalendar()
 firstweekday = c.getfirstweekday
 
 
-def setfirstweekday(firstweekday):
+def setfirstweekday(firstweekday: int) -> None:
     """Set first weekday."""
     if not DOSHANBE <= firstweekday <= YEKSHANBE:
         raise IllegalWeekdayError(firstweekday)
@@ -334,12 +335,12 @@ _colwidth = 7 * 3 - 1  # Amount printed by prweek()
 _spacing = 6  # Number of spaces between columns
 
 
-def format(cols, colwidth=_colwidth, spacing=_spacing):
+def format(cols: List[str], colwidth: int = _colwidth, spacing: int = _spacing) -> None:
     """Print multi-column formatting for year calendars."""
     print(formatstring(cols, colwidth, spacing))
 
 
-def formatstring(cols, colwidth=_colwidth, spacing=_spacing):
+def formatstring(cols: List[str], colwidth: int = _colwidth, spacing: int = _spacing) -> str:
     """Return a string formatted from n strings, centered within n columns."""
     spacing *= ' '
     return spacing.join(c.center(colwidth) for c in cols)
@@ -349,7 +350,7 @@ EPOCH = 1970
 _EPOCH_ORD = jdatetime.date(EPOCH, 1, 1).toordinal()
 
 
-def timegm(tuple):
+def timegm(tuple: Tuple) -> int:
     """Unrelated but handy function to calculate Unix timestamp from GMT."""
     year, month, day, hour, minute, second = tuple[:6]
     days = jdatetime.date(year, month, 1).toordinal() - _EPOCH_ORD + day - 1
