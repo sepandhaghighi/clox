@@ -65,9 +65,10 @@ def get_timezone_difference(timezone: str) -> str:
     if total_minutes < 0:
         direction = "behind"
         total_minutes = abs(total_minutes)
+    if total_minutes == 0:
+        direction = "same"
     hours = total_minutes // 60
     minutes = total_minutes % 60
-    # Round minutes to the nearest multiple of 15
     minutes = round(minutes / 15) * 15
     formatted_difference = TIMEZONE_DIFFERENCE_FORMAT.format(
         hours=int(hours), minutes=int(minutes), direction=direction)
@@ -153,7 +154,7 @@ def print_calendar(
     if timezone is not None:
         timezone_str = timezone
         timezone_diff = get_timezone_difference(timezone=timezone)
-        timezone_str += "({timezone_diff})".format(timezone_diff=timezone_diff)
+        timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
@@ -211,7 +212,7 @@ def run_clock(
     if timezone is not None:
         timezone_str = timezone
         timezone_diff = get_timezone_difference(timezone=timezone)
-        timezone_str += "({timezone_diff})".format(timezone_diff=timezone_diff)
+        timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
