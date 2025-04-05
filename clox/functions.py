@@ -149,6 +149,8 @@ def print_calendar(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
+        timezones_diff = get_timezones_difference(timezone=timezone)
+        timezone_str += "({timezones_diff})".format(timezones_diff=timezones_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
@@ -205,6 +207,8 @@ def run_clock(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
+        timezones_diff = get_timezones_difference(timezone=timezone)
+        timezone_str += "({timezones_diff})".format(timezones_diff=timezones_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
