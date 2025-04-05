@@ -59,8 +59,8 @@ def get_timezone_difference(timezone: str) -> str:
     direction = "ahead"
     tz = pytz.timezone(timezone)
     datetime_now_timezone = datetime.datetime.now(tz=tz)
-    datetime_now_local = tz.localize(datetime.datetime.now())
-    difference = datetime_now_timezone - datetime_now_local
+    datetime_now_local = datetime.datetime.now()
+    difference = datetime_now_timezone - tz.localize(datetime_now_local)
     total_minutes = difference.total_seconds() // 60
     if total_minutes < 0:
         direction = "behind"
