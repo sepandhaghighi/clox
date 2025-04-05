@@ -49,6 +49,7 @@ def get_face(index: int) -> str:
         index = random.choice(sorted(FACES_MAP))
     return FACES_MAP[index]
 
+
 def get_timezone_difference(timezone: str) -> str:
     """
     Return timezone difference.
@@ -68,8 +69,10 @@ def get_timezone_difference(timezone: str) -> str:
     minutes = total_minutes % 60
     if minutes == 29:
         minutes = 30
-    formatted_difference = TIMEZONE_DIFFERENCE_FORMAT.format(hours=int(hours), minutes=int(minutes), direction=direction)
+    formatted_difference = TIMEZONE_DIFFERENCE_FORMAT.format(
+        hours=int(hours), minutes=int(minutes), direction=direction)
     return formatted_difference
+
 
 def show_faces_list(vertical: bool = False) -> None:
     """
