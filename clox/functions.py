@@ -48,6 +48,28 @@ def get_face(index: int) -> str:
         index = random.choice(sorted(FACES_MAP))
     return FACES_MAP[index]
 
+def get_timezones_difference(timezone: str) -> str:
+    """
+    Return timezones difference.
+
+    :param timezone: timezone
+    :return:
+    """
+    direction = "ahead"
+    tz = pytz.timezone(timezone)
+    datetime_now_timezone = datetime.datetime.now(tz=tz)
+    datetime_now_local = tz.localize(datetime.datetime.now())
+    difference = datetime_now_timezone - datetime_now_local
+    total_minutes = difference.total_seconds() // 60
+    if total_minutes < 0:
+        direction = "behind"
+        total_minutes = abs(total_minutes)
+    hours = total_minutes // 60
+    minutes = total_minutes % 60
+    if minutes == 29:
+        minutes = 30
+    formatted_difference = "{hours:02}h{minutes:02}m {direction}".format(hours=int(hours), minutes=int(minutes), direction=direction)
+    return formatted_difference
 
 def show_faces_list(vertical: bool = False) -> None:
     """
