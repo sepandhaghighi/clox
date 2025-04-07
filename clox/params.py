@@ -23,7 +23,7 @@ VERTICAL_TIME_24H_FORMATS = ['%H\n%M', '%H\n%M.']
 HORIZONTAL_TIME_12H_FORMATS = ['%I:%M %p', '%I:%M %p.']
 VERTICAL_TIME_12H_FORMATS = ['%I\n%M\n%p', '%I\n%M\n%p.']
 DATE_FORMAT = "%A, %B %d, %Y"
-TIMEZONE_DIFFERENCE_FORMAT = "{sign} {hours:02}h{minutes:02}m {direction}"
+TIMEZONE_DIFFERENCE_FORMAT = "{sign}{hours:02}h{minutes:02}m {direction}"
 
 TIMEZONES_LIST = list(map(lambda x: x.upper(), pytz.all_timezones))
 COUNTRIES_LIST = list(map(lambda x: x.upper(), pytz.country_timezones.keys()))
