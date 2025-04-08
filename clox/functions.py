@@ -56,7 +56,6 @@ def get_timezone_difference(timezone: str) -> str:
 
     :param timezone: timezone
     """
-    sign = "+"
     direction = "ahead"
     tz = pytz.timezone(timezone)
     datetime_now_timezone = datetime.datetime.now(tz=tz)
@@ -64,17 +63,14 @@ def get_timezone_difference(timezone: str) -> str:
     difference = datetime_now_timezone - tz.localize(datetime_now_local)
     total_minutes = difference.total_seconds() // 60
     if total_minutes < 0:
-        sign = "-"
         direction = "behind"
         total_minutes = abs(total_minutes)
     if total_minutes == 0:
-        sign = ""
         direction = "same"
     hours = total_minutes // 60
     minutes = total_minutes % 60
     minutes = round(minutes / 15) * 15
-    formatted_difference = TIMEZONE_DIFFERENCE_FORMAT.format(sign=sign,
-        hours=int(hours), minutes=int(minutes), direction=direction)
+    formatted_difference = TIMEZONE_DIFFERENCE_FORMAT.format(hours=int(hours), minutes=int(minutes), direction=direction)
     return formatted_difference
 
 
