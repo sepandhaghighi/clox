@@ -70,7 +70,8 @@ def get_timezone_difference(timezone: str) -> str:
     hours = total_minutes // 60
     minutes = total_minutes % 60
     minutes = round(minutes / 15) * 15
-    formatted_difference = TIMEZONE_DIFFERENCE_FORMAT.format(hours=int(hours), minutes=int(minutes), direction=direction)
+    formatted_difference = TIMEZONE_DIFFERENCE_FORMAT.format(
+        hours=int(hours), minutes=int(minutes), direction=direction)
     return formatted_difference
 
 
