@@ -14,6 +14,7 @@ from art import tprint
 from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
+from .params import TIMEZONE_DIFFERENCE_FORMAT
 from .params import CLOX_VERSION, DATE_FORMAT
 from .params import TIMEZONES_LIST, COUNTRIES_LIST
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
@@ -47,6 +48,31 @@ def get_face(index: int) -> str:
     if index == -1:
         index = random.choice(sorted(FACES_MAP))
     return FACES_MAP[index]
+
+
+def get_timezone_difference(timezone: str) -> str:
+    """
+    Return timezone difference.
+
+    :param timezone: timezone
+    """
+    direction = "ahead"
+    tz = pytz.timezone(timezone)
+    datetime_now_timezone = datetime.datetime.now(tz=tz)
+    datetime_now_local = datetime.datetime.now()
+    difference = datetime_now_timezone - tz.localize(datetime_now_local)
+    total_minutes = difference.total_seconds() // 60
+    if total_minutes < 0:
+        direction = "behind"
+        total_minutes = abs(total_minutes)
+    if total_minutes == 0:
+        direction = "same"
+    hours = total_minutes // 60
+    minutes = total_minutes % 60
+    minutes = round(minutes / 15) * 15
+    formatted_difference = TIMEZONE_DIFFERENCE_FORMAT.format(
+        hours=int(hours), minutes=int(minutes), direction=direction)
+    return formatted_difference
 
 
 def show_faces_list(vertical: bool = False) -> None:
@@ -127,6 +153,8 @@ def print_calendar(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
+        timezone_diff = get_timezone_difference(timezone=timezone)
+        timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
@@ -183,6 +211,8 @@ def run_clock(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
+        timezone_diff = get_timezone_difference(timezone=timezone)
+        timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
