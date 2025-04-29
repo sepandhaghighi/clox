@@ -234,7 +234,7 @@ def run_clock(
             if timezone is not None:
                 datetime_now_local = datetime.datetime.now()
                 time_formats_local = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
-                current_time_local = datetime_now_local.strftime(time_formats_local[0])
+                current_time_local = datetime_now_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=current_time_local))
         time.sleep(1)
