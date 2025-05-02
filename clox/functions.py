@@ -28,7 +28,7 @@ def clox_info() -> None:
     tprint("Clox")
     tprint("V:" + CLOX_VERSION)
     print(CLOX_OVERVIEW)
-    print(CLOX_REPO)
+    print("Repo : " + CLOX_REPO)
 
 
 def clear_screen() -> None:
