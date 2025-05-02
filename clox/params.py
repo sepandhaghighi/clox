@@ -10,7 +10,7 @@ elegance, and productivity within their command-line environment. Whether you're
 or simply enjoying the terminal aesthetic, Clox brings a stylish and customizable time display to your workspace.
 '''
 
-CLOX_REPO = "Repo : https://github.com/sepandhaghighi/clox"
+CLOX_REPO = "https://github.com/sepandhaghighi/clox"
 
 ADDITIONAL_INFO = "Additional information: Press `Ctrl+C` to exit."
 EXIT_MESSAGE = "See you. Bye!"
