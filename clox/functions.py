@@ -223,9 +223,9 @@ def run_clock(
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
         datetime_timezone = datetime_lib.datetime.now(tz=tz)
-        current_time = datetime_timezone.strftime(time_formats_main[format_index])
+        time_timezone_str = datetime_timezone.strftime(time_formats_main[format_index])
         current_date = datetime_timezone.strftime(DATE_FORMAT)
-        tprint(current_time, font=face, sep="\n" + " " * h_shift)
+        tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
         if not hide_date:
             print(" " * h_shift, end='')
             print(current_date)
@@ -234,9 +234,9 @@ def run_clock(
             print("Timezone: {timezone}".format(timezone=timezone_str))
             if timezone is not None:
                 datetime_local = datetime.datetime.now()
-                current_time_local = datetime_local.strftime(time_formats_local[format_index])
+                time_local_str = datetime_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
-                print("Local Time: {local_time}".format(local_time=current_time_local))
+                print("Local Time: {local_time}".format(local_time=time_local_str))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
