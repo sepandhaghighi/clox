@@ -58,9 +58,9 @@ def get_timezone_difference(timezone: str) -> str:
     """
     direction = "ahead"
     tz = pytz.timezone(timezone)
-    datetime_now_timezone = datetime.datetime.now(tz=tz)
-    datetime_now_local = datetime.datetime.now()
-    difference = datetime_now_timezone - tz.localize(datetime_now_local)
+    datetime_timezone = datetime.datetime.now(tz=tz)
+    datetime_local = datetime.datetime.now()
+    difference = datetime_timezone - tz.localize(datetime_local)
     total_minutes = difference.total_seconds() // 60
     if total_minutes < 0:
         direction = "behind"
@@ -158,16 +158,16 @@ def print_calendar(
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
-    datetime_now = datetime_lib.datetime.now(tz=tz)
-    current_date = datetime_now.strftime(DATE_FORMAT)
+    datetime_timezone = datetime_lib.datetime.now(tz=tz)
+    current_date = datetime_timezone.strftime(DATE_FORMAT)
     print('\n' * v_shift, end='')
     print(" " * h_shift, end='')
     print("Today: {date}".format(date=current_date))
     print(" " * h_shift, end='')
     print("Timezone: {timezone}\n".format(timezone=timezone_str))
-    calendar_str = calendar_obj.formatmonth(datetime_now.year, datetime_now.month)
+    calendar_str = calendar_obj.formatmonth(datetime_timezone.year, datetime_timezone.month)
     if mode == "year":
-        calendar_str = calendar_obj.formatyear(datetime_now.year)
+        calendar_str = calendar_obj.formatyear(datetime_timezone.year)
     print("\n".join([" " * h_shift + x for x in calendar_str.split("\n")]))
 
 
@@ -222,9 +222,9 @@ def run_clock(
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        datetime_now = datetime_lib.datetime.now(tz=tz)
-        current_time = datetime_now.strftime(time_formats_main[format_index])
-        current_date = datetime_now.strftime(DATE_FORMAT)
+        datetime_timezone = datetime_lib.datetime.now(tz=tz)
+        current_time = datetime_timezone.strftime(time_formats_main[format_index])
+        current_date = datetime_timezone.strftime(DATE_FORMAT)
         tprint(current_time, font=face, sep="\n" + " " * h_shift)
         if not hide_date:
             print(" " * h_shift, end='')
@@ -233,8 +233,8 @@ def run_clock(
             print(" " * h_shift, end='')
             print("Timezone: {timezone}".format(timezone=timezone_str))
             if timezone is not None:
-                datetime_now_local = datetime.datetime.now()
-                current_time_local = datetime_now_local.strftime(time_formats_local[format_index])
+                datetime_local = datetime.datetime.now()
+                current_time_local = datetime_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=current_time_local))
         time.sleep(1)
