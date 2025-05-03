@@ -202,10 +202,10 @@ def run_clock(
     if date_system == "jalali":
         datetime_lib = jdatetime
     format_index = 0
-    time_formats_main = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
+    time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
     time_formats_local = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
     if vertical:
-        time_formats_main = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
+        time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
     tz = None
     timezone_str = "Local"
     if country is not None:
@@ -223,7 +223,7 @@ def run_clock(
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
         datetime_timezone = datetime_lib.datetime.now(tz=tz)
-        time_timezone_str = datetime_timezone.strftime(time_formats_main[format_index])
+        time_timezone_str = datetime_timezone.strftime(time_formats[format_index])
         date_timezone_str = datetime_timezone.strftime(DATE_FORMAT)
         tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
         if not hide_date:
