@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Local time
 ### Changed
 - `clox_info` function modified
+- `run_clock` function modified
 ## [0.9] - 2025-04-14
 ### Added
 - Timezone difference
