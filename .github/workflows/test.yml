@@ -71,7 +71,7 @@ jobs:
         clox --calendar=year --date-system=jalAli --country=De
     - name: Run12
       run: |
-        clox --calendar=year --date-system=jalAli --country=De --first-weekday=2
+        clox --calendar=year --date-system=jalAli --country=De --first-weekday="Monday"
     - name: Run12
       run: |
         clox --countries-list
