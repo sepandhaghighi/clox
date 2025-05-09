@@ -125,7 +125,7 @@ def show_countries_list() -> None:
                                                                     country_code=country_code, country_name=country_code))
 
 
-def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> str:
+def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> int:
     first_weekday_normalized = first_weekday
     if len(first_weekday) > 2:
         first_weekday_normalized = first_weekday[:2].upper()
