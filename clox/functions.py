@@ -125,6 +125,16 @@ def show_countries_list() -> None:
                                                                     country_code=country_code, country_name=country_code))
 
 
+def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> str:
+    first_weekday_normalized = first_weekday
+    if len(first_weekday) > 2:
+        first_weekday_normalized = first_weekday[:2].upper()
+    weekdays = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"]
+    if date_system == "jalali":
+        weekdays = weekdays[-2:] + weekdays[:-2]
+    return weekdays.index(first_weekday_normalized)
+
+
 def print_calendar(
         mode: str = "month",
         timezone: Optional[str] = None,
@@ -132,7 +142,7 @@ def print_calendar(
         v_shift: int = 0,
         h_shift: int = 0,
         date_system: str = "gregorian",
-        first_weekday: int = 0) -> None:
+        first_weekday: str = "MON") -> None:
     """
     Print calendar.
 
@@ -144,6 +154,7 @@ def print_calendar(
     :param date_system: date system
     :param first_weekday: first weekday
     """
+    first_weekday = _get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
     calendar_obj = GregorianCalendar(first_weekday)
     if date_system == "jalali":
@@ -264,7 +275,9 @@ def main() -> None:
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
     parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDARS_LIST)
-    parser.add_argument('--first-weekday', help='first weekday', type=int, default=0)
+    parser.add_argument('--first-weekday', help='first weekday', type=str.upper, default="MONDAY",
+                        choices=["MONDAY", "SUNDAY", "SATURDAY", "FRIDAY", "THURSDAY", "WEDNESDAY", "TUESDAY",
+                                 "MO", "SU", "SA", "FR", "TH", "WE", "TU"])
     parser.add_argument(
         '--date-system',
         help='date system',
