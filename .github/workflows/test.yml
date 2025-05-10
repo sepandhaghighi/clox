@@ -71,13 +71,13 @@ jobs:
         clox --calendar=year --date-system=jalAli --country=De
     - name: Run12
       run: |
-        clox --calendar=year --date-system=jalAli --country=De --first-weekday="Monday"
-    - name: Run12
-      run: |
         clox --countries-list
     - name: Run13
       run: |
         clox --timezones-list --country=Us
+    - name: Run14
+      run: |
+        clox --calendar=year --date-system=jalAli --country=De --first-weekday="Monday"
     - name: Install dev-requirements
       run: |
         python otherfiles/requirements-splitter.py
