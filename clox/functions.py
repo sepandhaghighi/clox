@@ -132,9 +132,9 @@ def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> int:
     :param first_weekday: first weekday
     :param date_system: date system
     """
-    first_weekday_normalized = first_weekday
+    first_weekday_normalized = first_weekday.upper()
     if len(first_weekday) > 2:
-        first_weekday_normalized = first_weekday[:2].upper()
+        first_weekday_normalized = first_weekday_normalized[:2]
     weekdays = [x[:2] for x in WEEKDAYS_LIST]
     if date_system == "jalali":
         weekdays = weekdays[-2:] + weekdays[:-2]
