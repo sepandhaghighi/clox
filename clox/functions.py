@@ -16,7 +16,7 @@ from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
 from .params import TIMEZONE_DIFFERENCE_FORMAT
 from .params import CLOX_VERSION, DATE_FORMAT
-from .params import TIMEZONES_LIST, COUNTRIES_LIST
+from .params import TIMEZONES_LIST, COUNTRIES_LIST, WEEKDAYS_LIST
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST, CALENDARS_LIST, DATE_SYSTEMS_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
@@ -125,13 +125,30 @@ def show_countries_list() -> None:
                                                                     country_code=country_code, country_name=country_code))
 
 
+def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> int:
+    """
+    Get weekday id.
+
+    :param first_weekday: first weekday
+    :param date_system: date system
+    """
+    first_weekday_normalized = first_weekday.upper()
+    if len(first_weekday) > 2:
+        first_weekday_normalized = first_weekday_normalized[:2]
+    weekdays = [x[:2] for x in WEEKDAYS_LIST]
+    if date_system == "jalali":
+        weekdays = weekdays[-2:] + weekdays[:-2]
+    return weekdays.index(first_weekday_normalized)
+
+
 def print_calendar(
         mode: str = "month",
         timezone: Optional[str] = None,
         country: Optional[str] = None,
         v_shift: int = 0,
         h_shift: int = 0,
-        date_system: str = "gregorian") -> None:
+        date_system: str = "gregorian",
+        first_weekday: str = "MON") -> None:
     """
     Print calendar.
 
@@ -141,12 +158,14 @@ def print_calendar(
     :param v_shift: vertical shift
     :param h_shift: horizontal shift
     :param date_system: date system
+    :param first_weekday: first weekday
     """
+    first_weekday = _get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
-    calendar_obj = GregorianCalendar()
+    calendar_obj = GregorianCalendar(first_weekday)
     if date_system == "jalali":
         datetime_lib = jdatetime
-        calendar_obj = JalaliCalendar()
+        calendar_obj = JalaliCalendar(first_weekday)
     tz = None
     timezone_str = "Local"
     if country is not None:
@@ -262,6 +281,8 @@ def main() -> None:
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
     parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDARS_LIST)
+    parser.add_argument('--first-weekday', help='first weekday', type=str.upper, default="MONDAY",
+                        choices=WEEKDAYS_LIST + [x[:2] for x in WEEKDAYS_LIST])
     parser.add_argument(
         '--date-system',
         help='date system',
@@ -286,7 +307,8 @@ def main() -> None:
             country=args.country,
             h_shift=args.h_shift,
             v_shift=args.v_shift,
-            date_system=args.date_system)
+            date_system=args.date_system,
+            first_weekday=args.first_weekday)
     else:
         try:
             run_clock(
