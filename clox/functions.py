@@ -148,7 +148,7 @@ def print_calendar(
         v_shift: int = 0,
         h_shift: int = 0,
         date_system: str = "gregorian",
-        first_weekday: str = "MON") -> None:
+        first_weekday: str = "MONDAY") -> None:
     """
     Print calendar.
 
