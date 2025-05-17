@@ -125,7 +125,7 @@ def show_countries_list() -> None:
                                                                     country_code=country_code, country_name=country_code))
 
 
-def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> int:
+def _get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     """
     Get weekday id.
 
@@ -136,7 +136,7 @@ def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> int:
     if len(first_weekday) > 2:
         first_weekday_normalized = first_weekday_normalized[:2]
     weekdays = [x[:2] for x in WEEKDAYS_LIST]
-    if date_system == "jalali":
+    if date_system.upper() == "JALALI":
         weekdays = weekdays[-2:] + weekdays[:-2]
     return weekdays.index(first_weekday_normalized)
 
@@ -147,7 +147,7 @@ def print_calendar(
         country: Optional[str] = None,
         v_shift: int = 0,
         h_shift: int = 0,
-        date_system: str = "gregorian",
+        date_system: str = "GREGORIAN",
         first_weekday: str = "MONDAY") -> None:
     """
     Print calendar.
@@ -163,7 +163,7 @@ def print_calendar(
     first_weekday_id = _get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
     calendar_obj = GregorianCalendar(first_weekday_id)
-    if date_system == "jalali":
+    if date_system.upper() == "JALALI":
         datetime_lib = jdatetime
         calendar_obj = JalaliCalendar(first_weekday_id)
     tz = None
@@ -201,7 +201,7 @@ def run_clock(
         hide_date: bool = False,
         hide_timezone: bool = False,
         am_pm: bool = False,
-        date_system: str = "gregorian") -> None:
+        date_system: str = "GREGORIAN") -> None:
     """
     Run clock.
 
@@ -218,7 +218,7 @@ def run_clock(
     :param date_system: date system
     """
     datetime_lib = datetime
-    if date_system == "jalali":
+    if date_system.upper() == "JALALI":
         datetime_lib = jdatetime
     format_index = 0
     time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
@@ -286,9 +286,9 @@ def main() -> None:
     parser.add_argument(
         '--date-system',
         help='date system',
-        type=str.lower,
+        type=str.upper,
         choices=DATE_SYSTEMS_LIST,
-        default="gregorian")
+        default="GREGORIAN")
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
