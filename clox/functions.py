@@ -142,7 +142,7 @@ def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> int:
 
 
 def print_calendar(
-        mode: str = "month",
+        mode: str = "MONTH",
         timezone: Optional[str] = None,
         country: Optional[str] = None,
         v_shift: int = 0,
@@ -185,7 +185,7 @@ def print_calendar(
     print(" " * h_shift, end='')
     print("Timezone: {timezone}\n".format(timezone=timezone_str))
     calendar_str = calendar_obj.formatmonth(datetime_timezone.year, datetime_timezone.month)
-    if mode == "year":
+    if mode.upper() == "YEAR":
         calendar_str = calendar_obj.formatyear(datetime_timezone.year)
     print("\n".join([" " * h_shift + x for x in calendar_str.split("\n")]))
 
@@ -280,7 +280,7 @@ def main() -> None:
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
-    parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDARS_LIST)
+    parser.add_argument('--calendar', help='calendar mode', type=str.upper, choices=CALENDARS_LIST)
     parser.add_argument('--first-weekday', help='first weekday', type=str.upper, default="MONDAY",
                         choices=WEEKDAYS_LIST + [x[:2] for x in WEEKDAYS_LIST])
     parser.add_argument(
