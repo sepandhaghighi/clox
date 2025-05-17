@@ -148,7 +148,7 @@ def print_calendar(
         v_shift: int = 0,
         h_shift: int = 0,
         date_system: str = "gregorian",
-        first_weekday: str = "MON") -> None:
+        first_weekday: str = "MONDAY") -> None:
     """
     Print calendar.
 
@@ -160,12 +160,12 @@ def print_calendar(
     :param date_system: date system
     :param first_weekday: first weekday
     """
-    first_weekday = _get_weekday_id(first_weekday, date_system)
+    first_weekday_id = _get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
-    calendar_obj = GregorianCalendar(first_weekday)
+    calendar_obj = GregorianCalendar(first_weekday_id)
     if date_system == "jalali":
         datetime_lib = jdatetime
-        calendar_obj = JalaliCalendar(first_weekday)
+        calendar_obj = JalaliCalendar(first_weekday_id)
     tz = None
     timezone_str = "Local"
     if country is not None:
