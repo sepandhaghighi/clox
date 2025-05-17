@@ -167,7 +167,7 @@ clox --vertical
 
 In this mode, the calendar will be displayed
 
-ℹ️ Valid choices: [`month`, `year`]
+ℹ️ Valid choices: [`MONTH`, `YEAR`]
 
 ```console
 clox --calendar=month
@@ -175,9 +175,9 @@ clox --calendar=month
 
 ### Date System
 
-ℹ️ Valid choices: [`gregorian`, `jalali`]
+ℹ️ Valid choices: [`GREGORIAN`, `JALALI`]
 
-ℹ️ The default date system is `gregorian`
+ℹ️ The default date system is `GREGORIAN`
 
 ```console
 clox --date-system=jalali
