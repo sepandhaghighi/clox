@@ -125,7 +125,7 @@ def show_countries_list() -> None:
                                                                     country_code=country_code, country_name=country_code))
 
 
-def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> int:
+def _get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     """
     Get weekday id.
 
@@ -136,18 +136,18 @@ def _get_weekday_id(first_weekday: str, date_system: str = "gregorian") -> int:
     if len(first_weekday) > 2:
         first_weekday_normalized = first_weekday_normalized[:2]
     weekdays = [x[:2] for x in WEEKDAYS_LIST]
-    if date_system == "jalali":
+    if date_system == "JALALI":
         weekdays = weekdays[-2:] + weekdays[:-2]
     return weekdays.index(first_weekday_normalized)
 
 
 def print_calendar(
-        mode: str = "month",
+        mode: str = "MONTH",
         timezone: Optional[str] = None,
         country: Optional[str] = None,
         v_shift: int = 0,
         h_shift: int = 0,
-        date_system: str = "gregorian",
+        date_system: str = "GREGORIAN",
         first_weekday: str = "MONDAY") -> None:
     """
     Print calendar.
@@ -163,7 +163,7 @@ def print_calendar(
     first_weekday_id = _get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
     calendar_obj = GregorianCalendar(first_weekday_id)
-    if date_system == "jalali":
+    if date_system == "JALALI":
         datetime_lib = jdatetime
         calendar_obj = JalaliCalendar(first_weekday_id)
     tz = None
@@ -185,7 +185,7 @@ def print_calendar(
     print(" " * h_shift, end='')
     print("Timezone: {timezone}\n".format(timezone=timezone_str))
     calendar_str = calendar_obj.formatmonth(datetime_timezone.year, datetime_timezone.month)
-    if mode == "year":
+    if mode == "YEAR":
         calendar_str = calendar_obj.formatyear(datetime_timezone.year)
     print("\n".join([" " * h_shift + x for x in calendar_str.split("\n")]))
 
@@ -201,7 +201,7 @@ def run_clock(
         hide_date: bool = False,
         hide_timezone: bool = False,
         am_pm: bool = False,
-        date_system: str = "gregorian") -> None:
+        date_system: str = "GREGORIAN") -> None:
     """
     Run clock.
 
@@ -218,7 +218,7 @@ def run_clock(
     :param date_system: date system
     """
     datetime_lib = datetime
-    if date_system == "jalali":
+    if date_system == "JALALI":
         datetime_lib = jdatetime
     format_index = 0
     time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
@@ -280,15 +280,15 @@ def main() -> None:
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
-    parser.add_argument('--calendar', help='calendar mode', type=str.lower, choices=CALENDARS_LIST)
+    parser.add_argument('--calendar', help='calendar mode', type=str.upper, choices=CALENDARS_LIST)
     parser.add_argument('--first-weekday', help='first weekday', type=str.upper, default="MONDAY",
                         choices=WEEKDAYS_LIST + [x[:2] for x in WEEKDAYS_LIST])
     parser.add_argument(
         '--date-system',
         help='date system',
-        type=str.lower,
+        type=str.upper,
         choices=DATE_SYSTEMS_LIST,
-        default="gregorian")
+        default="GREGORIAN")
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
