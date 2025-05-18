@@ -136,7 +136,7 @@ def _get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     if len(first_weekday) > 2:
         first_weekday_normalized = first_weekday_normalized[:2]
     weekdays = [x[:2] for x in WEEKDAYS_LIST]
-    if date_system.upper() == "JALALI":
+    if date_system == "JALALI":
         weekdays = weekdays[-2:] + weekdays[:-2]
     return weekdays.index(first_weekday_normalized)
 
@@ -163,7 +163,7 @@ def print_calendar(
     first_weekday_id = _get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
     calendar_obj = GregorianCalendar(first_weekday_id)
-    if date_system.upper() == "JALALI":
+    if date_system == "JALALI":
         datetime_lib = jdatetime
         calendar_obj = JalaliCalendar(first_weekday_id)
     tz = None
@@ -185,7 +185,7 @@ def print_calendar(
     print(" " * h_shift, end='')
     print("Timezone: {timezone}\n".format(timezone=timezone_str))
     calendar_str = calendar_obj.formatmonth(datetime_timezone.year, datetime_timezone.month)
-    if mode.upper() == "YEAR":
+    if mode == "YEAR":
         calendar_str = calendar_obj.formatyear(datetime_timezone.year)
     print("\n".join([" " * h_shift + x for x in calendar_str.split("\n")]))
 
@@ -218,7 +218,7 @@ def run_clock(
     :param date_system: date system
     """
     datetime_lib = datetime
-    if date_system.upper() == "JALALI":
+    if date_system == "JALALI":
         datetime_lib = jdatetime
     format_index = 0
     time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
