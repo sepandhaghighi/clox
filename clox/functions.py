@@ -133,10 +133,12 @@ def show_date_formats_list(date_system: str = "GREGORIAN") -> None:
     :param date_system: date system
     """
     datetime_lib = datetime
+    example_year = 1990
     if date_system == "JALALI":
         datetime_lib = jdatetime
+        example_year = 1368
     print("Date formats list:\n")
-    example_date = datetime_lib.datetime(year=1990, month=1, day=1)
+    example_date = datetime_lib.datetime(year=example_year, month=1, day=1)
     for index, date_format in enumerate(DATE_FORMATS_LIST, 1):
         print("{index}. {date_format_code} - {date_format_example}".format(index=index,
                                                                            date_format_code=date_format, date_format_example=example_date.strftime(DATE_FORMATS_MAP[date_format])))
