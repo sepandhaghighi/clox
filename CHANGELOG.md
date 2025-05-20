@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `--first-weekday` argument
+- `--date-format` argument
+- `--date-formats-list` argument
 ### Changed
 - `README.md` updated
 ## [1.0] - 2025-05-06
