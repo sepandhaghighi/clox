@@ -170,7 +170,7 @@ In this mode, the calendar will be displayed
 ℹ️ Valid choices: [`MONTH`, `YEAR`]
 
 ```console
-clox --calendar=month
+clox --calendar=month --first-weekday="SUNDAY"
 ```
 
 ### Date System
@@ -181,6 +181,16 @@ clox --calendar=month
 
 ```console
 clox --date-system=jalali
+```
+
+### Date Format
+
+ℹ️ Valid choices: [`ISO`, `ISO-FULL`, `US`, `US-SHORT`, `EU`, `EU-SHORT`, `DOT`, `DASH`, `YMD`, `DMY`, `MDY`, `FULL`, `RFC2822`]
+
+ℹ️ The default date format is `FULL`
+
+```console
+clox --date-system=jalali --date-format=EU
 ```
 
 ## Screen Record
