@@ -326,7 +326,7 @@ def main() -> None:
     elif args.countries_list:
         show_countries_list()
     elif args.date_formats_list:
-        show_date_formats_list()
+        show_date_formats_list(date_system=args.date_system)
     elif args.calendar:
         print_calendar(
             mode=args.calendar,
