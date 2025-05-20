@@ -21,6 +21,7 @@ from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST, CALENDARS_LIST, DATE_SYSTEMS_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
 from .params import CLOX_OVERVIEW, CLOX_REPO
+from .params import DATE_FORMATS_MAP, DATE_FORMATS_LIST
 
 
 def clox_info() -> None:
@@ -148,6 +149,7 @@ def print_calendar(
         v_shift: int = 0,
         h_shift: int = 0,
         date_system: str = "GREGORIAN",
+        date_format: str = "FULL",
         first_weekday: str = "MONDAY") -> None:
     """
     Print calendar.
@@ -158,6 +160,7 @@ def print_calendar(
     :param v_shift: vertical shift
     :param h_shift: horizontal shift
     :param date_system: date system
+    :param date_format: date format
     :param first_weekday: first weekday
     """
     first_weekday_id = _get_weekday_id(first_weekday, date_system)
@@ -178,7 +181,7 @@ def print_calendar(
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
     datetime_timezone = datetime_lib.datetime.now(tz=tz)
-    date_timezone_str = datetime_timezone.strftime(DATE_FORMAT)
+    date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
     print('\n' * v_shift, end='')
     print(" " * h_shift, end='')
     print("Today: {date}".format(date=date_timezone_str))
@@ -201,7 +204,8 @@ def run_clock(
         hide_date: bool = False,
         hide_timezone: bool = False,
         am_pm: bool = False,
-        date_system: str = "GREGORIAN") -> None:
+        date_system: str = "GREGORIAN",
+        date_format: str = "FULL") -> None:
     """
     Run clock.
 
@@ -216,6 +220,7 @@ def run_clock(
     :param hide_timezone: hide timezone flag
     :param am_pm: AM/PM mode flag
     :param date_system: date system
+    :param date_format: date format
     """
     datetime_lib = datetime
     if date_system == "JALALI":
@@ -243,7 +248,7 @@ def run_clock(
         print(" " * h_shift, end='')
         datetime_timezone = datetime_lib.datetime.now(tz=tz)
         time_timezone_str = datetime_timezone.strftime(time_formats[format_index])
-        date_timezone_str = datetime_timezone.strftime(DATE_FORMAT)
+        date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
         tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
         if not hide_date:
             print(" " * h_shift, end='')
@@ -283,6 +288,7 @@ def main() -> None:
     parser.add_argument('--calendar', help='calendar mode', type=str.upper, choices=CALENDARS_LIST)
     parser.add_argument('--first-weekday', help='first weekday', type=str.upper, default="MONDAY",
                         choices=WEEKDAYS_LIST + [x[:2] for x in WEEKDAYS_LIST])
+    parser.add_argument('--date-format', help='date format', type=str.upper, choices=DATE_FORMATS_LIST, default="FULL")
     parser.add_argument(
         '--date-system',
         help='date system',
@@ -308,6 +314,7 @@ def main() -> None:
             h_shift=args.h_shift,
             v_shift=args.v_shift,
             date_system=args.date_system,
+            date_format=args.date_format,
             first_weekday=args.first_weekday)
     else:
         try:
@@ -322,6 +329,7 @@ def main() -> None:
                 hide_date=args.hide_date,
                 hide_timezone=args.hide_timezone,
                 am_pm=args.am_pm,
-                date_system=args.date_system)
+                date_system=args.date_system,
+                date_format=args.date_format)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
