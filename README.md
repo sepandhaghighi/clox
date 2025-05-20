@@ -185,7 +185,7 @@ clox --date-system=jalali
 
 ### Date Format
 
-ℹ️ Valid choices: [`ISO`, `ISO-FULL`, `US`, `US-SHORT`, `EU`, `EU-SHORT`, `DOT`, `DASH`, `YMD`, `DMY`, `MDY`, `FULL`, `RFC2822`]
+ℹ️ Valid choices: [`ISO`, `US`, `US-SHORT`, `EU`, `EU-SHORT`, `DOT`, `DASH`, `YMD`, `DMY`, `MDY`, `FULL`]
 
 ℹ️ The default date format is `FULL`
 
