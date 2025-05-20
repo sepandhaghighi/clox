@@ -126,10 +126,17 @@ def show_countries_list() -> None:
                                                                     country_code=country_code, country_name=country_code))
 
 
-def show_date_formats_list() -> None:
-    """Show date formats list."""
+def show_date_formats_list(date_system: str = "GREGORIAN") -> None:
+    """
+    Show date formats list.
+
+    :param date_system: date system
+    """
+    datetime_lib = datetime
+    if date_system == "JALALI":
+        datetime_lib = jdatetime
     print("Date formats list:\n")
-    example_date = datetime.datetime(year=1990, month=1, day=1)
+    example_date = datetime_lib.datetime(year=1990, month=1, day=1)
     for index, date_format in enumerate(DATE_FORMATS_LIST, 1):
         print("{index}. {date_format_code} - {date_format_example}".format(index=index, date_format_code=date_format, date_format_example=example_date.strftime(DATE_FORMATS_MAP[date_format])))
 
