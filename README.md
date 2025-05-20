@@ -192,6 +192,7 @@ clox --date-system=jalali
 ```console
 clox --date-system=jalali --date-format=EU
 ```
+* Date Formats List: `clox --date-formats-list`
 
 ## Screen Record
 
