@@ -58,8 +58,26 @@ FACES_MAP = {
     25: 'epic',
 }
 
+DATE_FORMATS_MAP = {
+    'ISO': '%Y-%m-%d',
+    'ISO-FULL': '%Y-%m-%dT%H:%M:%S',
+    'US': '%m/%d/%Y',
+    'US-SHORT': '%m/%d/%y',
+    'EU': '%d/%m/%Y',
+    'EU-SHORT': '%d/%m/%y',
+    'DOT': '%d.%m.%Y',
+    'DASH': '%d-%m-%Y',
+    'YMD': '%Y/%m/%d',
+    'DMY': '%d %b %Y',
+    'MDY': '%B %d, %Y',
+    'FULL': '%A, %B %d, %Y',
+    'RFC2822': '%a, %d %b %Y %H:%M:%S +0000',
+}
+
 FACES_LIST = [-1] + sorted(FACES_MAP)
 
 CALENDARS_LIST = ["MONTH", "YEAR"]
 
 DATE_SYSTEMS_LIST = ["GREGORIAN", "JALALI"]
+
+DATE_FORMATS_LIST = [-1] + sorted(DATE_FORMATS_MAP)
