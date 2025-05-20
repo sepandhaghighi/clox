@@ -126,6 +126,14 @@ def show_countries_list() -> None:
                                                                     country_code=country_code, country_name=country_code))
 
 
+def show_date_formats_list() -> None:
+    """Show date formats list."""
+    print("Date formats list:\n")
+    example_date = datetime.datetime(year=1990, month=1, day=1)
+    for index, date_format in enumerate(DATE_FORMATS_LIST, 1):
+        print("{index}. {date_format_code} - {date_format_example}".format(index=index, date_format_code=date_format, date_format_example=example_date.strftime(DATE_FORMATS_MAP[date_format])))
+
+
 def _get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     """
     Get weekday id.
@@ -280,6 +288,7 @@ def main() -> None:
     parser.add_argument('--faces-list', help='faces list', nargs="?", const=1)
     parser.add_argument('--timezones-list', help='timezones list', nargs="?", const=1)
     parser.add_argument('--countries-list', help='countries list', nargs="?", const=1)
+    parser.add_argument('--date-formats-list', help='date formats list', nargs="?", const=1)
     parser.add_argument('--no-blink', help='disable blinking mode', nargs="?", const=1)
     parser.add_argument('--vertical', help='vertical mode', nargs="?", const=1)
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
@@ -306,6 +315,8 @@ def main() -> None:
         show_timezones_list(args.country)
     elif args.countries_list:
         show_countries_list()
+    elif args.date_formats_list:
+        show_date_formats_list()
     elif args.calendar:
         print_calendar(
             mode=args.calendar,
