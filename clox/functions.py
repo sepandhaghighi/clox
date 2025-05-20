@@ -15,7 +15,7 @@ from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
 from .params import TIMEZONE_DIFFERENCE_FORMAT
-from .params import CLOX_VERSION, DATE_FORMAT
+from .params import CLOX_VERSION
 from .params import TIMEZONES_LIST, COUNTRIES_LIST, WEEKDAYS_LIST
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
 from .params import FACES_MAP, FACES_LIST, CALENDARS_LIST, DATE_SYSTEMS_LIST
