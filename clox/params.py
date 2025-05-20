@@ -59,7 +59,6 @@ FACES_MAP = {
 
 DATE_FORMATS_MAP = {
     'ISO': '%Y-%m-%d',
-    'ISO-FULL': '%Y-%m-%dT%H:%M:%S',
     'US': '%m/%d/%Y',
     'US-SHORT': '%m/%d/%y',
     'EU': '%d/%m/%Y',
@@ -70,7 +69,6 @@ DATE_FORMATS_MAP = {
     'DMY': '%d %b %Y',
     'MDY': '%B %d, %Y',
     'FULL': '%A, %B %d, %Y',
-    'RFC2822': '%a, %d %b %Y %H:%M:%S +0000',
 }
 
 FACES_LIST = [-1] + sorted(FACES_MAP)
