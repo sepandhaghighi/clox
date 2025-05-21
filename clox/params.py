@@ -22,7 +22,6 @@ HORIZONTAL_TIME_24H_FORMATS = ['%H:%M', '%H:%M.']
 VERTICAL_TIME_24H_FORMATS = ['%H\n%M', '%H\n%M.']
 HORIZONTAL_TIME_12H_FORMATS = ['%I:%M %p', '%I:%M %p.']
 VERTICAL_TIME_12H_FORMATS = ['%I\n%M\n%p', '%I\n%M\n%p.']
-DATE_FORMAT = "%A, %B %d, %Y"
 TIMEZONE_DIFFERENCE_FORMAT = "{hours:02}h{minutes:02}m {direction}"
 
 WEEKDAYS_LIST = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
@@ -58,8 +57,24 @@ FACES_MAP = {
     25: 'epic',
 }
 
+DATE_FORMATS_MAP = {
+    'ISO': '%Y-%m-%d',
+    'US': '%m/%d/%Y',
+    'US-SHORT': '%m/%d/%y',
+    'EU': '%d/%m/%Y',
+    'EU-SHORT': '%d/%m/%y',
+    'DOT': '%d.%m.%Y',
+    'DASH': '%d-%m-%Y',
+    'YMD': '%Y/%m/%d',
+    'DMY': '%d/%m/%Y',
+    'MDY': '%m/%d/%Y',
+    'FULL': '%A, %B %d, %Y',
+}
+
 FACES_LIST = [-1] + sorted(FACES_MAP)
 
 CALENDARS_LIST = ["MONTH", "YEAR"]
 
 DATE_SYSTEMS_LIST = ["GREGORIAN", "JALALI"]
+
+DATE_FORMATS_LIST = sorted(DATE_FORMATS_MAP)

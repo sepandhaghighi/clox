@@ -62,7 +62,7 @@ jobs:
         clox --calendar=mOnth --date-system=jalali
     - name: Run9
       run: |
-        clox --calendar=yeAr --date-system=jalali
+        clox --calendar=yeAr --date-system=jalali --date-format=eu-short
     - name: Run10
       run: |
         clox --calendar=year --date-system=jalAli
@@ -74,10 +74,16 @@ jobs:
         clox --countries-list
     - name: Run13
       run: |
-        clox --timezones-list --country=Us
+        clox --timezones-list --country=Us --date-format=eu
     - name: Run14
       run: |
         clox --calendar=year --date-system=jalAli --country=De --first-weekday="Monday"
+    - name: Run15
+      run: |
+        clox --date-formats-list
+    - name: Run16
+      run: |
+        clox --date-system=jalali --date-formats-list
     - name: Install dev-requirements
       run: |
         python otherfiles/requirements-splitter.py
