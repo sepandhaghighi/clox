@@ -66,8 +66,8 @@ DATE_FORMATS_MAP = {
     'DOT': '%d.%m.%Y',
     'DASH': '%d-%m-%Y',
     'YMD': '%Y/%m/%d',
-    'DMY': '%d %b %Y',
-    'MDY': '%B %d, %Y',
+    'DMY': '%d/%m/%Y',
+    'MDY': '%m/%d/%Y',
     'FULL': '%A, %B %d, %Y',
 }
 
