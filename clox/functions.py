@@ -144,7 +144,7 @@ def show_date_formats_list(date_system: str = "GREGORIAN") -> None:
                                                                            date_format_code=date_format, date_format_example=example_date.strftime(DATE_FORMATS_MAP[date_format])))
 
 
-def _get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
+def get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     """
     Get weekday id.
 
@@ -181,7 +181,7 @@ def print_calendar(
     :param date_format: date format
     :param first_weekday: first weekday
     """
-    first_weekday_id = _get_weekday_id(first_weekday, date_system)
+    first_weekday_id = get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
     calendar_obj = GregorianCalendar(first_weekday_id)
     if date_system == "JALALI":
