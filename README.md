@@ -45,7 +45,6 @@ Clox is a terminal-based clock application designed for terminal enthusiasts who
 		<td align="center">Code Quality</td>
 		<td align="center"><a href="https://www.codefactor.io/repository/github/sepandhaghighi/clox"><img src="https://www.codefactor.io/repository/github/sepandhaghighi/clox/badge" alt="CodeFactor"></a></td>
 		<td align="center"><a href="https://app.codacy.com/gh/sepandhaghighi/clox/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/4cd4cd3b20b1474fb674823b1b417b76"></a></td>
-		<td align="center"><a href="https://codebeat.co/projects/github-com-sepandhaghighi-clox-main"><img alt="codebeat badge" src="https://codebeat.co/badges/19394d3a-009b-401b-b376-24a325ef2fdf"></a></td>
 	</tr>
 </table>
 
