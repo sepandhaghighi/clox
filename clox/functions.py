@@ -199,7 +199,10 @@ def print_calendar(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
-        timezone_diff = get_timezone_difference(timezone=timezone, offset_local=offset_local, offset_timezone=offset_timezone)
+        timezone_diff = get_timezone_difference(
+            timezone=timezone,
+            offset_local=offset_local,
+            offset_timezone=offset_timezone)
         timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
@@ -264,7 +267,10 @@ def run_clock(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
-        timezone_diff = get_timezone_difference(timezone=timezone, offset_local=offset_local, offset_timezone=offset_timezone)
+        timezone_diff = get_timezone_difference(
+            timezone=timezone,
+            offset_local=offset_local,
+            offset_timezone=offset_timezone)
         timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
@@ -324,8 +330,9 @@ def main() -> None:
         type=str.upper,
         choices=DATE_SYSTEMS_LIST,
         default="GREGORIAN")
-    parser.add_argument('--offset-local', help='manual offset for local time', type=int, default=0, choices=[1,0,-1])
-    parser.add_argument('--offset-timezone', help='manual offset for timezone time', type=int, default=0, choices=[1, 0, -1])
+    parser.add_argument('--offset-local', help='manual offset for local time', type=int, default=0, choices=[1, 0, -1])
+    parser.add_argument('--offset-timezone', help='manual offset for timezone time',
+                        type=int, default=0, choices=[1, 0, -1])
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
