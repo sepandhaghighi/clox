@@ -51,16 +51,18 @@ def get_face(index: int) -> str:
     return FACES_MAP[index]
 
 
-def get_timezone_difference(timezone: str) -> str:
+def get_timezone_difference(timezone: str, offset_local: int, offset_timezone: int) -> str:
     """
     Return timezone difference.
 
     :param timezone: timezone
+    :param offset_local: manual offset for local time
+    :param offset_timezone: manual offset for timezone time
     """
     direction = "ahead"
     tz = pytz.timezone(timezone)
-    datetime_timezone = datetime.datetime.now(tz=tz)
-    datetime_local = datetime.datetime.now()
+    datetime_timezone = datetime.datetime.now(tz=tz) + datetime.timedelta(hours=offset_timezone)
+    datetime_local = datetime.datetime.now() + datetime.timedelta(hours=offset_local)
     difference = datetime_timezone - tz.localize(datetime_local)
     total_minutes = difference.total_seconds() // 60
     if total_minutes < 0:
