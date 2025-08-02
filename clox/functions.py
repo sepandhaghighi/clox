@@ -170,7 +170,8 @@ def print_calendar(
         h_shift: int = 0,
         date_system: str = "GREGORIAN",
         date_format: str = "FULL",
-        first_weekday: str = "MONDAY") -> None:
+        first_weekday: str = "MONDAY",
+        offset_timezone: int = 0) -> None:
     """
     Print calendar.
 
@@ -182,6 +183,7 @@ def print_calendar(
     :param date_system: date system
     :param date_format: date format
     :param first_weekday: first weekday
+    :param offset_timezone: manual offset for timezone time
     """
     first_weekday_id = get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
@@ -200,7 +202,7 @@ def print_calendar(
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
-    datetime_timezone = datetime_lib.datetime.now(tz=tz)
+    datetime_timezone = datetime_lib.datetime.now(tz=tz) + datetime_lib.timedelta(hours=offset_timezone)
     date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
     print('\n' * v_shift, end='')
     print(" " * h_shift, end='')
