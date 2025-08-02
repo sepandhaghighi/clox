@@ -171,6 +171,7 @@ def print_calendar(
         date_system: str = "GREGORIAN",
         date_format: str = "FULL",
         first_weekday: str = "MONDAY",
+        offset_local: int = 0,
         offset_timezone: int = 0) -> None:
     """
     Print calendar.
@@ -183,6 +184,7 @@ def print_calendar(
     :param date_system: date system
     :param date_format: date format
     :param first_weekday: first weekday
+    :param offset_local: manual offset for local time
     :param offset_timezone: manual offset for timezone time
     """
     first_weekday_id = get_weekday_id(first_weekday, date_system)
@@ -197,7 +199,7 @@ def print_calendar(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
-        timezone_diff = get_timezone_difference(timezone=timezone)
+        timezone_diff = get_timezone_difference(timezone=timezone, offset_local=offset_local, offset_timezone=offset_timezone)
         timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
@@ -262,7 +264,7 @@ def run_clock(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
-        timezone_diff = get_timezone_difference(timezone=timezone)
+        timezone_diff = get_timezone_difference(timezone=timezone, offset_local=offset_local, offset_timezone=offset_timezone)
         timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
@@ -346,7 +348,9 @@ def main() -> None:
             v_shift=args.v_shift,
             date_system=args.date_system,
             date_format=args.date_format,
-            first_weekday=args.first_weekday)
+            first_weekday=args.first_weekday,
+            offset_local=args.offset_local,
+            offset_timezone=args.offset_timezone)
     else:
         try:
             run_clock(
@@ -361,6 +365,8 @@ def main() -> None:
                 hide_timezone=args.hide_timezone,
                 am_pm=args.am_pm,
                 date_system=args.date_system,
-                date_format=args.date_format)
+                date_format=args.date_format,
+                offset_local=args.offset_local,
+                offset_timezone=args.offset_timezone)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
