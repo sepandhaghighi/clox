@@ -227,7 +227,9 @@ def run_clock(
         hide_timezone: bool = False,
         am_pm: bool = False,
         date_system: str = "GREGORIAN",
-        date_format: str = "FULL") -> None:
+        date_format: str = "FULL",
+        offset_local: int = 0,
+        offset_timezone: int = 0) -> None:
     """
     Run clock.
 
@@ -243,6 +245,8 @@ def run_clock(
     :param am_pm: AM/PM mode flag
     :param date_system: date system
     :param date_format: date format
+    :param offset_local: manual offset for local time
+    :param offset_timezone: manual offset for timezone time
     """
     datetime_lib = datetime
     if date_system == "JALALI":
@@ -268,7 +272,7 @@ def run_clock(
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        datetime_timezone = datetime_lib.datetime.now(tz=tz)
+        datetime_timezone = datetime_lib.datetime.now(tz=tz) + datetime_lib.timedelta(hours=offset_timezone)
         time_timezone_str = datetime_timezone.strftime(time_formats[format_index])
         date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
         tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
@@ -279,7 +283,7 @@ def run_clock(
             print(" " * h_shift, end='')
             print("Timezone: {timezone}".format(timezone=timezone_str))
             if timezone is not None:
-                datetime_local = datetime.datetime.now()
+                datetime_local = datetime.datetime.now() + datetime.timedelta(hours=offset_local)
                 time_local_str = datetime_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=time_local_str))
