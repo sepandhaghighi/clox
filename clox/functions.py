@@ -290,11 +290,15 @@ def run_clock(
         if not hide_timezone:
             print(" " * h_shift, end='')
             print("Timezone: {timezone}".format(timezone=timezone_str))
+            if offset_timezone != 0:
+                print("Timezone Offset: {offset}h".format(offset=round(offset_timezone, 2)))
             if timezone is not None:
                 datetime_local = datetime.datetime.now() + datetime.timedelta(hours=offset_local)
                 time_local_str = datetime_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=time_local_str))
+                if offset_local != 0:
+                    print("Local Offset: {offset}h".format(offset=round(offset_local, 2)))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
