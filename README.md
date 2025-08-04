@@ -106,7 +106,7 @@ clox --timezone="Etc/GMT+7"
 
 ℹ️ The local and timezone offset both have default values of `0`
 
-These arguments allow you to manually adjust the time by ±1 hour. This is especially useful when daylight saving time (DST) is not correctly applied by the system or timezone database.
+These arguments allow you to manually adjust the time by ±X hours. This is especially useful when daylight saving time (DST) is not correctly applied by the system or timezone database.
 
 ```console
 clox --offset-local=1 --offset-timezone=-1
