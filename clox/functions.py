@@ -51,7 +51,7 @@ def get_face(index: int) -> str:
     return FACES_MAP[index]
 
 
-def get_timezone_difference(timezone: str, offset_local: int, offset_timezone: int) -> str:
+def get_timezone_difference(timezone: str, offset_local: float, offset_timezone: float) -> str:
     """
     Return timezone difference.
 
@@ -171,8 +171,8 @@ def print_calendar(
         date_system: str = "GREGORIAN",
         date_format: str = "FULL",
         first_weekday: str = "MONDAY",
-        offset_local: int = 0,
-        offset_timezone: int = 0) -> None:
+        offset_local: float = 0,
+        offset_timezone: float = 0) -> None:
     """
     Print calendar.
 
@@ -233,8 +233,8 @@ def run_clock(
         am_pm: bool = False,
         date_system: str = "GREGORIAN",
         date_format: str = "FULL",
-        offset_local: int = 0,
-        offset_timezone: int = 0) -> None:
+        offset_local: float = 0,
+        offset_timezone: float = 0) -> None:
     """
     Run clock.
 
