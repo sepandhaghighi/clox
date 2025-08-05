@@ -23,6 +23,7 @@ VERTICAL_TIME_24H_FORMATS = ['%H\n%M', '%H\n%M.']
 HORIZONTAL_TIME_12H_FORMATS = ['%I:%M %p', '%I:%M %p.']
 VERTICAL_TIME_12H_FORMATS = ['%I\n%M\n%p', '%I\n%M\n%p.']
 TIMEZONE_DIFFERENCE_FORMAT = "{hours:02}h{minutes:02}m {direction}"
+OFFSET_FORMAT = "{offset_type} Offset: {offset_value}h"
 
 WEEKDAYS_LIST = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
 TIMEZONES_LIST = list(map(lambda x: x.upper(), pytz.all_timezones))

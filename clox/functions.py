@@ -14,7 +14,7 @@ from art import tprint
 from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
-from .params import TIMEZONE_DIFFERENCE_FORMAT
+from .params import TIMEZONE_DIFFERENCE_FORMAT, OFFSET_FORMAT
 from .params import CLOX_VERSION
 from .params import TIMEZONES_LIST, COUNTRIES_LIST, WEEKDAYS_LIST
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
@@ -291,14 +291,14 @@ def run_clock(
             print(" " * h_shift, end='')
             print("Timezone: {timezone}".format(timezone=timezone_str))
             if offset_timezone != 0:
-                print("Timezone Offset: {offset}h".format(offset=offset_timezone))
+                print(OFFSET_FORMAT.format(offset_type="Timezone", offset_value=offset_timezone))
             if timezone is not None:
                 datetime_local = datetime.datetime.now() + datetime.timedelta(hours=offset_local)
                 time_local_str = datetime_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=time_local_str))
                 if offset_local != 0:
-                    print("Local Offset: {offset}h".format(offset=offset_local))
+                    print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
