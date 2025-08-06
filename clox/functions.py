@@ -56,8 +56,8 @@ def get_timezone_difference(timezone: str, offset_local: float, offset_timezone:
     Return timezone difference.
 
     :param timezone: timezone
-    :param offset_local: manual offset for local time
-    :param offset_timezone: manual offset for timezone time
+    :param offset_local: manual offset for the local time
+    :param offset_timezone: manual offset for the timezone
     """
     direction = "ahead"
     tz = pytz.timezone(timezone)
@@ -184,8 +184,8 @@ def print_calendar(
     :param date_system: date system
     :param date_format: date format
     :param first_weekday: first weekday
-    :param offset_local: manual offset for local time
-    :param offset_timezone: manual offset for timezone time
+    :param offset_local: manual offset for the local time
+    :param offset_timezone: manual offset for the timezone
     """
     first_weekday_id = get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
@@ -250,8 +250,8 @@ def run_clock(
     :param am_pm: AM/PM mode flag
     :param date_system: date system
     :param date_format: date format
-    :param offset_local: manual offset for local time
-    :param offset_timezone: manual offset for timezone time
+    :param offset_local: manual offset for the local time
+    :param offset_timezone: manual offset for the timezone
     """
     datetime_lib = datetime
     if date_system == "JALALI":
@@ -334,8 +334,8 @@ def main() -> None:
         type=str.upper,
         choices=DATE_SYSTEMS_LIST,
         default="GREGORIAN")
-    parser.add_argument('--offset-local', help='manual offset for local time', type=float, default=0)
-    parser.add_argument('--offset-timezone', help='manual offset for timezone time', type=float, default=0)
+    parser.add_argument('--offset-local', help='manual offset for the local time', type=float, default=0)
+    parser.add_argument('--offset-timezone', help='manual offset for the timezone', type=float, default=0)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
