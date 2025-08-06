@@ -14,7 +14,7 @@ from art import tprint
 from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
-from .params import TIMEZONE_DIFFERENCE_FORMAT
+from .params import TIMEZONE_DIFFERENCE_FORMAT, OFFSET_FORMAT
 from .params import CLOX_VERSION
 from .params import TIMEZONES_LIST, COUNTRIES_LIST, WEEKDAYS_LIST
 from .params import ADDITIONAL_INFO, EXIT_MESSAGE
@@ -51,16 +51,18 @@ def get_face(index: int) -> str:
     return FACES_MAP[index]
 
 
-def get_timezone_difference(timezone: str) -> str:
+def get_timezone_difference(timezone: str, offset_local: float, offset_timezone: float) -> str:
     """
     Return timezone difference.
 
     :param timezone: timezone
+    :param offset_local: manual offset for the local time
+    :param offset_timezone: manual offset for the timezone
     """
     direction = "ahead"
     tz = pytz.timezone(timezone)
-    datetime_timezone = datetime.datetime.now(tz=tz)
-    datetime_local = datetime.datetime.now()
+    datetime_timezone = datetime.datetime.now(tz=tz) + datetime.timedelta(hours=offset_timezone)
+    datetime_local = datetime.datetime.now() + datetime.timedelta(hours=offset_local)
     difference = datetime_timezone - tz.localize(datetime_local)
     total_minutes = difference.total_seconds() // 60
     if total_minutes < 0:
@@ -168,7 +170,9 @@ def print_calendar(
         h_shift: int = 0,
         date_system: str = "GREGORIAN",
         date_format: str = "FULL",
-        first_weekday: str = "MONDAY") -> None:
+        first_weekday: str = "MONDAY",
+        offset_local: float = 0,
+        offset_timezone: float = 0) -> None:
     """
     Print calendar.
 
@@ -180,6 +184,8 @@ def print_calendar(
     :param date_system: date system
     :param date_format: date format
     :param first_weekday: first weekday
+    :param offset_local: manual offset for the local time
+    :param offset_timezone: manual offset for the timezone
     """
     first_weekday_id = get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
@@ -193,12 +199,15 @@ def print_calendar(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
-        timezone_diff = get_timezone_difference(timezone=timezone)
+        timezone_diff = get_timezone_difference(
+            timezone=timezone,
+            offset_local=offset_local,
+            offset_timezone=offset_timezone)
         timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
-    datetime_timezone = datetime_lib.datetime.now(tz=tz)
+    datetime_timezone = datetime_lib.datetime.now(tz=tz) + datetime_lib.timedelta(hours=offset_timezone)
     date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
     print('\n' * v_shift, end='')
     print(" " * h_shift, end='')
@@ -223,7 +232,9 @@ def run_clock(
         hide_timezone: bool = False,
         am_pm: bool = False,
         date_system: str = "GREGORIAN",
-        date_format: str = "FULL") -> None:
+        date_format: str = "FULL",
+        offset_local: float = 0,
+        offset_timezone: float = 0) -> None:
     """
     Run clock.
 
@@ -239,6 +250,8 @@ def run_clock(
     :param am_pm: AM/PM mode flag
     :param date_system: date system
     :param date_format: date format
+    :param offset_local: manual offset for the local time
+    :param offset_timezone: manual offset for the timezone
     """
     datetime_lib = datetime
     if date_system == "JALALI":
@@ -254,7 +267,10 @@ def run_clock(
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
         timezone_str = timezone
-        timezone_diff = get_timezone_difference(timezone=timezone)
+        timezone_diff = get_timezone_difference(
+            timezone=timezone,
+            offset_local=offset_local,
+            offset_timezone=offset_timezone)
         timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
     v_shift = max(0, v_shift)
@@ -264,7 +280,7 @@ def run_clock(
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        datetime_timezone = datetime_lib.datetime.now(tz=tz)
+        datetime_timezone = datetime_lib.datetime.now(tz=tz) + datetime_lib.timedelta(hours=offset_timezone)
         time_timezone_str = datetime_timezone.strftime(time_formats[format_index])
         date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
         tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
@@ -274,11 +290,15 @@ def run_clock(
         if not hide_timezone:
             print(" " * h_shift, end='')
             print("Timezone: {timezone}".format(timezone=timezone_str))
+            if offset_timezone != 0:
+                print(OFFSET_FORMAT.format(offset_type="Timezone", offset_value=offset_timezone))
             if timezone is not None:
-                datetime_local = datetime.datetime.now()
+                datetime_local = datetime.datetime.now() + datetime.timedelta(hours=offset_local)
                 time_local_str = datetime_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=time_local_str))
+                if offset_local != 0:
+                    print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
@@ -314,6 +334,8 @@ def main() -> None:
         type=str.upper,
         choices=DATE_SYSTEMS_LIST,
         default="GREGORIAN")
+    parser.add_argument('--offset-local', help='manual offset for the local time', type=float, default=0)
+    parser.add_argument('--offset-timezone', help='manual offset for the timezone', type=float, default=0)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
@@ -336,7 +358,9 @@ def main() -> None:
             v_shift=args.v_shift,
             date_system=args.date_system,
             date_format=args.date_format,
-            first_weekday=args.first_weekday)
+            first_weekday=args.first_weekday,
+            offset_local=args.offset_local,
+            offset_timezone=args.offset_timezone)
     else:
         try:
             run_clock(
@@ -351,6 +375,8 @@ def main() -> None:
                 hide_timezone=args.hide_timezone,
                 am_pm=args.am_pm,
                 date_system=args.date_system,
-                date_format=args.date_format)
+                date_format=args.date_format,
+                offset_local=args.offset_local,
+                offset_timezone=args.offset_timezone)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
