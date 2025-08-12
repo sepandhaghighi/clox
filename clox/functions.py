@@ -339,8 +339,8 @@ def main() -> None:
         type=str.upper,
         choices=DATE_SYSTEMS_LIST,
         default="GREGORIAN")
-    parser.add_argument('--offset-local', help='manual offset for the local time', type=float, default=0)
-    parser.add_argument('--offset-timezone', help='manual offset for the timezone', type=float, default=0)
+    parser.add_argument('--offset-local', help='manual offset for the local time (in hours)', type=float, default=0)
+    parser.add_argument('--offset-timezone', help='manual offset for the timezone (in hours)', type=float, default=0)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
