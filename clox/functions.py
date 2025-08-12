@@ -266,6 +266,7 @@ def run_clock(
     tz = None
     timezone_str = "Local"
     offset_main_timedelta = datetime_lib.timedelta(hours=offset_local)
+    offset_local_timedelta = datetime.timedelta(hours=offset_local)
     if country is not None:
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
@@ -297,7 +298,7 @@ def run_clock(
             if offset_timezone != 0:
                 print(OFFSET_FORMAT.format(offset_type="Timezone", offset_value=offset_timezone))
             if timezone is not None:
-                datetime_local = datetime.datetime.now() + datetime.timedelta(hours=offset_local)
+                datetime_local = datetime.datetime.now() + offset_local_timedelta
                 time_local_str = datetime_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=time_local_str))
