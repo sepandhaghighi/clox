@@ -193,6 +193,7 @@ def print_calendar(
     if date_system == "JALALI":
         datetime_lib = jdatetime
         calendar_obj = JalaliCalendar(first_weekday_id)
+    offset_main_timedelta = datetime_lib.timedelta(hours=offset_local)
     tz = None
     timezone_str = "Local"
     if country is not None:
@@ -205,9 +206,10 @@ def print_calendar(
             offset_timezone=offset_timezone)
         timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
+        offset_main_timedelta = datetime_lib.timedelta(hours=offset_timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
-    datetime_timezone = datetime_lib.datetime.now(tz=tz) + datetime_lib.timedelta(hours=offset_timezone)
+    datetime_timezone = datetime_lib.datetime.now(tz=tz) + offset_main_timedelta
     date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
     print('\n' * v_shift, end='')
     print(" " * h_shift, end='')
