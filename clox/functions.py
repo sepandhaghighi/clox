@@ -265,6 +265,7 @@ def run_clock(
         time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
     tz = None
     timezone_str = "Local"
+    offset_main_timedelta = datetime_lib.timedelta(hours=offset_local)
     if country is not None:
         timezone = pytz.country_timezones(country)[0].upper()
     if timezone is not None:
@@ -275,6 +276,7 @@ def run_clock(
             offset_timezone=offset_timezone)
         timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
         tz = pytz.timezone(timezone)
+        offset_main_timedelta = datetime_lib.timedelta(hours=offset_timezone)
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
     face = get_face(face)
@@ -282,7 +284,7 @@ def run_clock(
         clear_screen()
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
-        datetime_timezone = datetime_lib.datetime.now(tz=tz) + datetime_lib.timedelta(hours=offset_timezone)
+        datetime_timezone = datetime_lib.datetime.now(tz=tz) + offset_main_timedelta
         time_timezone_str = datetime_timezone.strftime(time_formats[format_index])
         date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
         tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
