@@ -215,11 +215,14 @@ def print_calendar(
     print(" " * h_shift, end='')
     print("Today: {date}".format(date=date_timezone_str))
     print(" " * h_shift, end='')
-    print("Timezone: {timezone}\n".format(timezone=timezone_str))
+    print("Timezone: {timezone}".format(timezone=timezone_str))
     if offset_timezone != 0:
+        print(" " * h_shift, end='')
         print(OFFSET_FORMAT.format(offset_type="Timezone", offset_value=offset_timezone))
     if offset_local != 0:
+        print(" " * h_shift, end='')
         print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
+    print("")
     calendar_str = calendar_obj.formatmonth(datetime_timezone.year, datetime_timezone.month)
     if mode == "YEAR":
         calendar_str = calendar_obj.formatyear(datetime_timezone.year)
