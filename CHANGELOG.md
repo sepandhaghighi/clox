@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `--offset-timezone` argument
 ### Changed
 - `README.md` updated
+- Test system modified
 - `_get_weekday_id` function renamed to `get_weekday_id`
 ## [1.1] - 2025-05-23
 ### Added
