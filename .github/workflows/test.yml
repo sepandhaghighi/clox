@@ -59,7 +59,7 @@ jobs:
         clox --calendar=year
     - name: Run8
       run: |
-        clox --calendar=mOnth --date-system=jalali
+        clox --calendar=mOnth --date-system=jalali --offset-local=5000
     - name: Run9
       run: |
         clox --calendar=yeAr --date-system=jalali --date-format=eu-short
@@ -68,7 +68,7 @@ jobs:
         clox --calendar=year --date-system=jalAli
     - name: Run11
       run: |
-        clox --calendar=year --date-system=jalAli --country=De
+        clox --calendar=year --date-system=jalAli --country=De --offset-timezone=5000
     - name: Run12
       run: |
         clox --countries-list
