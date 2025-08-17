@@ -300,6 +300,7 @@ def run_clock(
             print(" " * h_shift, end='')
             print("Timezone: {timezone}".format(timezone=timezone_str))
             if offset_timezone != 0:
+                print(" " * h_shift, end='')
                 print(OFFSET_FORMAT.format(offset_type="Timezone", offset_value=offset_timezone))
             if timezone is not None:
                 datetime_local = datetime.datetime.now() + offset_local_timedelta
@@ -307,6 +308,7 @@ def run_clock(
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=time_local_str))
             if offset_local != 0:
+                print(" " * h_shift, end='')
                 print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
         time.sleep(1)
         if not no_blink:
