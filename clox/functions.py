@@ -302,8 +302,8 @@ def run_clock(
                 time_local_str = datetime_local.strftime(time_formats_local[format_index])
                 print(" " * h_shift, end='')
                 print("Local Time: {local_time}".format(local_time=time_local_str))
-                if offset_local != 0:
-                    print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
+            if offset_local != 0:
+                print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
         time.sleep(1)
         if not no_blink:
             format_index = int(not format_index)
