@@ -16,6 +16,8 @@ on:
 
 env:
   TERM: xterm
+  TEST_PYTHON_VERSION: 3.9
+  TEST_OS: 'ubuntu-22.04'
 
 jobs:
   build:
@@ -91,10 +93,10 @@ jobs:
     - name: Version check
       run: |
         python otherfiles/version_check.py
-      if: matrix.python-version == 3.9
+      if: matrix.python-version == env.TEST_PYTHON_VERSION
     - name: Other tests
       run: |
         python -m vulture clox/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
         python -m bandit -r clox -s B404,B603,B605,B607,B311
         python -m pydocstyle --match-dir=clox -v
-      if: matrix.python-version == 3.9
+      if: matrix.python-version == env.TEST_PYTHON_VERSION
