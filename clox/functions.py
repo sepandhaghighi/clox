@@ -24,8 +24,8 @@ from .params import CLOX_OVERVIEW, CLOX_REPO
 from .params import DATE_FORMATS_MAP, DATE_FORMATS_LIST
 
 
-def clox_info() -> None:
-    """Print clox details."""
+def print_clox_info() -> None:
+    """Print clox info."""
     tprint("Clox")
     tprint("V:" + CLOX_VERSION)
     print(CLOX_OVERVIEW)
@@ -354,7 +354,7 @@ def main() -> None:
     if args.version:
         print(CLOX_VERSION)
     elif args.info:
-        clox_info()
+        print_clox_info()
     elif args.faces_list:
         show_faces_list(vertical=args.vertical)
     elif args.timezones_list:
