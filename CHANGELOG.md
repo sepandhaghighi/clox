@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `README.md` updated
 - Test system modified
 - `_get_weekday_id` function renamed to `get_weekday_id`
+- `clox_info` function renamed to `print_clox_info`
 ## [1.1] - 2025-05-23
 ### Added
 - `--first-weekday` argument
