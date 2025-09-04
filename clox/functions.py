@@ -280,6 +280,7 @@ def run_clock(
     :param offset_local: manual offset for the local time
     :param offset_timezone: manual offset for the timezone
     """
+    detected_environment = detect_environment()
     datetime_lib = datetime
     if date_system == "JALALI":
         datetime_lib = jdatetime
@@ -307,7 +308,7 @@ def run_clock(
     h_shift = max(0, h_shift)
     face = get_face(face)
     while True:
-        clear_screen()
+        clear_screen(detected_environment)
         print('\n' * v_shift, end='')
         print(" " * h_shift, end='')
         datetime_timezone = datetime_lib.datetime.now(tz=tz) + offset_main_timedelta
