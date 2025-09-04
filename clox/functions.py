@@ -35,7 +35,7 @@ def print_clox_info() -> None:
 def detect_environment() -> str:
     """Detect running environment."""
     try:
-        get_ipython().__class__.__name__
+        _ = get_ipython().__class__.__name__
         return "ipython"
     except Exception:
         if sys.platform == "win32":
