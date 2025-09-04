@@ -44,7 +44,11 @@ def detect_environment() -> str:
             return "other"
 
 def clear_screen(environment: str) -> None:
-    """Clear screen function."""
+    """
+    Clear screen function.
+
+    :param environment: environment
+    """
     if environment == "ipython":
         from IPython.display import clear_output
         clear_output(wait=True)
