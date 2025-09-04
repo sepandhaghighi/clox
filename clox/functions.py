@@ -43,6 +43,7 @@ def detect_environment() -> str:
         else:
             return "other"
 
+
 def clear_screen(environment: str) -> None:
     """
     Clear screen function.
