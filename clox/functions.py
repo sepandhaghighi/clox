@@ -208,7 +208,7 @@ def print_calendar(
     first_weekday_id = get_weekday_id(first_weekday, date_system)
     datetime_lib = datetime
     calendar_obj = GregorianCalendar(first_weekday_id)
-    if date_system == "JALALI":
+    if date_system.upper() == "JALALI":
         datetime_lib = jdatetime
         calendar_obj = JalaliCalendar(first_weekday_id)
     offset_main_timedelta = datetime_lib.timedelta(hours=offset_local)
@@ -228,7 +228,7 @@ def print_calendar(
     v_shift = max(0, v_shift)
     h_shift = max(0, h_shift)
     datetime_timezone = datetime_lib.datetime.now(tz=tz) + offset_main_timedelta
-    date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
+    date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format.upper()])
     print('\n' * v_shift, end='')
     print(" " * h_shift, end='')
     print("Today: {date}".format(date=date_timezone_str))
@@ -242,7 +242,7 @@ def print_calendar(
         print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
     print("")
     calendar_str = calendar_obj.formatmonth(datetime_timezone.year, datetime_timezone.month)
-    if mode == "YEAR":
+    if mode.upper() == "YEAR":
         calendar_str = calendar_obj.formatyear(datetime_timezone.year)
     print("\n".join([" " * h_shift + x for x in calendar_str.split("\n")]))
 
@@ -282,7 +282,7 @@ def run_clock(
     """
     detected_environment = detect_environment()
     datetime_lib = datetime
-    if date_system == "JALALI":
+    if date_system.upper() == "JALALI":
         datetime_lib = jdatetime
     format_index = 0
     time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
@@ -313,7 +313,7 @@ def run_clock(
         print(" " * h_shift, end='')
         datetime_timezone = datetime_lib.datetime.now(tz=tz) + offset_main_timedelta
         time_timezone_str = datetime_timezone.strftime(time_formats[format_index])
-        date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format])
+        date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format.upper()])
         tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
         if not hide_date:
             print(" " * h_shift, end='')
