@@ -32,9 +32,23 @@ def print_clox_info() -> None:
     print("Repo : " + CLOX_REPO)
 
 
-def clear_screen() -> None:
+def detect_environment() -> str:
+    """Detect running environment."""
+    try:
+        get_ipython().__class__.__name__
+        return "ipython"
+    except Exception:
+        if sys.platform == "win32":
+            return "windows"
+        else:
+            return "other"
+
+def clear_screen(environment: str) -> None:
     """Clear screen function."""
-    if sys.platform == "win32":
+    if environment == "ipython":
+        from IPython.display import clear_output
+        clear_output(wait=True)
+    elif environment == "windows":
         os.system('cls')
     else:
         os.system('clear')
