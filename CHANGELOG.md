@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Jupyter notebook support
+- `detect_environment` function
+### Changed
+- `clear_screen` function modified
+- `run_clock` function modified
 ## [1.2] - 2025-09-02
 ### Added
 - `--offset-local` argument
