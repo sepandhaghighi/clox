@@ -211,6 +211,16 @@ clox --date-system=jalali --date-format=EU
 
 </div>
 
+## Try Clox Online!
+
+Clox can be used online in interactive Jupyter Notebooks via the Binder or Colab services! Try it out now! :
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sepandhaghighi/clox/main)
+
+[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sepandhaghighi/clox/blob/main)
+
+- Open `notebook.ipynb`
+
 ## Issues & Bug Reports			
 
 Just fill an issue and describe it. We'll check it ASAP!

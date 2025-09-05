@@ -6,11 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `notebook.ipynb`
 - Jupyter notebook support
 - `detect_environment` function
 ### Changed
 - `clear_screen` function modified
 - `run_clock` function modified
+- `print_calendar` function modified
+- `README.md` updated
 ## [1.2] - 2025-09-02
 ### Added
 - `--offset-local` argument
