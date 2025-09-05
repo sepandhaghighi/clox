@@ -155,7 +155,7 @@ def show_date_formats_list(date_system: str = "GREGORIAN") -> None:
     """
     datetime_lib = datetime
     example_year = 1990
-    if date_system == "JALALI":
+    if date_system.upper() == "JALALI":
         datetime_lib = jdatetime
         example_year = 1368
     print("Date formats list:\n")
@@ -176,7 +176,7 @@ def get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     if len(first_weekday) > 2:
         first_weekday_normalized = first_weekday_normalized[:2]
     weekdays = [x[:2] for x in WEEKDAYS_LIST]
-    if date_system == "JALALI":
+    if date_system.upper() == "JALALI":
         weekdays = weekdays[-2:] + weekdays[:-2]
     return weekdays.index(first_weekday_normalized)
 
