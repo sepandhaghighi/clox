@@ -155,7 +155,7 @@ def show_date_formats_list(date_system: str = "GREGORIAN") -> None:
     """
     datetime_lib = datetime
     example_year = 1990
-    if date_system == "JALALI":
+    if date_system.upper() == "JALALI":
         datetime_lib = jdatetime
         example_year = 1368
     print("Date formats list:\n")
@@ -176,7 +176,7 @@ def get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     if len(first_weekday) > 2:
         first_weekday_normalized = first_weekday_normalized[:2]
     weekdays = [x[:2] for x in WEEKDAYS_LIST]
-    if date_system == "JALALI":
+    if date_system.upper() == "JALALI":
         weekdays = weekdays[-2:] + weekdays[:-2]
     return weekdays.index(first_weekday_normalized)
 
@@ -281,61 +281,64 @@ def run_clock(
     :param offset_local: manual offset for the local time
     :param offset_timezone: manual offset for the timezone
     """
-    detected_environment = detect_environment()
-    datetime_lib = datetime
-    if date_system.upper() == "JALALI":
-        datetime_lib = jdatetime
-    format_index = 0
-    time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
-    time_formats_local = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
-    if vertical:
-        time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
-    tz = None
-    timezone_str = "Local"
-    offset_main_timedelta = datetime_lib.timedelta(hours=offset_local)
-    offset_local_timedelta = datetime.timedelta(hours=offset_local)
-    if country is not None:
-        timezone = pytz.country_timezones(country)[0].upper()
-    if timezone is not None:
-        timezone_str = timezone
-        timezone_diff = get_timezone_difference(
-            timezone=timezone,
-            offset_local=offset_local,
-            offset_timezone=offset_timezone)
-        timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
-        tz = pytz.timezone(timezone)
-        offset_main_timedelta = datetime_lib.timedelta(hours=offset_timezone)
-    v_shift = max(0, v_shift)
-    h_shift = max(0, h_shift)
-    face = get_face(face)
-    while True:
-        clear_screen(detected_environment)
-        print('\n' * v_shift, end='')
-        print(" " * h_shift, end='')
-        datetime_timezone = datetime_lib.datetime.now(tz=tz) + offset_main_timedelta
-        time_timezone_str = datetime_timezone.strftime(time_formats[format_index])
-        date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format.upper()])
-        tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
-        if not hide_date:
+    try:
+        detected_environment = detect_environment()
+        datetime_lib = datetime
+        if date_system.upper() == "JALALI":
+            datetime_lib = jdatetime
+        format_index = 0
+        time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
+        time_formats_local = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
+        if vertical:
+            time_formats = VERTICAL_TIME_12H_FORMATS if am_pm else VERTICAL_TIME_24H_FORMATS
+        tz = None
+        timezone_str = "Local"
+        offset_main_timedelta = datetime_lib.timedelta(hours=offset_local)
+        offset_local_timedelta = datetime.timedelta(hours=offset_local)
+        if country is not None:
+            timezone = pytz.country_timezones(country)[0].upper()
+        if timezone is not None:
+            timezone_str = timezone
+            timezone_diff = get_timezone_difference(
+                timezone=timezone,
+                offset_local=offset_local,
+                offset_timezone=offset_timezone)
+            timezone_str += " ({timezone_diff})".format(timezone_diff=timezone_diff)
+            tz = pytz.timezone(timezone)
+            offset_main_timedelta = datetime_lib.timedelta(hours=offset_timezone)
+        v_shift = max(0, v_shift)
+        h_shift = max(0, h_shift)
+        face = get_face(face)
+        while True:
+            clear_screen(detected_environment)
+            print('\n' * v_shift, end='')
             print(" " * h_shift, end='')
-            print(date_timezone_str)
-        if not hide_timezone:
-            print(" " * h_shift, end='')
-            print("Timezone: {timezone}".format(timezone=timezone_str))
-            if offset_timezone != 0:
+            datetime_timezone = datetime_lib.datetime.now(tz=tz) + offset_main_timedelta
+            time_timezone_str = datetime_timezone.strftime(time_formats[format_index])
+            date_timezone_str = datetime_timezone.strftime(DATE_FORMATS_MAP[date_format.upper()])
+            tprint(time_timezone_str, font=face, sep="\n" + " " * h_shift)
+            if not hide_date:
                 print(" " * h_shift, end='')
-                print(OFFSET_FORMAT.format(offset_type="Timezone", offset_value=offset_timezone))
-            if timezone is not None:
-                datetime_local = datetime.datetime.now() + offset_local_timedelta
-                time_local_str = datetime_local.strftime(time_formats_local[format_index])
+                print(date_timezone_str)
+            if not hide_timezone:
                 print(" " * h_shift, end='')
-                print("Local Time: {local_time}".format(local_time=time_local_str))
-            if offset_local != 0:
-                print(" " * h_shift, end='')
-                print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
-        time.sleep(1)
-        if not no_blink:
-            format_index = int(not format_index)
+                print("Timezone: {timezone}".format(timezone=timezone_str))
+                if offset_timezone != 0:
+                    print(" " * h_shift, end='')
+                    print(OFFSET_FORMAT.format(offset_type="Timezone", offset_value=offset_timezone))
+                if timezone is not None:
+                    datetime_local = datetime.datetime.now() + offset_local_timedelta
+                    time_local_str = datetime_local.strftime(time_formats_local[format_index])
+                    print(" " * h_shift, end='')
+                    print("Local Time: {local_time}".format(local_time=time_local_str))
+                if offset_local != 0:
+                    print(" " * h_shift, end='')
+                    print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
+            time.sleep(1)
+            if not no_blink:
+                format_index = int(not format_index)
+    except (KeyboardInterrupt, EOFError):
+        print(EXIT_MESSAGE)
 
 
 def main() -> None:
@@ -396,21 +399,18 @@ def main() -> None:
             offset_local=args.offset_local,
             offset_timezone=args.offset_timezone)
     else:
-        try:
-            run_clock(
-                timezone=args.timezone,
-                country=args.country,
-                h_shift=args.h_shift,
-                v_shift=args.v_shift,
-                face=args.face,
-                no_blink=args.no_blink,
-                vertical=args.vertical,
-                hide_date=args.hide_date,
-                hide_timezone=args.hide_timezone,
-                am_pm=args.am_pm,
-                date_system=args.date_system,
-                date_format=args.date_format,
-                offset_local=args.offset_local,
-                offset_timezone=args.offset_timezone)
-        except (KeyboardInterrupt, EOFError):
-            print(EXIT_MESSAGE)
+        run_clock(
+            timezone=args.timezone,
+            country=args.country,
+            h_shift=args.h_shift,
+            v_shift=args.v_shift,
+            face=args.face,
+            no_blink=args.no_blink,
+            vertical=args.vertical,
+            hide_date=args.hide_date,
+            hide_timezone=args.hide_timezone,
+            am_pm=args.am_pm,
+            date_system=args.date_system,
+            date_format=args.date_format,
+            offset_local=args.offset_local,
+            offset_timezone=args.offset_timezone)
