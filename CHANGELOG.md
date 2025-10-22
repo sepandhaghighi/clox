@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `clear_screen` function modified
 - `run_clock` function modified
 - `print_calendar` function modified
+- `Python 3.14` added to `test.yml`
 - `README.md` updated
 ## [1.2] - 2025-09-02
 ### Added
