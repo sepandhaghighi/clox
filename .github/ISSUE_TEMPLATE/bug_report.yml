@@ -87,6 +87,7 @@ body:
       label: Clox version
       description: Which version of Clox are you using?
       options:
+        - Clox 1.3
         - Clox 1.2
         - Clox 1.1
         - Clox 1.0

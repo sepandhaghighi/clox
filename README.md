@@ -52,13 +52,13 @@ Clox is a terminal-based clock application designed for terminal enthusiasts who
 ## Installation		
 
 ### Source Code
-- Download [Version 1.2](https://github.com/sepandhaghighi/clox/archive/v1.2.zip) or [Latest Source](https://github.com/sepandhaghighi/clox/archive/dev.zip)
+- Download [Version 1.3](https://github.com/sepandhaghighi/clox/archive/v1.3.zip) or [Latest Source](https://github.com/sepandhaghighi/clox/archive/dev.zip)
 - `pip install .`				
 
 ### PyPI
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- `pip install clox==1.2`						
+- `pip install clox==1.3`						
 
 
 ## Usage
