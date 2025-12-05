@@ -79,3 +79,14 @@ CALENDARS_LIST = ["MONTH", "YEAR"]
 DATE_SYSTEMS_LIST = ["GREGORIAN", "JALALI"]
 
 DATE_FORMATS_LIST = sorted(DATE_FORMATS_MAP)
+
+COLORS_LIST = [
+    "black",
+    "red",
+    "green",
+    "yellow",
+    "blue",
+    "magenta",
+    "cyan",
+    "white",
+]

@@ -22,6 +22,7 @@ from .params import FACES_MAP, FACES_LIST, CALENDARS_LIST, DATE_SYSTEMS_LIST
 from .params import HORIZONTAL_FACES_LIST_EXAMPLE, VERTICAL_FACES_LIST_EXAMPLE
 from .params import CLOX_OVERVIEW, CLOX_REPO
 from .params import DATE_FORMATS_MAP, DATE_FORMATS_LIST
+from .params import COLORS_LIST
 
 
 def print_clox_info() -> None:
@@ -373,6 +374,7 @@ def main() -> None:
         default="GREGORIAN")
     parser.add_argument('--offset-local', help='manual offset for the local time (in hours)', type=float, default=0)
     parser.add_argument('--offset-timezone', help='manual offset for the timezone (in hours)', type=float, default=0)
+    parser.add_argument('--color', help='text color', type=str.lower, choices=COLORS_LIST)
     args = parser.parse_args()
     if args.version:
         print(CLOX_VERSION)
