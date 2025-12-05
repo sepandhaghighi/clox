@@ -386,7 +386,7 @@ def main() -> None:
         default="GREGORIAN")
     parser.add_argument('--offset-local', help='manual offset for the local time (in hours)', type=float, default=0)
     parser.add_argument('--offset-timezone', help='manual offset for the timezone (in hours)', type=float, default=0)
-    parser.add_argument('--color', help='text color', type=str.lower, choices=COLORS_LIST)
+    parser.add_argument('--color', help='text color', type=str.upper, choices=COLORS_LIST)
     args = parser.parse_args()
     set_color(args.color)
     if args.version:

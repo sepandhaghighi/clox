@@ -205,9 +205,9 @@ clox --date-system=jalali --date-format=EU
 
 ### Color
 
-ℹ️ Valid choices: [`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`]
+ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`]
 
-ℹ️ The default color is `white`
+ℹ️ The default color is `WHITE`
 
 ```console
 clox --date-system=jalali --color="red"
