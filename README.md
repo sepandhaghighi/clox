@@ -203,6 +203,16 @@ clox --date-system=jalali --date-format=EU
 ```
 * Date Formats List: `clox --date-formats-list`
 
+### Color
+
+ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`]
+
+ℹ️ The default color is `WHITE`
+
+```console
+clox --date-system=jalali --color="red"
+```
+
 ## Screen Record
 
 <div align="center">
