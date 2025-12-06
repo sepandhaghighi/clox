@@ -11,7 +11,7 @@ import jdatetime
 import argparse
 import pytz
 from art import tprint
-from colorama import Fore
+from colorama import Fore, Back
 from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
 from .params import HORIZONTAL_TIME_12H_FORMATS, VERTICAL_TIME_12H_FORMATS
@@ -81,6 +81,17 @@ def set_color(color: str) -> None:
     if color:
         color = color.strip().upper()
         print(getattr(Fore, color, ""), end="")
+
+
+def set_bg_color(bg_color: str) -> None:
+    """
+    Set background color.
+
+    :param bg_color: background color name
+    """
+    if bg_color:
+        bg_color = bg_color.strip().upper()
+        print(getattr(Back, bg_color, ""), end="")
 
 
 def get_timezone_difference(timezone: str, offset_local: float, offset_timezone: float) -> str:
@@ -387,8 +398,10 @@ def main() -> None:
     parser.add_argument('--offset-local', help='manual offset for the local time (in hours)', type=float, default=0)
     parser.add_argument('--offset-timezone', help='manual offset for the timezone (in hours)', type=float, default=0)
     parser.add_argument('--color', help='text color', type=str.upper, choices=COLORS_LIST)
+    parser.add_argument('--bg-color', help='background color', type=str.upper, choices=COLORS_LIST)
     args = parser.parse_args()
     set_color(args.color)
+    set_bg_color(args.bg_color)
     if args.version:
         print(CLOX_VERSION)
     elif args.info:

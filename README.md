@@ -213,6 +213,16 @@ clox --date-system=jalali --date-format=EU
 clox --date-system=jalali --color="red"
 ```
 
+### Background Color
+
+ℹ️ Valid choices: [`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`]
+
+ℹ️ The default background color is `black`
+
+```console
+clox --date-system=jalali --color="red" --bg-color="blue"
+```
+
 ## Screen Record
 
 <div align="center">
