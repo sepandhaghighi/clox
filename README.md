@@ -215,9 +215,9 @@ clox --date-system=jalali --color="red"
 
 ### Background Color
 
-ℹ️ Valid choices: [`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`]
+ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`]
 
-ℹ️ The default background color is `black`
+ℹ️ The default background color is `BLACK`
 
 ```console
 clox --date-system=jalali --color="red" --bg-color="blue"
