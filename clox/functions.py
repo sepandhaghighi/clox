@@ -91,7 +91,7 @@ def set_bg_color(bg_color: str) -> None:
     """
     if bg_color:
         bg_color = bg_color.strip().upper()
-        print(getattr(Back, bg_color, ""), end="")
+        print(getattr(Back, bg_color, ""))
 
 
 def get_timezone_difference(timezone: str, offset_local: float, offset_timezone: float) -> str:
