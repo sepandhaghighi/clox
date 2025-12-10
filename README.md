@@ -205,6 +205,8 @@ clox --date-system=jalali --date-format=EU
 
 ### Color
 
+⚠️ This mode may not be supported on all systems
+
 ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`]
 
 ℹ️ The default color is `WHITE`
@@ -214,6 +216,8 @@ clox --date-system=jalali --color="red"
 ```
 
 ### Background Color
+
+⚠️ This mode may not be supported on all systems
 
 ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`]
 
