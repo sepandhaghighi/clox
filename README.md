@@ -227,6 +227,18 @@ clox --date-system=jalali --color="red"
 clox --date-system=jalali --color="red" --bg-color="blue"
 ```
 
+### Intensity
+
+⚠️ This mode may not be supported on all systems
+
+ℹ️ Valid choices: [`NORMAL`, `BRIGHT`, `DIM`]
+
+ℹ️ The default intensity is `NORMAL`
+
+```console
+clox --color="red" --intensity="bright"
+```
+
 ## Screen Record
 
 <div align="center">
