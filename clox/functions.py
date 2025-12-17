@@ -418,6 +418,7 @@ def main() -> None:
     args = parser.parse_args()
     set_color(args.color)
     set_bg_color(args.bg_color)
+    set_intensity(args.intensity)
     if args.version:
         print(CLOX_VERSION)
     elif args.info:
