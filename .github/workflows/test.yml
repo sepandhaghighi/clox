@@ -88,7 +88,7 @@ jobs:
         clox --date-system=jalali --date-formats-list
     - name: Run17
       run: |
-        clox --date-system=jalali --date-formats-list --color="red" --bg-color="blue"
+        clox --date-system=jalali --date-formats-list --color="red" --bg-color="blue" --intensity="bright"
     - name: Install dev-requirements
       run: |
         python otherfiles/requirements-splitter.py
