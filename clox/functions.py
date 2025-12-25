@@ -301,7 +301,8 @@ def run_clock(
         date_system: str = "GREGORIAN",
         date_format: str = "FULL",
         offset_local: float = 0,
-        offset_timezone: float = 0) -> None:
+        offset_timezone: float = 0,
+        once: bool = False) -> None:
     """
     Run clock.
 
@@ -319,6 +320,7 @@ def run_clock(
     :param date_format: date format
     :param offset_local: manual offset for the local time
     :param offset_timezone: manual offset for the timezone
+    :param once: once flag
     """
     try:
         detected_environment = detect_environment()
@@ -349,7 +351,8 @@ def run_clock(
         h_shift = max(0, h_shift)
         face = get_face(face)
         while True:
-            clear_screen(detected_environment)
+            if not once:
+                clear_screen(detected_environment)
             print('\n' * v_shift, end='')
             print(" " * h_shift, end='')
             datetime_timezone = datetime_lib.datetime.now(tz=tz) + offset_main_timedelta
@@ -373,6 +376,8 @@ def run_clock(
                 if offset_local != 0:
                     print(" " * h_shift, end='')
                     print(OFFSET_FORMAT.format(offset_type="Local", offset_value=offset_local))
+            if once:
+                break
             time.sleep(1)
             if not no_blink:
                 format_index = int(not format_index)
@@ -400,6 +405,7 @@ def main() -> None:
     parser.add_argument('--hide-date', help='hide date', nargs="?", const=1)
     parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--am-pm', help='AM/PM mode', nargs="?", const=1)
+    parser.add_argument('--once', help='print current time once and exit immediately', nargs='?', const=1)
     parser.add_argument('--calendar', help='calendar mode', type=str.upper, choices=CALENDARS_LIST)
     parser.add_argument('--first-weekday', help='first weekday', type=str.upper, default="MONDAY",
                         choices=WEEKDAYS_LIST + [x[:2] for x in WEEKDAYS_LIST])
@@ -458,4 +464,5 @@ def main() -> None:
             date_system=args.date_system,
             date_format=args.date_format,
             offset_local=args.offset_local,
-            offset_timezone=args.offset_timezone)
+            offset_timezone=args.offset_timezone,
+            once=args.once)
