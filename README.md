@@ -142,6 +142,14 @@ Disable blinking mode
 clox --no-blink
 ```
 
+### Once
+
+Print current time once and exit immediately
+
+```console
+clox --once
+```
+
 ### Hide Date
 
 In this mode, the date will not be shown
