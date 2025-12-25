@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - `README.md` updated
 - Test system modified
+- `notebook.ipynb` updated
 ## [1.4] - 2025-12-16
 ### Added
 - `--color` argument
