@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `--intensity` argument
+- `--once` argument
 - Light colors
 ### Changed
 - `README.md` updated
