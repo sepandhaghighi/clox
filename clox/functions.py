@@ -79,6 +79,8 @@ def set_color(color: str) -> None:
     :param color: color name
     """
     if color:
+        if color == "RANDOM":
+            color = random.choice(COLORS_LIST)
         color = color.strip().upper()
         if color.startswith("LIGHT"):
             color += "_EX"
@@ -92,6 +94,8 @@ def set_bg_color(bg_color: str) -> None:
     :param bg_color: background color name
     """
     if bg_color:
+        if bg_color == "RANDOM":
+            bg_color = random.choice(COLORS_LIST)
         bg_color = bg_color.strip().upper()
         if bg_color.startswith("LIGHT"):
             bg_color += "_EX"
@@ -418,8 +422,8 @@ def main() -> None:
         default="GREGORIAN")
     parser.add_argument('--offset-local', help='manual offset for the local time (in hours)', type=float, default=0)
     parser.add_argument('--offset-timezone', help='manual offset for the timezone (in hours)', type=float, default=0)
-    parser.add_argument('--color', help='text color', type=str.upper, choices=COLORS_LIST)
-    parser.add_argument('--bg-color', help='background color', type=str.upper, choices=COLORS_LIST)
+    parser.add_argument('--color', help='text color', type=str.upper, choices=COLORS_LIST + ["RANDOM"])
+    parser.add_argument('--bg-color', help='background color', type=str.upper, choices=COLORS_LIST + ["RANDOM"])
     parser.add_argument('--intensity', help='text intensity', type=str.upper, choices=INTENSITY_LIST)
     args = parser.parse_args()
     set_color(args.color)
