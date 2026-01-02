@@ -215,7 +215,7 @@ clox --date-system=jalali --date-format=EU
 
 ⚠️ This mode may not be supported on all systems
 
-ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`, `LIGHTBLACK`, `LIGHTRED`, `LIGHTGREEN`, `LIGHTYELLOW`, `LIGHTBLUE`, `LIGHTMAGENTA`, `LIGHTCYAN`, `LIGHTWHITE`]
+ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`, `LIGHTBLACK`, `LIGHTRED`, `LIGHTGREEN`, `LIGHTYELLOW`, `LIGHTBLUE`, `LIGHTMAGENTA`, `LIGHTCYAN`, `LIGHTWHITE`, `RANDOM`]
 
 ℹ️ The default color is `WHITE`
 
@@ -227,7 +227,7 @@ clox --date-system=jalali --color="red"
 
 ⚠️ This mode may not be supported on all systems
 
-ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`, `LIGHTBLACK`, `LIGHTRED`, `LIGHTGREEN`, `LIGHTYELLOW`, `LIGHTBLUE`, `LIGHTMAGENTA`, `LIGHTCYAN`, `LIGHTWHITE`]
+ℹ️ Valid choices: [`BLACK`, `RED`, `GREEN`, `YELLOW`, `BLUE`, `MAGENTA`, `CYAN`, `WHITE`, `LIGHTBLACK`, `LIGHTRED`, `LIGHTGREEN`, `LIGHTYELLOW`, `LIGHTBLUE`, `LIGHTMAGENTA`, `LIGHTCYAN`, `LIGHTWHITE`, `RANDOM`]
 
 ℹ️ The default background color is `BLACK`
 
