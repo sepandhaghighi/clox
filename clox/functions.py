@@ -79,9 +79,9 @@ def set_color(color: str) -> None:
     :param color: color name
     """
     if color:
+        color = color.strip().upper()
         if color == "RANDOM":
             color = random.choice(COLORS_LIST)
-        color = color.strip().upper()
         if color.startswith("LIGHT"):
             color += "_EX"
         print(getattr(Fore, color, ""), end="")
@@ -94,9 +94,9 @@ def set_bg_color(bg_color: str) -> None:
     :param bg_color: background color name
     """
     if bg_color:
+        bg_color = bg_color.strip().upper()
         if bg_color == "RANDOM":
             bg_color = random.choice(COLORS_LIST)
-        bg_color = bg_color.strip().upper()
         if bg_color.startswith("LIGHT"):
             bg_color += "_EX"
         print(getattr(Back, bg_color, ""))
