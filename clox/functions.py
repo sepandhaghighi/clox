@@ -110,6 +110,8 @@ def set_intensity(intensity: str) -> None:
     """
     if intensity:
         intensity = intensity.strip().upper()
+        if intensity == "RANDOM":
+            intensity = random.choice(INTENSITY_LIST)
         print(getattr(Style, intensity, ""), end="")
 
 
@@ -424,7 +426,7 @@ def main() -> None:
     parser.add_argument('--offset-timezone', help='manual offset for the timezone (in hours)', type=float, default=0)
     parser.add_argument('--color', help='text color', type=str.upper, choices=COLORS_LIST + ["RANDOM"])
     parser.add_argument('--bg-color', help='background color', type=str.upper, choices=COLORS_LIST + ["RANDOM"])
-    parser.add_argument('--intensity', help='text intensity', type=str.upper, choices=INTENSITY_LIST)
+    parser.add_argument('--intensity', help='text intensity', type=str.upper, choices=INTENSITY_LIST + ["RANDOM"])
     args = parser.parse_args()
     set_color(args.color)
     set_bg_color(args.bg_color)
