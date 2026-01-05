@@ -239,7 +239,7 @@ clox --date-system=jalali --color="red" --bg-color="blue"
 
 ⚠️ This mode may not be supported on all systems
 
-ℹ️ Valid choices: [`NORMAL`, `BRIGHT`, `DIM`]
+ℹ️ Valid choices: [`NORMAL`, `BRIGHT`, `DIM`, `RANDOM`]
 
 ℹ️ The default intensity is `NORMAL`
 
