@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Color random mode
 - Background-color random mode
+- Intensity random mode
 ### Changed
 - Screen record updated
 - `README.md` updated
