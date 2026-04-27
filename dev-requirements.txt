@@ -2,7 +2,7 @@ jdatetime==5.2.0
 pytz==2026.1.post1
 art==6.5
 colorama==0.4.6
-setuptools>=40.8.0
+setuptools>=82.0.1
 vulture>=1.0
 bandit>=1.5.1
 pydocstyle>=3.0.0
