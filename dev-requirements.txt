@@ -1,5 +1,5 @@
 jdatetime==5.2.0
-pytz==2026.1.post1
+pytz==2026.2
 art==6.5
 colorama==0.4.6
 setuptools>=40.8.0
