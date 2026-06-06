@@ -1,16 +1,9 @@
 # -*- coding: utf-8 -*-
 """Setup module."""
-from typing import List
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
-
-
-def get_requires() -> List[str]:
-    """Read requirements.txt."""
-    requirements = open("requirements.txt", "r").read()
-    return list(filter(lambda x: x != "", requirements.split()))
 
 
 def read_description() -> str:
@@ -39,11 +32,16 @@ setup(
     author_email='me@sepand.tech',
     url='https://github.com/sepandhaghighi/clox',
     download_url='https://github.com/sepandhaghighi/clox/tarball/v1.6',
-    keywords="clock time timer timezone terminal cli geek clox",
+    keywords='clock time timer timezone terminal cli geek clox',
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/clox'
     },
-    install_requires=get_requires(),
+    install_requires=[
+        'art>=5.3',
+        'jdatetime>=3.8.2',
+        'pytz>=2019.2',
+        'colorama>=0.4.5'
+    ],
     python_requires='>=3.7',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
