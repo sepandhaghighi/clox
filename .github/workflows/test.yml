@@ -121,6 +121,9 @@ jobs:
         pip install dist/*.whl
         mkdir wheel_test
         cd wheel_test
+        python -m clox --version
+        python -m clox --info
+        python -m clox --faces-list
         clox --version
         clox --info
         clox --faces-list
