@@ -108,3 +108,20 @@ jobs:
         python -m bandit -r clox -s B404,B603,B605,B607,B311
         python -m pydocstyle --match-dir=clox -v
       if: matrix.python-version == env.TEST_PYTHON_VERSION
+    - name: Build package
+        run: |
+          python -m build
+      - name: Check package metadata
+        run: |
+          twine check dist/*
+      - name: Wheel smoke test
+        shell: bash
+        run: |
+          pip uninstall -y clox
+          pip install dist/*.whl
+          mkdir wheel_test
+          cd wheel_test
+          clox --version
+          clox --info
+          clox --faces-list
+
