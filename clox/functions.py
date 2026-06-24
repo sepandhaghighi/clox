@@ -226,6 +226,18 @@ def get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     return weekdays.index(first_weekday_normalized)
 
 
+def get_timezone_from_country(timezone: Optional[str] = None, country: Optional[str] = None) -> Optional[str]:
+    """
+    Resolve timezone from timezone/country arguments.
+
+    :param timezone: timezone
+    :param country: country iso3166 code
+    """
+    if country is not None:
+        return pytz.country_timezones(country)[0].upper()
+    return timezone
+
+
 def print_calendar(
         mode: str = "MONTH",
         timezone: Optional[str] = None,
