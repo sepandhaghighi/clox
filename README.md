@@ -170,8 +170,6 @@ clox --hide-timezone
 
 In this mode, the clock will be displayed in 12-hour format.
 
-The `--12h` option is the recommended form, while `--am-pm` is kept as an alias for compatibility.
-
 ```console
 clox --12h
 clox --am-pm
