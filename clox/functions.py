@@ -351,9 +351,7 @@ def run_clock(
     """
     try:
         detected_environment = detect_environment()
-        datetime_lib = datetime
-        if date_system.upper() == "JALALI":
-            datetime_lib = jdatetime
+        datetime_lib = get_datetime_library(date_system)
         format_index = 0
         time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
         time_formats_local = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
