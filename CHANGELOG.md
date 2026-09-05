@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `--12h` argument
+- `get_datetime_library` function
 ### Changed
 - Test system modified
 - Dependencies structure modified
