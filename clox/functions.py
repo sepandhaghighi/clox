@@ -275,10 +275,9 @@ def print_calendar(
     :param offset_timezone: manual offset for the timezone
     """
     first_weekday_id = get_weekday_id(first_weekday, date_system)
-    datetime_lib = datetime
+    datetime_lib = get_datetime_library(date_system)
     calendar_obj = GregorianCalendar(first_weekday_id)
     if date_system.upper() == "JALALI":
-        datetime_lib = jdatetime
         calendar_obj = JalaliCalendar(first_weekday_id)
     offset_main_timedelta = datetime_lib.timedelta(hours=offset_local)
     tz = None
