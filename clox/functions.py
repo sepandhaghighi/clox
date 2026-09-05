@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """clox functions."""
 from typing import Optional
+from types import ModuleType
 import os
 import sys
 import time
