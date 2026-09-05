@@ -226,6 +226,17 @@ def get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     return weekdays.index(first_weekday_normalized)
 
 
+def get_datetime_library(date_system: str) -> ModuleType:
+    """
+    Get datetime library.
+
+    :param date_system: date system
+    """
+    if date_system.upper() == "JALALI":
+        return jdatetime
+    return datetime
+
+
 def get_timezone_from_country(timezone: Optional[str] = None, country: Optional[str] = None) -> Optional[str]:
     """
     Resolve timezone from timezone/country arguments.
