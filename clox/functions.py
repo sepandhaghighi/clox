@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """clox functions."""
 from typing import Optional
+from types import ModuleType
 import os
 import sys
 import time
@@ -226,6 +227,17 @@ def get_weekday_id(first_weekday: str, date_system: str = "GREGORIAN") -> int:
     return weekdays.index(first_weekday_normalized)
 
 
+def get_datetime_library(date_system: str) -> ModuleType:
+    """
+    Get datetime library.
+
+    :param date_system: date system
+    """
+    if date_system.upper() == "JALALI":
+        return jdatetime
+    return datetime
+
+
 def get_timezone_from_country(timezone: Optional[str] = None, country: Optional[str] = None) -> Optional[str]:
     """
     Resolve timezone from timezone/country arguments.
@@ -264,10 +276,9 @@ def print_calendar(
     :param offset_timezone: manual offset for the timezone
     """
     first_weekday_id = get_weekday_id(first_weekday, date_system)
-    datetime_lib = datetime
+    datetime_lib = get_datetime_library(date_system)
     calendar_obj = GregorianCalendar(first_weekday_id)
     if date_system.upper() == "JALALI":
-        datetime_lib = jdatetime
         calendar_obj = JalaliCalendar(first_weekday_id)
     offset_main_timedelta = datetime_lib.timedelta(hours=offset_local)
     tz = None
@@ -341,9 +352,7 @@ def run_clock(
     """
     try:
         detected_environment = detect_environment()
-        datetime_lib = datetime
-        if date_system.upper() == "JALALI":
-            datetime_lib = jdatetime
+        datetime_lib = get_datetime_library(date_system)
         format_index = 0
         time_formats = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
         time_formats_local = HORIZONTAL_TIME_12H_FORMATS if am_pm else HORIZONTAL_TIME_24H_FORMATS
