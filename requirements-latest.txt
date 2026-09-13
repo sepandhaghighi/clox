@@ -1,4 +1,4 @@
-jdatetime==6.0.1
+jdatetime==6.1.0
 pytz==2026.3.post1
 art==6.5
 colorama==0.4.6
