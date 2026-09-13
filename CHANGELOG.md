@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `--no-date` argument
 - `--12h` argument
 - `get_datetime_library` function
 ### Changed
