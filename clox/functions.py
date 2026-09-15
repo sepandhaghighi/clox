@@ -428,7 +428,7 @@ def main() -> None:
     parser.add_argument('--no-blink', help='disable blinking mode', nargs="?", const=1)
     parser.add_argument('--vertical', help='vertical mode', nargs="?", const=1)
     parser.add_argument('--no-date', '--hide-date', dest='hide_date', help='hide date', nargs="?", const=1)
-    parser.add_argument('--hide-timezone', help='hide timezone', nargs="?", const=1)
+    parser.add_argument('--no-timezone', '--hide-timezone', dest='hide_timezone', help='hide timezone', nargs="?", const=1)
     parser.add_argument('--12h', '--am-pm', dest='am_pm', help='use 12-hour time format', nargs='?', const=1)
     parser.add_argument('--once', help='print current time once and exit immediately', nargs='?', const=1)
     parser.add_argument('--calendar', help='calendar mode', type=str.upper, choices=CALENDARS_LIST)
