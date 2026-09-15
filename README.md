@@ -165,6 +165,7 @@ In this mode, the timezone will not be shown
 
 ```console
 clox --hide-timezone
+clox --no-timezone
 ```
 
 ### 12-Hour Mode
