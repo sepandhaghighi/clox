@@ -156,6 +156,7 @@ In this mode, the date will not be shown
 
 ```console
 clox --hide-date
+clox --no-date
 ```
 
 ### Hide Timezone
