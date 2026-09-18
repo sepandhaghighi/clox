@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Test system modified
 - Dependencies structure modified
+- CLI arguments modified
 - `run_clock` function modified
 - `print_calendar` function modified
 - `README.md` updated
