@@ -16,7 +16,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - CLI arguments modified
 - `run_clock` function modified
 - `print_calendar` function modified
+- `print_clox_info` function modified
 - `README.md` updated
+- `Python 3.7` support dropped
 ## [1.6] - 2026-02-17
 ### Added
 - Color random mode

@@ -11,7 +11,8 @@ import datetime
 import jdatetime
 import argparse
 import pytz
-from art import tprint
+from art import tprint, text2art
+from typio import type_print, TypeMode
 from colorama import Fore, Back, Style
 from .jcalendar import TextCalendar as JalaliCalendar
 from .params import HORIZONTAL_TIME_24H_FORMATS, VERTICAL_TIME_24H_FORMATS
@@ -29,10 +30,10 @@ from .params import COLORS_LIST, INTENSITY_LIST
 
 def print_clox_info() -> None:
     """Print clox info."""
-    tprint("Clox")
-    tprint("V:" + CLOX_VERSION)
-    print(CLOX_OVERVIEW)
-    print("Repo : " + CLOX_REPO)
+    type_print(text2art("Clox"), mode=TypeMode.LINE, delay=0.1)
+    type_print(text2art("V:" + CLOX_VERSION), mode=TypeMode.LINE, delay=0.1)
+    type_print(CLOX_OVERVIEW, mode=TypeMode.CHAR, delay=0.05)
+    type_print("Repo : " + CLOX_REPO, mode=TypeMode.CHAR, delay=0.05)
 
 
 def detect_environment() -> str:
