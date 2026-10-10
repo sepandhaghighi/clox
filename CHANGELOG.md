@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `get_datetime_library` function
 ### Changed
 - Test system modified
+- Build system modified
 - Dependencies structure modified
 - CLI arguments modified
 - `run_clock` function modified
