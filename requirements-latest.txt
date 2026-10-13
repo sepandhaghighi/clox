@@ -2,4 +2,4 @@ jdatetime==6.1.0
 pytz==2026.5
 art==6.5
 colorama==0.4.6
-typio==1.2
+typio==1.3
