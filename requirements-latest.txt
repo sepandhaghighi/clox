@@ -1,5 +1,5 @@
 jdatetime==6.1.1
-pytz==2026.5
+pytz==2026.6
 art==6.5
 colorama==0.4.6
 typio==1.4
