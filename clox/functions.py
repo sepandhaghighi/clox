@@ -171,8 +171,12 @@ def show_timezones_list(country: Optional[str] = None) -> None:
     timezones_list = TIMEZONES_LIST
     country_name = "All"
     if country is not None:
-        timezones_list = list(map(lambda x: x.upper(), pytz.country_timezones(country)))
-        country_name = pytz.country_names[country]
+        try:
+            timezones_list = list(map(lambda x: x.upper(), pytz.country_timezones(country)))
+            country_name = pytz.country_names[country]
+        except KeyError:
+            print("Invalid country code: {country}".format(country=country))
+            return
     try:
         print("Timezones list ({country_name}):\n".format(country_name=country_name))
     except Exception:
